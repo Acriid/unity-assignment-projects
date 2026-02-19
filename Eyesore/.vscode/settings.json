@@ -67,5 +67,8 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Eyesore.slnx"
+    "dotnet.defaultSolution": "Eyesore.slnx",
+    "cSpell.words": [
+        "Mathf"
+    ]
 }
