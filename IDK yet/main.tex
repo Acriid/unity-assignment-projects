@@ -17,6 +17,15 @@
     or consequences.}
 }
 
+\newglossaryentry{map}
+{
+    name = map,
+    description = {The playable area in which the player can move around and interact
+    with}
+}
+
+
+
 \begin{document}
 
 \section{General description}
@@ -31,6 +40,7 @@ The player will be able to move around in a 2D environment and interact with obj
 within that environment. 
 Some challenges the player may face include: Looking for objects to solve puzzles, 
 hiding or running away from enemies.
+The player will only be able to see parts of the \gls{map} which they explored
 
 
 
@@ -56,6 +66,9 @@ immediate vicinity.
 To make a system in which something in the game changes when the player completes the
 game.
 
+\section{Process}
+User input code has been used from a previous project I did.
+A generic tilemap was made in asseprite to use for a \gls{map}
 
 \section{Player motivation design}
 Make the player curious to keep them motivated. Maybe a door in which the player
