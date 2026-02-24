@@ -237,7 +237,6 @@ GameObject:
   - component: {fileID: 465162678}
   - component: {fileID: 465162681}
   - component: {fileID: 465162680}
-  - component: {fileID: 465162679}
   - component: {fileID: 465162682}
   m_Layer: 0
   m_Name: Door 1
@@ -261,23 +260,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1436280695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &465162679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465162677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17892bc7e722d044a9bf541d7de1474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  _inputReader: {fileID: 11400000, guid: f82c58c05fb4f824085ebdaad83b873c, type: 2}
-  _cameraStart: {x: 0, y: 0, z: -10}
-  _cameraEnd: {x: 0, y: 15, z: -10}
-  _top: 1
-  _right: 0
 --- !u!483693784 &465162680
 TilemapRenderer:
   serializedVersion: 2
@@ -444,6 +426,55 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &465678160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 465678162}
+  - component: {fileID: 465678161}
+  m_Layer: 0
+  m_Name: FogOfWarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &465678161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465678160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9577e6f52878f9a46bb57727a9f8372e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FogOfWarManager
+  textureResolution: 250
+  worldSize: 100
+  visionRadius: 5
+  initialRevealArea: 5
+  fogMaterial: {fileID: 2100000, guid: 7b03cf454413f0d4c944f8bfb0a0203c, type: 2}
+--- !u!4 &465678162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465678160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +801,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2390149077570933969, guid: 06d49c2acc3f7c745a820e79c0049a1e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 849063787}
+    - targetCorrespondingSourceObject: {fileID: 2390149077570933969, guid: 06d49c2acc3f7c745a820e79c0049a1e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 849063791}
   m_SourcePrefab: {fileID: 100100000, guid: 06d49c2acc3f7c745a820e79c0049a1e, type: 3}
 --- !u!1 &849063781 stripped
 GameObject:
@@ -832,8 +866,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SendRay
   player: {fileID: 849063781}
   layerMask:
-    serializedVersion: 2
     m_Bits: 8
+--- !u!114 &849063791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849063781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040c8a7adb564cc49aec612574ade269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FogRevealer
 --- !u!1 &1253472695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5754,7 +5799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1695312291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5946,3 +5991,4 @@ SceneRoots:
   - {fileID: 849063780}
   - {fileID: 313848399}
   - {fileID: 1695312294}
+  - {fileID: 465678162}
