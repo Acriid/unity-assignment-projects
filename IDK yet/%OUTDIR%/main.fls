@@ -74,6 +74,8 @@ OUTPUT %OUTDIR%/main.aux
 INPUT c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT %OUTDIR%/main.pdf
 OUTPUT %OUTDIR%/main.ist
 INPUT c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map
