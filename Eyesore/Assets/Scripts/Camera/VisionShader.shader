@@ -1,4 +1,4 @@
-Shader "Custom/FogOfWar"
+Shader "Custom/VisionCircle"
 {
     Properties
     {
@@ -51,7 +51,7 @@ Shader "Custom/FogOfWar"
 
             float4 frag(v2f i) : SV_TARGET
             {
-                float2 center = unity_ObjectToWorld._m03_m13;
+                float2 center = GetObjectToWorldMatrix()[3].xy;
                 float dist = distance(i.positionWS.xy,center);
 
 
