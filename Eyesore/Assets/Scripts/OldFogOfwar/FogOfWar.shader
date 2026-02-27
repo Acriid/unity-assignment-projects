@@ -2,8 +2,9 @@ Shader "Custom/FogOfWar"
 {
     Properties 
     {
-        _MainTex ("Terrain Texture", 2D) = "white" {}
         _VisionTex ("Vision Mask", 2D) = "black" {}
+        _WorldSize ("World Size", Float) = 100
+
         _FogColor ("Fog Color", Color) = (0.15, 0.15, 0.18, 1)
         _ExploredColor ("Explored Gray", Color) = (0.3, 0.3, 0.35, 1)
     }
@@ -28,9 +29,10 @@ Shader "Custom/FogOfWar"
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
-            sampler2D _VisionTex;
-            sampler2D _MainTex;
+            TEXTURE2D(_VisionTex);
+            SAMPLER(sampler_VisionTex);
 
+            float _WorldSize;
             float4 _FogColor;
             float4 _ExploredColor;
 
@@ -61,15 +63,17 @@ Shader "Custom/FogOfWar"
             {
                 float2 uv;
 
-                uv.x = i.positionWS.x;
-                uv.y = i.positionWS.y;
+                uv = i.positionWS.xy / _WorldSize;
 
 
-                float mask = tex2D(_VisionTex,uv).r;
+                float mask = SAMPLE_TEXTURE2D(_VisionTex,sampler_VisionTex,uv).r;
 
+                
+                
+                //return half4(uv,0,1);
                 if(mask > 0.9)
                 {
-                    return float4(0,0,0,0);
+                    return float4(1,1,1,1);
                 }
                 else if(mask > 0.1)
                 {
@@ -79,6 +83,8 @@ Shader "Custom/FogOfWar"
                 {
                     return _FogColor;
                 }
+
+                //return half4(1,0,0,0.5);
             }
 
             ENDHLSL

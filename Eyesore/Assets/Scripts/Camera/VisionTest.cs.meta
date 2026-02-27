@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 278ad4030f2308944804ca045629d3b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visionRT: {fileID: 8400000, guid: 0049157037ce69846b3a036986af5e68, type: 2}
+  - FogOfWar: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
