@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c0f9a2d089481448679be40b0410a8, type: 3}
   m_Name: FogOfWarFeature
   m_EditorClassIdentifier: Assembly-CSharp::FogOfWarFeature
-  m_Active: 0
+  m_Active: 1
   settings:
     visionRT: {fileID: 8400000, guid: 7af07c1742e7b3842b3aa8348ca098cb, type: 2}
     exploredRT: {fileID: 8400000, guid: ce10cc5087616aa41a0c4abf453ea9ba, type: 2}
