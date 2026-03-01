@@ -40,6 +40,6 @@ Material:
     - _ExploredDim: 0.45
     m_Colors:
     - _ExploredTint: {r: 0.24999997, g: 0.24999997, b: 0.29999998, a: 1}
-    - _FogColor: {r: 0.049999982, g: 0.049999982, b: 0.079999976, a: 1}
+    - _FogColor: {r: 0.049999967, g: 0.049999967, b: 0.079999946, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

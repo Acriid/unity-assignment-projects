@@ -77,6 +77,7 @@ Shader "Custom/FogOfWar"
 
                 // not explored
                 return _FogColor;
+                //return lerp(scene, scene, vision); 
             }
             ENDHLSL
         }
