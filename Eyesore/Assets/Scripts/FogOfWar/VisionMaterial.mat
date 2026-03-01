@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FogOfWar
-  m_Shader: {fileID: 4800000, guid: f20832edc1862cc49a2f571589ac1ee3, type: 3}
+  m_Name: VisionMaterial
+  m_Shader: {fileID: 4800000, guid: f87f54a9a486ac64787d4532949c7b6b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -16,26 +16,17 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _VisionTex:
-        m_Texture: {fileID: 8400000, guid: 7af07c1742e7b3842b3aa8348ca098cb, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _WorldSize: 8
-    m_Colors:
-    - _ExploredColor: {r: 0.29999998, g: 0.29999998, b: 0.34999996, a: 1}
-    - _FogColor: {r: 0.14999998, g: 0.14999998, b: 0.17999998, a: 1}
+    - _Softness: 0.2
+    - _VisionRange: 5
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

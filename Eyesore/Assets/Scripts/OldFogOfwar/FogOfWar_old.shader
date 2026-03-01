@@ -1,4 +1,4 @@
-Shader "Custom/FogOfWar"
+Shader "Custom/FogOfWar_old"
 {
     Properties 
     {
