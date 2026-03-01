@@ -149,8 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858b4c4956ff3c246a2218bfad22bc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FogOfWarManager
+  mainCamera: {fileID: 519420031}
   visionCamera: {fileID: 1246726923}
   fogMaterial: {fileID: 2100000, guid: 5fb0d072ab7a9a449a7484ea7dce8ab6, type: 2}
+  visionRT: {fileID: 8400000, guid: 7af07c1742e7b3842b3aa8348ca098cb, type: 2}
 --- !u!4 &11662134
 Transform:
   m_ObjectHideFlags: 0
@@ -180,7 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExploredFog
   visionRT: {fileID: 8400000, guid: 7af07c1742e7b3842b3aa8348ca098cb, type: 2}
   exploredRT: {fileID: 8400000, guid: ce10cc5087616aa41a0c4abf453ea9ba, type: 2}
-  exploredmat: {fileID: 2100000, guid: 59075d8a2f9cd3741baf818cc24ec241, type: 2}
 --- !u!1 &313848396
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +600,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1013,7 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisionCameraSetup
   visionRT: {fileID: 8400000, guid: 7af07c1742e7b3842b3aa8348ca098cb, type: 2}
-  mapWorldSize: 16
+  mapWorldSize: 100
 --- !u!1 &1253472695
 GameObject:
   m_ObjectHideFlags: 0
