@@ -6,13 +6,25 @@ using UnityEngine.InputSystem;
 public class InputReaderSO : ScriptableObject
 {
     private InputActions _inputActions;
+    
 
     private InputAction _moveAction;
 
+    private InputAction _navigateAction;
+    private InputAction _submitAction;
+
     public event Action<Vector2> OnMove;
+
+
+    public event Action OnNavigate;
+    public event Action OnSubmit;
+
 
     private Action<InputAction.CallbackContext> movePerformed;
     private Action<InputAction.CallbackContext> moveCancled;
+
+    private Action<InputAction.CallbackContext> navigatePerformed;
+    private Action<InputAction.CallbackContext> submitPerformed;
 
     void OnEnable()
     {
@@ -20,6 +32,9 @@ public class InputReaderSO : ScriptableObject
 
         InitializePlayerActions();
         InitializePlayerEvents();
+
+        InitializeUIActions();
+        InitializeUIEvents();
 
         SubscribeActions();
     }
@@ -43,11 +58,17 @@ public class InputReaderSO : ScriptableObject
     {
         _moveAction.performed += movePerformed;
         _moveAction.canceled += moveCancled;
+
+        _navigateAction.performed += navigatePerformed;
+        _submitAction.performed += submitPerformed;
     }
     private void UnsubscribeActions()
     {
         _moveAction.performed -= movePerformed;
-        _moveAction.canceled -= moveCancled;        
+        _moveAction.canceled -= moveCancled;   
+
+        _navigateAction.performed -= navigatePerformed;
+        _submitAction.performed -= submitPerformed;             
     }
 
     public void EnableMoveAction()
@@ -57,5 +78,34 @@ public class InputReaderSO : ScriptableObject
     public void DisableMoveAction()
     {
         _moveAction.Disable();
+    }
+
+    private void InitializeUIEvents()
+    {
+        navigatePerformed = ctx => OnNavigate?.Invoke();
+        submitPerformed = ctx => OnSubmit?.Invoke();       
+    }
+
+    private void InitializeUIActions()
+    {
+        _navigateAction = _inputActions.UI.Navigate;
+        _submitAction = _inputActions.UI.Submit;       
+    }
+
+    public void EnableNavigateAction()
+    {
+        _navigateAction.Enable();
+    }
+    public void DisableNavigateAction()
+    {
+        _navigateAction.Disable();
+    }
+    public void EnableSubmitAction()
+    {
+        _submitAction.Enable();
+    }
+    public void DisableSubmitAction()
+    {
+        _submitAction.Disable();
     }
 }

@@ -69,6 +69,16 @@ game.
 \section{Process}
 User input code has been used from a previous project I did.
 A generic tilemap was made in asseprite to use for a \gls{map}
+\newline
+Different ways fog of war was tried:
+\newline
+A RenderTexture was used along with shaders 
+that paint the texture white. 2 Different shaders were used the fogofwar
+and vision. The FogOfWar shader is a completely black shader that then checks for
+if there is any vision material and will then change the RenderTexture to white in
+the area that the material is allowing the player to see that area.
+
+
 
 \section{Player motivation design}
 Make the player curious to keep them motivated. Maybe a door in which the player
