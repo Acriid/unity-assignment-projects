@@ -73,10 +73,15 @@ A generic tilemap was made in asseprite to use for a \gls{map}
 Different ways fog of war was tried:
 \newline
 A RenderTexture was used along with shaders 
-that paint the texture white. 2 Different shaders were used the fogofwar
+that paint the texture white. 2 Different shaders were used the FogOfWar
 and vision. The FogOfWar shader is a completely black shader that then checks for
 if there is any vision material and will then change the RenderTexture to white in
-the area that the material is allowing the player to see that area.
+the area that the material is allowing the player to see that area. The reason that
+this solution did not work was the uv's between the FogOfWar camera and the Main camera
+where not aligning, which caused the vision circle to be stretched.
+Thus a single area light was used for the player to see around them to simulate a
+FogOfWar. This solution was chosen because of time constraints, thus it is more
+CPU based instead of the RenderTexture which is more GPU based.
 
 
 
