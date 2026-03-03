@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
-  m_Name: Welcome
+  m_Name: Welcome2
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: Wake up...
+  DialogText: ' Please wake up...'
   DialogFontSize: 15
-  DialogColour: {r: 0.54905653, g: 1, b: 0.9990482, a: 1}
+  DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}
-  DialogPosition: {x: -4.25, y: -4.75}
-  DialogID: 1
-  NextDialogID: 2
+  DialogPosition: {x: -4.25, y: -3}
+  DialogID: 2
+  NextDialogID: 3
   DialogDuration: 2
   InstantDialog: 0

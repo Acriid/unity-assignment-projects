@@ -10,8 +10,8 @@ public class DialogObject : MonoBehaviour
 //Will be used to hold the dialog within the worlds
     public DialogSO DialogSO;
     [SerializeField] private TMP_Text _tmpText;
-    [SerializeField] private bool _instantText = false;
-    public event Action OnTextFinished;
+    public bool DialogPaused = false;
+    public event Action<int> OnTextFinished;
     void Awake()
     {
         if(_tmpText == null)
@@ -25,22 +25,24 @@ public class DialogObject : MonoBehaviour
         _tmpText.fontSize = DialogSO.DialogFontSize;
         _tmpText.color = DialogSO.DialogColour;
 
-
-
-        if(_instantText)
-            _tmpText.text = DialogSO.DialogText;
-        else
-            StartCoroutine(TypeDialog(DialogSO.DialogText,DialogSO.DialogDuration));
+        StartCoroutine(TypeDialog(DialogSO.DialogText,DialogSO.DialogDuration));
         
 
     }
     private IEnumerator TypeDialog(string textToShow, float dialogDuration)
     {
-        float letterTime = 1f/textToShow.Length;
-        for(int i = 0; i < textToShow.Length ; i++)
+        if(DialogSO.InstantDialog)
         {
-            _tmpText.text += textToShow[i];
-            yield return new WaitForSeconds(letterTime);
+            _tmpText.text = DialogSO.DialogText;
+        }
+        else
+        {
+            float letterTime = 1f/textToShow.Length;
+            for(int i = 0; i < textToShow.Length ; i++)
+            {
+                _tmpText.text += textToShow[i];
+                yield return new WaitForSeconds(letterTime);
+            }
         }
         yield return new WaitForSeconds(dialogDuration);
 
@@ -56,10 +58,7 @@ public class DialogObject : MonoBehaviour
             _tmpText.text = s.ToString();
             yield return new WaitForSeconds(letterTime);
         }
-        OnTextFinished?.Invoke();
+        OnTextFinished?.Invoke(DialogSO.DialogID);
     }
-    public void SetInstantText(bool newValue)
-    {
-        _instantText = newValue;
-    }
+
 }

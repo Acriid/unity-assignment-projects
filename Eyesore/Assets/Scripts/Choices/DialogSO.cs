@@ -10,6 +10,6 @@ public class DialogSO : ScriptableObject
     public Vector2 DialogPosition;
     public int DialogID;
     public int NextDialogID;
-    public bool PauseDialog;
     public int DialogDuration;
+    public bool InstantDialog;
 }

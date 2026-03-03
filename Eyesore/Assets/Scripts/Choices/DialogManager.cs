@@ -11,7 +11,7 @@ public class DialogManager : MonoBehaviour
 
 
     private GenericPool<DialogObject> _dialogPool;
-    private List<DialogObject> _objectInstance;
+    private Dictionary<int,DialogObject> _objectDictionary = new();
     private int _currentDialogID = 1;
 
     void Awake()
@@ -28,25 +28,28 @@ public class DialogManager : MonoBehaviour
         {
             Debug.Log("Failed to load pool");
         }
-        StartDialog();
+        DialogTester();
+        //ShowDialog(_currentDialogID);
         //Mybe later dialogId changes from a save
+    }
+    private void DialogTester()
+    {
+        ShowDialog(1);
+        ShowDialog(2);
     }
     private void ShowDialog(int dialogIndex)
     {
-       // abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ;
-    }
-    private void StartDialog()
-    {
-        _objectInstance[0] = _dialogPool.Get();
-        _objectInstance[0].DialogSO = _dialogSOs.Find(listItem => listItem.DialogID == _currentDialogID);
-        //_objectInstance.SetInstantText(true);
+       _objectDictionary[dialogIndex] = _dialogPool.Get();
+       _objectDictionary[dialogIndex].DialogSO = _dialogSOs[dialogIndex -1];
+       _objectDictionary[dialogIndex].OnTextFinished += RemoveDialog;
+       _objectDictionary[dialogIndex].ShowDialog();
 
-        _objectInstance[0].ShowDialog();
-        _objectInstance[0].OnTextFinished += RemoveDialog;
     }
-    private void RemoveDialog()
+
+    private void RemoveDialog(int dialogIndex)
     {
-        _objectInstance[0].OnTextFinished -= RemoveDialog;
-        _dialogPool.Return(_objectInstance[0]);
+        _objectDictionary[dialogIndex].OnTextFinished -= RemoveDialog;
+        _objectDictionary[dialogIndex] = null;
+        _objectDictionary.Remove(dialogIndex);
     }
 }
