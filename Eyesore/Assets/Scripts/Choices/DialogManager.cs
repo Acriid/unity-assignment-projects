@@ -11,7 +11,7 @@ public class DialogManager : MonoBehaviour
 
 
     private GenericPool<DialogObject> _dialogPool;
-    private DialogObject _objectInstance;
+    private List<DialogObject> _objectInstance;
     private int _currentDialogID = 1;
 
     void Awake()
@@ -28,14 +28,25 @@ public class DialogManager : MonoBehaviour
         {
             Debug.Log("Failed to load pool");
         }
-
-        //Mybe later dialogId changes form a save
+        StartDialog();
+        //Mybe later dialogId changes from a save
     }
-
+    private void ShowDialog(int dialogIndex)
+    {
+       // abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ;
+    }
     private void StartDialog()
     {
-        _objectInstance = _dialogPool.Get();
-        _objectInstance.DialogSO = _dialogSOs.Find(listItem => listItem.DialogID == _currentDialogID);
-        _objectInstance.ShowDialog();
+        _objectInstance[0] = _dialogPool.Get();
+        _objectInstance[0].DialogSO = _dialogSOs.Find(listItem => listItem.DialogID == _currentDialogID);
+        //_objectInstance.SetInstantText(true);
+
+        _objectInstance[0].ShowDialog();
+        _objectInstance[0].OnTextFinished += RemoveDialog;
+    }
+    private void RemoveDialog()
+    {
+        _objectInstance[0].OnTextFinished -= RemoveDialog;
+        _dialogPool.Return(_objectInstance[0]);
     }
 }
