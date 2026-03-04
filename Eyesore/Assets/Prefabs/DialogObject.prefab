@@ -196,4 +196,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogObject
   DialogSO: {fileID: 0}
   _tmpText: {fileID: 0}
-  _instantText: 0
+  DialogPaused: 0

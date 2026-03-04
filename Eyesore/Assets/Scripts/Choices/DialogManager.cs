@@ -23,21 +23,16 @@ public class DialogManager : MonoBehaviour
         }
         Instance = this;
 
+
         _dialogPool = PoolManager.Instance.GetPool<DialogObject>(_dialogPrefab,_poolSize);
         if(_dialogPool == null)
         {
             Debug.Log("Failed to load pool");
         }
-        DialogTester();
-        //ShowDialog(_currentDialogID);
+        ShowDialog(_currentDialogID);
         //Mybe later dialogId changes from a save
     }
-    private void DialogTester()
-    {
-        ShowDialog(1);
-        ShowDialog(2);
-    }
-    private void ShowDialog(int dialogIndex)
+    public void ShowDialog(int dialogIndex)
     {
        _objectDictionary[dialogIndex] = _dialogPool.Get();
        _objectDictionary[dialogIndex].DialogSO = _dialogSOs[dialogIndex -1];
@@ -52,4 +47,15 @@ public class DialogManager : MonoBehaviour
         _objectDictionary[dialogIndex] = null;
         _objectDictionary.Remove(dialogIndex);
     }
+
+    public void LoadData(DialogSaveData data)
+    {
+        _currentDialogID = data.StartDialogID;
+    }
+}
+
+[System.Serializable]
+public struct DialogSaveData
+{
+    public int StartDialogID;
 }

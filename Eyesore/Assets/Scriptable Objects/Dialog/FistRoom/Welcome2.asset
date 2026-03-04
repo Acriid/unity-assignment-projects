@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
   m_Name: Welcome2
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: ' Please wake up...'
+  DialogText: The left... its safe
   DialogFontSize: 15
   DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}
-  DialogPosition: {x: -4.25, y: -3}
+  DialogPosition: {x: 0, y: 19.7}
   DialogID: 2
   NextDialogID: 3
   DialogDuration: 2
