@@ -51,6 +51,11 @@ public class DialogManager : MonoBehaviour
 
     private void RemoveDialog(int dialogIndex)
     {
+        if(!_objectDictionary.ContainsKey(dialogIndex))
+        {
+            Debug.LogError("Something went wrong with the index");
+            return;
+        }
         _objectDictionary[dialogIndex].OnTextFinished -= RemoveDialog;
         if(_flowingDialog.TryGetValue(dialogIndex,out bool _flowing))
         {

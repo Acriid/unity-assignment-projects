@@ -62,8 +62,15 @@ public class Player : MonoBehaviour
     {
         if(!_holdingItem)
         {
+            
             _heldItem = _pickUpMechanic.GetTargetItem();
             if(_heldItem == null) return;
+
+            if(_heldItem.gameObject.TryGetComponent(out DialogTrigger trigger))
+            {
+                trigger.TriggerDialog();
+            }
+
             _pickUpMechanic.PickUpItem(_itemHolder.transform,false,_heldItem);
             _holdingItem = true;
         }
