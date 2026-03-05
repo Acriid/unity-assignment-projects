@@ -12,4 +12,5 @@ public class DialogSO : ScriptableObject
     public int NextDialogID;
     public int DialogDuration;
     public bool InstantDialog;
+    public bool FlowingDialog;
 }

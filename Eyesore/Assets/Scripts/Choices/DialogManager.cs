@@ -13,6 +13,7 @@ public class DialogManager : MonoBehaviour
     private GenericPool<DialogObject> _dialogPool;
     private Dictionary<int,DialogObject> _objectDictionary = new();
     private int _currentDialogID = 1;
+    private Dictionary<int,bool> _flowingDialog = new();
 
     void Awake()
     {
@@ -35,7 +36,14 @@ public class DialogManager : MonoBehaviour
     public void ShowDialog(int dialogIndex)
     {
        _objectDictionary[dialogIndex] = _dialogPool.Get();
-       _objectDictionary[dialogIndex].DialogSO = _dialogSOs[dialogIndex -1];
+       _objectDictionary[dialogIndex].DialogSO =_dialogSOs[dialogIndex -1];
+
+       if(_objectDictionary[dialogIndex].DialogSO.FlowingDialog)
+        {
+            _flowingDialog[dialogIndex] = true;
+            
+        }
+
        _objectDictionary[dialogIndex].OnTextFinished += RemoveDialog;
        _objectDictionary[dialogIndex].ShowDialog();
 
@@ -44,8 +52,19 @@ public class DialogManager : MonoBehaviour
     private void RemoveDialog(int dialogIndex)
     {
         _objectDictionary[dialogIndex].OnTextFinished -= RemoveDialog;
+        if(_flowingDialog.TryGetValue(dialogIndex,out bool _flowing))
+        {
+            if(_flowing)
+            {
+                _flowingDialog[dialogIndex] = false;
+                ShowDialog(_objectDictionary[dialogIndex].DialogSO.NextDialogID); 
+            }
+        }
+        _dialogPool.Return(_objectDictionary[dialogIndex]);
+
         _objectDictionary[dialogIndex] = null;
         _objectDictionary.Remove(dialogIndex);
+    
     }
 
     public void LoadData(DialogSaveData data)

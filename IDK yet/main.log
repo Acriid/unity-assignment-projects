@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  4 MAR 2026 20:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  5 MAR 2026 14:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/DIGA3001A Games/unity-assignment-projects/IDK yet/main.tex"
-(c:/DIGA3001A Games/unity-assignment-projects/IDK yet/main.tex
+**"c:/DIGA3008A Game/unity-assignment-projects/IDK yet/main.tex"
+(c:/DIGA3008A Game/unity-assignment-projects/IDK yet/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -253,33 +253,30 @@ LaTeX Font Info:    ... okay on input line 29.
 \openout3 = `main.ist'.
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (80.62132pt too wide) in paragraph at lines 117--119
+Overfull \hbox (80.62132pt too wide) in paragraph at lines 113--114
 \OT1/cmr/m/n/10 your game in Unity," YouTube, Oct. 11, 2024. https://www.youtube.com/watch?v=1mf730eb5Wo
  []
 
-[2{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
 No file main.gls.
-[3
-
-] (./main.aux)
+[2] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 8668 strings out of 467533
- 189545 string characters out of 5423669
+ 8666 strings out of 467533
+ 189507 string characters out of 5423669
  671384 words of memory out of 5000000
- 37561 multiletter control sequences out of 15000+600000
- 629694 words of font info for 45 fonts, out of 8000000 for 9000
+ 37560 multiletter control sequences out of 15000+600000
+ 629239 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 78i,5n,79p,2527b,134s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (3 pages, 45817 bytes).
+ 78i,5n,79p,2526b,134s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on main.pdf (2 pages, 57589 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
- 18 compressed objects within 1 object stream
+ 26 PDF objects out of 1000 (max. 8388607)
+ 15 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
