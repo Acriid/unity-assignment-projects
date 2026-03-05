@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  5 MAR 2026 14:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  5 MAR 2026 15:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -286,33 +286,34 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 \openout3 = `main.ist'.
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<Images/basicmap.png, id=9, 347.79938pt x 234.1247pt>
-File: Images/basicmap.png Graphic file (type png)
-<use Images/basicmap.png>
-Package pdftex.def Info: Images/basicmap.png  used on input line 102.
-(pdftex.def)             Requested size: 241.49895pt x 162.56792pt.
- [2 <./Images/basicmap.png>]
-Overfull \hbox (80.62132pt too wide) in paragraph at lines 117--118
+<Images/StreachedFOW.png, id=9, 236.082pt x 176.45924pt>
+File: Images/StreachedFOW.png Graphic file (type png)
+<use Images/StreachedFOW.png>
+Package pdftex.def Info: Images/StreachedFOW.png  used on input line 104.
+(pdftex.def)             Requested size: 241.49895pt x 180.50839pt.
+
+Overfull \hbox (80.62132pt too wide) in paragraph at lines 127--128
 \OT1/cmr/m/n/10 your game in Unity," YouTube, Oct. 11, 2024. https://www.youtube.com/watch?v=1mf730eb5Wo
  []
 
+[2]
 No file main.gls.
-[3] (./main.aux)
+[3 <./Images/StreachedFOW.png>] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 9476 strings out of 467533
- 201551 string characters out of 5423669
- 670384 words of memory out of 5000000
- 38340 multiletter control sequences out of 15000+600000
+ 9478 strings out of 467533
+ 201635 string characters out of 5423669
+ 672384 words of memory out of 5000000
+ 38342 multiletter control sequences out of 15000+600000
  629239 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 78i,5n,79p,2547b,169s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 78i,7n,79p,2547b,288s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on main.pdf (3 pages, 63484 bytes).
+Output written on main.pdf (3 pages, 63296 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  18 compressed objects within 1 object stream

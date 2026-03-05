@@ -10,10 +10,13 @@ public class InputReaderSO : ScriptableObject
 
     private InputAction _moveAction;
 
+    private InputAction _pickUpAction;
+
     private InputAction _navigateAction;
     private InputAction _submitAction;
 
     public event Action<Vector2> OnMove;
+    public event Action OnPickUp;
 
 
     public event Action OnNavigate;
@@ -22,6 +25,7 @@ public class InputReaderSO : ScriptableObject
 
     private Action<InputAction.CallbackContext> movePerformed;
     private Action<InputAction.CallbackContext> moveCancled;
+    private Action<InputAction.CallbackContext> pickUpPerformed;
 
     private Action<InputAction.CallbackContext> navigatePerformed;
     private Action<InputAction.CallbackContext> submitPerformed;
@@ -47,17 +51,22 @@ public class InputReaderSO : ScriptableObject
     private void InitializePlayerActions()
     {
         _moveAction = _inputActions.Player.Move;
+        _pickUpAction = _inputActions.Player.Jump;
     }
     private void InitializePlayerEvents()
     {
         movePerformed = ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
         moveCancled = ctx => OnMove?.Invoke(Vector2.zero);
+
+        pickUpPerformed = ctx => OnPickUp?.Invoke();
     }
 
     private void SubscribeActions()
     {
         _moveAction.performed += movePerformed;
         _moveAction.canceled += moveCancled;
+
+        _pickUpAction.performed += pickUpPerformed;
 
         _navigateAction.performed += navigatePerformed;
         _submitAction.performed += submitPerformed;
@@ -66,6 +75,8 @@ public class InputReaderSO : ScriptableObject
     {
         _moveAction.performed -= movePerformed;
         _moveAction.canceled -= moveCancled;   
+
+        _pickUpAction.performed -= pickUpPerformed;
 
         _navigateAction.performed -= navigatePerformed;
         _submitAction.performed -= submitPerformed;             
@@ -80,6 +91,14 @@ public class InputReaderSO : ScriptableObject
         _moveAction.Disable();
     }
 
+    public void EnablePickUpAction()
+    {
+        _pickUpAction.Enable();
+    }
+    public void DisablePickUpAction()
+    {
+        _pickUpAction.Disable();
+    }
     private void InitializeUIEvents()
     {
         navigatePerformed = ctx => OnNavigate?.Invoke();

@@ -17,4 +17,10 @@ public class DialogTrigger : MonoBehaviour
 
         }
     }
+
+    public void TriggerDialog()
+    {
+        DialogManager.Instance.ShowDialog(_dialogIndex);
+        gameObject.SetActive(false);
+    }
 }

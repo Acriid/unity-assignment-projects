@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1772714841.03998 "c:/DIGA3008A Game/unity-assignment-projects/IDK yet/main.tex" "main.pdf" "main" 1772714841.94789 0
-  "Images/basicmap.png" 1772106821 7743 806ef078604756df393aa74d72f0402e ""
-  "c:/DIGA3008A Game/unity-assignment-projects/IDK yet/main.tex" 1772714839 4615 30409aaf44c68dc9a0505610303be277 ""
+["pdflatex"] 1772718774.72995 "c:/DIGA3008A Game/unity-assignment-projects/IDK yet/main.tex" "main.pdf" "main" 1772718775.6314 0
+  "Images/StreachedFOW.png" 1772714951 6792 363de330f9131969b0c3be25fcb8f035 ""
+  "c:/DIGA3008A Game/unity-assignment-projects/IDK yet/main.tex" 1772718774 5069 766c15bf186d46913c72e2bdb96616d9 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1770232067 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1770231298 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1770231298 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -51,9 +51,9 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1770235246 5587484 49bd08ff372a6985d7d70778694ddaac ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1770235583 3636162 ca860a5201c16045b2991262a2f89428 ""
   "c:/texlive/2025/texmf.cnf" 1770235217 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1772714841 1337 6d2aa27ed49298872841b3422c75650f "pdflatex"
+  "main.aux" 1772718775 1466 a9c8427a78067cefb5a153b994f7b653 "pdflatex"
   "main.gls" 0 -1 0 ""
-  "main.tex" 1772714839 4615 30409aaf44c68dc9a0505610303be277 ""
+  "main.tex" 1772718774 5069 766c15bf186d46913c72e2bdb96616d9 ""
   (generated)
   "main.aux"
   "main.glo"

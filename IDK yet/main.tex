@@ -59,8 +59,9 @@ In The Stanley Parable the player is guided through the game by a narrator who t
 the player what the player should do. The player can decide to listen to the narrator
 or go against the narrator. Different endings can be achieved based off of if the 
 player listened to the narrator or not.
-The dialog system in the project will work similar to the narrator in Stanley Parable
-where the system will guide the player to 
+The dialog system in the prototype will work similar to the narrator in Stanley Parable
+where the system will guide the player to a specific outcome and the player can decide
+if they want to listen or not.
 \subsubsection*{DarkWood: Fog of war}
 The Fog of war in DarkWood only allows the player to see the general shape of the \gls{map}
 while showing the player only a small area around them along with where the character is 
@@ -73,7 +74,7 @@ will only be allowed to see what is around their character.
 
 \subsection{Hypothesis}
 The player will explore other aspects of the game that they have not found if
-they know there is something more even when a clear goal is shown.
+they know there is more to find even when a clear winning goal is shown.
 
 \subsection{Goals}
 To spark the player's curiosity through a dialog system that will speak to the
@@ -99,7 +100,10 @@ where not aligning, which caused the vision circle to be stretched.
 Thus a single area light was used for the player to see around them to simulate a
 FogOfWar. This solution was chosen because of time constraints, thus it is more
 CPU based instead of the RenderTexture which is more GPU based.
-\includegraphics[width=0.7\linewidth]{Images/basicmap.png}
+\begin{figure}
+    \includegraphics[width=0.7\linewidth]{Images/StreachedFOW.png}
+    \caption{Image of flawed Fog Of War}
+\end{figure}
 \newline
 For the dialog system a save/load system is implemented in order to speak to
 the player about what they did which caused them to complete or lose the game.
@@ -107,10 +111,16 @@ the player about what they did which caused them to complete or lose the game.
 
 
 \section{Player motivation design}
+The player's actions may also change depending on what the dialog system tells them
+for example if the dialog system tells the player to go left the player may just be
+motivated to go right.
+
+
 Make the player curious to keep them motivated. The player will be motivated by the
 dialog system telling them that there is still something more to do even after the 
 player achieved an ending. If the dialog system is fleshed out and does dialog based
-on what the player does in the game 
+on what the player does in the game then the player will try new actions in order to
+see what the dialog system will tell them.
 
 
 \section{References}

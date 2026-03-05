@@ -101,11 +101,11 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 OUTPUT main.pdf
 OUTPUT main.ist
 INPUT c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT ./Images/basicmap.png
-INPUT ./Images/basicmap.png
-INPUT ./Images/basicmap.png
-INPUT ./Images/basicmap.png
-INPUT ./Images/basicmap.png
+INPUT ./Images/StreachedFOW.png
+INPUT ./Images/StreachedFOW.png
+INPUT ./Images/StreachedFOW.png
+INPUT ./Images/StreachedFOW.png
+INPUT ./Images/StreachedFOW.png
 INPUT main.aux
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
