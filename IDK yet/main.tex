@@ -1,5 +1,8 @@
 \documentclass{article}
 \usepackage{glossaries}
+\usepackage{graphicx}
+
+\graphicspath{/Images}
 
 \makeglossaries
 
@@ -96,6 +99,7 @@ where not aligning, which caused the vision circle to be stretched.
 Thus a single area light was used for the player to see around them to simulate a
 FogOfWar. This solution was chosen because of time constraints, thus it is more
 CPU based instead of the RenderTexture which is more GPU based.
+\includegraphics[width=0.7\linewidth]{Images/basicmap.png}
 \newline
 For the dialog system a save/load system is implemented in order to speak to
 the player about what they did which caused them to complete or lose the game.
