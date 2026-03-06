@@ -1,0 +1,10 @@
+.header {
+    font-size: 100px;
+    color: rgb(140, 255, 255);
+    -unity-text-outline-width: 0;
+    -unity-text-align: middle-center;
+    position: relative;
+    justify-content: center;
+    align-self: center;
+    align-content: center;
+}

@@ -14,6 +14,9 @@ public class DialogObject : MonoBehaviour
     public event Action<int> OnTextFinished;
     void Awake()
     {
+        
+
+
         if(_tmpText == null)
             _tmpText = GetComponent<TMP_Text>();
     }
@@ -41,10 +44,10 @@ public class DialogObject : MonoBehaviour
             for(int i = 0; i < textToShow.Length ; i++)
             {
                 _tmpText.text += textToShow[i];
-                yield return new WaitForSeconds(letterTime);
+                yield return new WaitForSecondsRealtime(letterTime);
             }
         }
-        yield return new WaitForSeconds(dialogDuration);
+        yield return new WaitForSecondsRealtime(dialogDuration);
 
         StartCoroutine(DeleteDialog(0.15f));
     }
@@ -56,7 +59,7 @@ public class DialogObject : MonoBehaviour
         {
             s.Length--;
             _tmpText.text = s.ToString();
-            yield return new WaitForSeconds(letterTime);
+            yield return new WaitForSecondsRealtime(letterTime);
         }
         OnTextFinished?.Invoke(DialogSO.DialogID);
     }

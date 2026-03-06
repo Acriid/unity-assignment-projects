@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DialogManager : MonoBehaviour
@@ -30,6 +31,10 @@ public class DialogManager : MonoBehaviour
         {
             Debug.Log("Failed to load pool");
         }
+        _dialogSOs = _dialogSOs.OrderBy(dialog => dialog.DialogID).ToList();
+
+
+
         ShowDialog(_currentDialogID);
         //Mybe later dialogId changes from a save
     }
