@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Text;
+using System;
 
 
 public class EndDialogManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class EndDialogManager : MonoBehaviour
     [SerializeField] private List<DialogSO> _dialogs;
     private bool _followedNarrator = true;
     private bool _endedDialog = false;
+    private event Action _onDialogFinish;
+    private int _counter = 0;
     void OnEnable()
     {
         InitializeDialog();
@@ -23,9 +26,14 @@ public class EndDialogManager : MonoBehaviour
         _narratorGoodText.text = "";
         _narratorBadText.text = "";
 
-        StartCoroutine(TypeDialog("You Escaped...",_endText,1f));
+        StartCoroutine(TypeDialog("You Escaped...",_endText,4f,false));
+
+        if(_followedNarrator)
+        {
+            _onDialogFinish += GoBack;
+        }
     }
-    private IEnumerator TypeDialog(string textToShow, TMP_Text _tmpText, float dialogTime)
+    private IEnumerator TypeDialog(string textToShow, TMP_Text _tmpText, float dialogTime,bool deleteDialog)
     {
         float letterTime = dialogTime/textToShow.Length;
         for(int i = 0; i < textToShow.Length ; i++)
@@ -33,19 +41,20 @@ public class EndDialogManager : MonoBehaviour
             _tmpText.text += textToShow[i];
             yield return new WaitForSecondsRealtime(letterTime);
         }
+        yield return new WaitForSecondsRealtime(dialogTime);
 
-        if(!_endedDialog)
+
+        if(deleteDialog)
         {
-            _endedDialog = true;
-            if(_followedNarrator)
-            {
-                GoBack();
-            }
+            StartCoroutine(DeleteDialog(0.5f,_tmpText));   
+        }
+        else
+        {
+            _onDialogFinish?.Invoke();
         }
     }
-    private IEnumerator DeleteDialog(float deleteTime, TMP_Text _tmpText,float waitTime)
+    private IEnumerator DeleteDialog(float deleteTime, TMP_Text _tmpText)
     {
-        yield return new WaitForSecondsRealtime(waitTime);
         StringBuilder s = new(_tmpText.text);
         float letterTime = deleteTime/s.Length;
         while(s.Length > 0)
@@ -54,11 +63,35 @@ public class EndDialogManager : MonoBehaviour
             _tmpText.text = s.ToString();
             yield return new WaitForSecondsRealtime(letterTime);
         }
+        _onDialogFinish?.Invoke();
     }
+
+
+    #region GoBack
     private void GoBack()
     {
-            StartCoroutine(TypeDialog(_dialogs[0].DialogText,_narratorBadText,3f));
-            StartCoroutine(DeleteDialog(0.5f,_narratorBadText,6f));
+        _onDialogFinish -= GoBack;
+        StartCoroutine(TypeDialog(_dialogs[0].DialogText,_narratorBadText,3f,true));
+        _onDialogFinish += GoBack2; 
     }
-    
+
+    private void GoBack2()
+    {
+        _onDialogFinish -= GoBack2;
+        StartCoroutine(TypeDialog(_dialogs[1].DialogText,_narratorBadText,3f,true));
+        _onDialogFinish += GoBack3; 
+    }
+    private void GoBack3()
+    {
+        _onDialogFinish -= GoBack3;
+        StartCoroutine(TypeDialog(_dialogs[2].DialogText,_narratorBadText,3f,true));
+        _onDialogFinish += GoBack4; 
+    }
+        private void GoBack4()
+    {
+        _onDialogFinish -= GoBack4;
+        StartCoroutine(TypeDialog(_dialogs[3].DialogText,_narratorBadText,3f,true));
+
+    }
+    #endregion
 }

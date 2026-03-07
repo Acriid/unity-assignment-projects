@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
-  m_Name: Directions4
+  m_Name: SendOff
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: Down to the left
+  DialogText: Escape and be free
+  DialogDescription: Room 9
   DialogFontSize: 15
   DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}
-  DialogPosition: {x: -50.2, y: 4}
-  DialogID: 8
-  NextDialogID: 0
-  DialogDuration: 8
+  DialogPosition: {x: -67, y: 42}
+  DialogID: 14
+  NextDialogID: 15
+  DialogDuration: 0
   InstantDialog: 0
   FlowingDialog: 0

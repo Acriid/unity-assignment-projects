@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
-  m_Name: GoBack1
+  m_Name: Directions2
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: That can't be it right?
-  DialogFontSize: 50
-  DialogColour: {r: 0.5019608, g: 0.37254903, b: 1, a: 1}
+  DialogText: Go down...
+  DialogDescription: Room 3
+  DialogFontSize: 15
+  DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}
-  DialogPosition: {x: 0, y: 0}
-  DialogID: 12
-  NextDialogID: 13
-  DialogDuration: 4
+  DialogPosition: {x: -28, y: 9}
+  DialogID: 6
+  NextDialogID: 0
+  DialogDuration: 3
   InstantDialog: 0
-  FlowingDialog: 1
+  FlowingDialog: 0

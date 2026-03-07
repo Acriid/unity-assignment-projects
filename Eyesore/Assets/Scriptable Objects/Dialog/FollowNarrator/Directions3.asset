@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Directions3
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
   DialogText: Up... to avoid the chasm
+  DialogDescription: Room 4
   DialogFontSize: 15
   DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}

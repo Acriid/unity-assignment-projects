@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
-  m_Name: Directions2
+  m_Name: Directions5
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: Go down...
+  DialogText: Go Up
+  DialogDescription: Room 3
   DialogFontSize: 15
   DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}
   DialogPosition: {x: -28, y: 9}
-  DialogID: 6
+  DialogID: 11
   NextDialogID: 0
   DialogDuration: 3
   InstantDialog: 0

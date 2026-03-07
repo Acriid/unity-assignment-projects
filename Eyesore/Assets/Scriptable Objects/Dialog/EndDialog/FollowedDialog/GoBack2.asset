@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
   m_Name: GoBack2
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: 
+  DialogText: Go back
   DialogFontSize: 0
   DialogColour: {r: 0, g: 0, b: 0, a: 0}
   DialogFont: {fileID: 0}
   DialogPosition: {x: 0, y: 0}
-  DialogID: 0
+  DialogID: 13
   NextDialogID: 0
   DialogDuration: 0
   InstantDialog: 0
