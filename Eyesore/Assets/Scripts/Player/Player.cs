@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _worldItemHolder;
     [SerializeField] private Light2D _playerLight;
     [SerializeField] private GameObject _deathCanvas;
+    public GameObject EscapeUI;
     private Vector2 _moveInput;
     public bool HoldingItem = false;
     private Item _heldItem;
@@ -23,12 +25,14 @@ public class Player : MonoBehaviour
     {
         _inputReader.EnableMoveAction();
         _inputReader.EnablePickUpAction();
+        _inputReader.EnableEscapeAction();
         SubscribeToFunctions();
     }
     void OnDisable()
     {
         _inputReader.DisableMoveAction();
         _inputReader.DisablePickUpAction();
+        _inputReader.DisableEscapeAction();
         UnsubscribeFromFunctions();
     }
 
@@ -51,11 +55,13 @@ public class Player : MonoBehaviour
     {
         _inputReader.OnMove += OnMove;
         _inputReader.OnPickUp += OnPickUp;
+        _inputReader.OnEscape += OnEscape;
     }
     private void UnsubscribeFromFunctions()
     {
         _inputReader.OnMove -= OnMove;
         _inputReader.OnPickUp -= OnPickUp;
+        _inputReader.OnEscape -= OnEscape;
     }
 
 
@@ -121,5 +127,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         _playerLight.color = normalColor;
 
+    }
+
+    private void OnEscape()
+    {
+        EscapeUI.SetActive(true);
     }
 }

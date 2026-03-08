@@ -12,11 +12,14 @@ public class InputReaderSO : ScriptableObject
 
     private InputAction _pickUpAction;
 
+    private InputAction _escapeAction;
+
     private InputAction _navigateAction;
     private InputAction _submitAction;
 
     public event Action<Vector2> OnMove;
     public event Action OnPickUp;
+    public event Action OnEscape;
 
 
     public event Action OnNavigate;
@@ -26,6 +29,7 @@ public class InputReaderSO : ScriptableObject
     private Action<InputAction.CallbackContext> movePerformed;
     private Action<InputAction.CallbackContext> moveCancled;
     private Action<InputAction.CallbackContext> pickUpPerformed;
+    private Action<InputAction.CallbackContext> escapePerformed;
 
     private Action<InputAction.CallbackContext> navigatePerformed;
     private Action<InputAction.CallbackContext> submitPerformed;
@@ -52,6 +56,7 @@ public class InputReaderSO : ScriptableObject
     {
         _moveAction = _inputActions.Player.Move;
         _pickUpAction = _inputActions.Player.Jump;
+       _escapeAction = _inputActions.Player.Escape;
     }
     private void InitializePlayerEvents()
     {
@@ -59,6 +64,8 @@ public class InputReaderSO : ScriptableObject
         moveCancled = ctx => OnMove?.Invoke(Vector2.zero);
 
         pickUpPerformed = ctx => OnPickUp?.Invoke();
+
+        escapePerformed = ctx => OnEscape?.Invoke();
     }
 
     private void SubscribeActions()
@@ -67,6 +74,8 @@ public class InputReaderSO : ScriptableObject
         _moveAction.canceled += moveCancled;
 
         _pickUpAction.performed += pickUpPerformed;
+
+        _escapeAction.performed += escapePerformed;
 
         _navigateAction.performed += navigatePerformed;
         _submitAction.performed += submitPerformed;
@@ -77,6 +86,8 @@ public class InputReaderSO : ScriptableObject
         _moveAction.canceled -= moveCancled;   
 
         _pickUpAction.performed -= pickUpPerformed;
+
+        _escapeAction.performed -= escapePerformed;
 
         _navigateAction.performed -= navigatePerformed;
         _submitAction.performed -= submitPerformed;             
@@ -98,6 +109,14 @@ public class InputReaderSO : ScriptableObject
     public void DisablePickUpAction()
     {
         _pickUpAction.Disable();
+    }
+    public void EnableEscapeAction()
+    {
+        _escapeAction.Enable();
+    }
+    public void DisableEscapeAction()
+    {
+        _escapeAction.Disable();
     }
     private void InitializeUIEvents()
     {

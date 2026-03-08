@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
   DialogText: Do you know about the key?
   DialogDescription: 
-  DialogFontSize: 0
-  DialogColour: {r: 0, g: 0, b: 0, a: 0}
+  DialogFontSize: 15
+  DialogColour: {r: 0.5019608, g: 0.37254903, b: 1, a: 1}
   DialogFont: {fileID: 0}
   DialogPosition: {x: 0, y: 0}
-  DialogID: 0
-  NextDialogID: 0
-  DialogDuration: 0
+  DialogID: 25
+  NextDialogID: 26
+  DialogDuration: 3
   InstantDialog: 0
-  FlowingDialog: 0
+  FlowingDialog: 1

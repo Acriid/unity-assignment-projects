@@ -27,6 +27,19 @@
     with}
 }
 
+\newglossaryentry{dialog}
+{
+    name = {dialog system},
+    description = {The system in which dialog is shown to the player to talk to the player}
+}
+
+\newglossaryentry{egg}
+{
+    name = {easter egg},
+    description = {A hidden non-essential secret for the players to discover}
+}
+
+
 
 
 \begin{document}
@@ -36,15 +49,15 @@ The prototype will be a 2D top down game in which the player will be given the t
 of escaping the \gls{map} that they were put in.
 
 \section{Mechanics}
-The player is able to move and interact with the environment, the main environment
-interactions will be picking up an object for 
+The player is able to move and interact with the environment, the main 
+interactions will be picking up an object to escape and getting damaged
+by the environment.
 
 \subsection{Actions and Challenges}
-The player will be able to move around in a 2D environment and interact with objects
+The player will be able to move around in a 2D environment and interact with a object
 within that environment. 
 The player may face the challenge of if they should listen to the dialog system or not
-along with moving objects around in order to solve puzzles 
-
+along with moving around hazards on the \gls{map}.
 
 
 
@@ -59,7 +72,7 @@ In The Stanley Parable the player is guided through the game by a narrator who t
 the player what the player should do. The player can decide to listen to the narrator
 or go against the narrator. Different endings can be achieved based off of if the 
 player listened to the narrator or not.
-The dialog system in the prototype will work similar to the narrator in Stanley Parable
+The \gls{dialog} in the prototype will work similar to the narrator in Stanley Parable
 where the system will guide the player to a specific outcome and the player can decide
 if they want to listen or not.
 \subsubsection*{DarkWood: Fog of war}
@@ -77,7 +90,7 @@ The player will explore other aspects of the game that they have not found if
 they know there is more to find even when a clear winning goal is shown.
 
 \subsection{Goals}
-To spark the player's curiosity through a dialog system that will speak to the
+To spark the player's curiosity through a \gls{dialog} that will speak to the
 player.
 To limit the player's vision through either a fog of war system or a field of view system
 in order to get the player curios about what they cannot see.
@@ -100,6 +113,8 @@ where not aligning, which caused the vision circle to be stretched.
 Thus a single area light was used for the player to see around them to simulate a
 FogOfWar. This solution was chosen because of time constraints, thus it is more
 CPU based instead of the RenderTexture which is more GPU based.
+\newline
+Wow what the hell is hapening.
 \begin{figure}
     \includegraphics[width=0.7\linewidth]{Images/StreachedFOW.png}
     \caption{Image of flawed Fog Of War}
@@ -122,9 +137,14 @@ player achieved an ending. If the dialog system is fleshed out and does dialog b
 on what the player does in the game then the player will try new actions in order to
 see what the dialog system will tell them.
 
+An \gls{egg} was placed in the game for the player to discover. This helps in getting
+the player to explore more of the \gls{map}.
+
 
 \section{References}
-[1]Sasquatch B Studios, “EVERYTHING you need to know to SAVE and LOAD your game in Unity,” YouTube, Oct. 11, 2024. https://www.youtube.com/watch?v=1mf730eb5Wo (accessed May 14, 2025).
+[1]Sasquatch B Studios, 
+“EVERYTHING you need to know to SAVE and LOAD your game in Unity,” 
+YouTube, Oct. 11, 2024. https://www.youtube.com/watch?v=1mf730eb5Wo (accessed May 14, 2025).
 
 
 \glsaddall
