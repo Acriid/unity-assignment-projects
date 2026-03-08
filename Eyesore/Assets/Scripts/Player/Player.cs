@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -8,10 +10,15 @@ public class Player : MonoBehaviour
     [SerializeField] private PickUpMechanic _pickUpMechanic;
     [SerializeField] private GameObject _itemHolder;
     [SerializeField] private GameObject _worldItemHolder;
+    [SerializeField] private Light2D _playerLight;
+    [SerializeField] private GameObject _deathCanvas;
     private Vector2 _moveInput;
-    private bool _holdingItem = false;
+    public bool HoldingItem = false;
     private Item _heldItem;
 
+
+    private int health = 3;
+    private Coroutine healthReset;
     void Awake()
     {
         _inputReader.EnableMoveAction();
@@ -60,7 +67,7 @@ public class Player : MonoBehaviour
 
     private void OnPickUp()
     {
-        if(!_holdingItem)
+        if(!HoldingItem)
         {
             
             _heldItem = _pickUpMechanic.GetTargetItem();
@@ -72,13 +79,47 @@ public class Player : MonoBehaviour
             }
 
             _pickUpMechanic.PickUpItem(_itemHolder.transform,false,_heldItem);
-            _holdingItem = true;
+            HoldingItem = true;
         }
         else
         {
             _pickUpMechanic.DropItem(_worldItemHolder.transform,_heldItem);
             _heldItem = null;
-            _holdingItem = false;
+            HoldingItem = false;
         }
+    }
+
+    public void DamagePlayer()
+    {
+        if(healthReset != null)
+        {
+            StopCoroutine(healthReset);
+            healthReset = null;
+        }
+        StartCoroutine(FlashLight(Color.red));
+        health--;
+
+        healthReset = StartCoroutine(ResetPlayerHealth());
+
+        if(health <= 0)
+        {
+            Time.timeScale = 0;
+            _deathCanvas.SetActive(true);
+        }
+
+    }
+    public IEnumerator ResetPlayerHealth()
+    {
+        yield return new WaitForSecondsRealtime(4f);
+        health = 3;
+    }
+    public IEnumerator FlashLight(Color flashColour)
+    {
+        Color normalColor = _playerLight.color;
+        _playerLight.color = flashColour;
+
+        yield return new WaitForSecondsRealtime(0.5f);
+        _playerLight.color = normalColor;
+
     }
 }
