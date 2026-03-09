@@ -38,8 +38,14 @@ public class DialogManager : MonoBehaviour
         ShowDialog(_currentDialogID);
         //Mybe later dialogId changes from a save
     }
+    void OnDisable()
+    {
+        _dialogPool.ReturnAll();
+    }
     public void ShowDialog(int dialogIndex)
     {
+        if(dialogIndex == 0) return;
+
        _objectDictionary[dialogIndex] = _dialogPool.Get();
        _objectDictionary[dialogIndex].DialogSO =_dialogSOs[dialogIndex -1];
 

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Text;
 using System;
+using UnityEngine.SceneManagement;
 
 
 public class EndDialogManager : MonoBehaviour
@@ -18,7 +19,12 @@ public class EndDialogManager : MonoBehaviour
     private int _counter = 0;
     void OnEnable()
     {
+        Time.timeScale = 0;
         InitializeDialog();
+    }
+    void OnDisable()
+    {
+        Time.timeScale = 1;
     }
     private void InitializeDialog()
     {
@@ -26,11 +32,17 @@ public class EndDialogManager : MonoBehaviour
         _narratorGoodText.text = "";
         _narratorBadText.text = "";
 
-        StartCoroutine(TypeDialog("You Escaped...",_endText,4f,false));
+        
 
         if(_followedNarrator)
         {
+            StartCoroutine(TypeDialog("You Escaped...",_endText,4f,false));
             _onDialogFinish += GoBack;
+        }
+        else
+        {
+            StartCoroutine(TypeDialog("You did not escape...",_endText,5f,false));
+            _onDialogFinish += GoneDeeper;
         }
     }
     private IEnumerator TypeDialog(string textToShow, TMP_Text _tmpText, float dialogTime,bool deleteDialog)
@@ -87,11 +99,43 @@ public class EndDialogManager : MonoBehaviour
         StartCoroutine(TypeDialog(_dialogs[2].DialogText,_narratorBadText,3f,true));
         _onDialogFinish += GoBack4; 
     }
-        private void GoBack4()
+    private void GoBack4()
     {
         _onDialogFinish -= GoBack4;
         StartCoroutine(TypeDialog(_dialogs[3].DialogText,_narratorBadText,3f,true));
-
+        StartCoroutine(BackToMenu());
     }
     #endregion
+
+    #region GoneDeeper
+    private void GoneDeeper()
+    {
+        _onDialogFinish -= GoneDeeper;
+        StartCoroutine(TypeDialog(_dialogs[4].DialogText,_narratorGoodText,3f,true));
+        _onDialogFinish += GoneDeeper2;
+    }
+    private void GoneDeeper2()
+    {
+        _onDialogFinish -= GoneDeeper2;
+        StartCoroutine(TypeDialog(_dialogs[5].DialogText,_narratorGoodText,3f,true));
+        _onDialogFinish += GoneDeeper3;
+    }
+    private void GoneDeeper3()
+    {
+        _onDialogFinish -= GoneDeeper3;
+        StartCoroutine(TypeDialog(_dialogs[6].DialogText,_narratorGoodText,3f,true));
+        StartCoroutine(BackToMenu());
+    }
+    #endregion
+
+    public void ChangeFollow(bool newValue)
+    {
+        _followedNarrator = newValue;
+    }
+    private IEnumerator BackToMenu()
+    {
+        yield return new WaitForSecondsRealtime(15f);
+        SceneManager.LoadScene("Main Menu");
+
+    }
 }

@@ -64,4 +64,13 @@ public class DialogTrigger : MonoBehaviour
             dialogTrigger.SetActive(false);
         }
     }
+
+    public void ChangeIndex(int newValue)
+    {
+        _dialogIndex = newValue;
+    }
+    public void ClearEnableTriggers()
+    {
+        _dialogEnableTriggers.Clear();
+    }
 }

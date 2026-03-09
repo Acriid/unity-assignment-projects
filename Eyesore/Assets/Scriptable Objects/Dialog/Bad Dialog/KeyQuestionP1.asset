@@ -17,9 +17,9 @@ MonoBehaviour:
   DialogFontSize: 15
   DialogColour: {r: 0.5019608, g: 0.37254903, b: 1, a: 1}
   DialogFont: {fileID: 0}
-  DialogPosition: {x: 0, y: 0}
-  DialogID: 25
-  NextDialogID: 26
+  DialogPosition: {x: -20.5, y: -14}
+  DialogID: 27
+  NextDialogID: 28
   DialogDuration: 3
   InstantDialog: 0
   FlowingDialog: 1

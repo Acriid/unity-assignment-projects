@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GoBack1
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
   DialogText: That can't be it right?
+  DialogDescription: 
   DialogFontSize: 50
   DialogColour: {r: 0.5019608, g: 0.37254903, b: 1, a: 1}
   DialogFont: {fileID: 0}

@@ -83,15 +83,19 @@ public class Player : MonoBehaviour
             {
                 trigger.TriggerDialog();
             }
+            if(_heldItem.gameObject.TryGetComponent(out KeyTrigger keyTrigger))
+            {
+                keyTrigger.ChangeDialog();
+            }
 
             _pickUpMechanic.PickUpItem(_itemHolder.transform,false,_heldItem);
             HoldingItem = true;
         }
         else
         {
-            _pickUpMechanic.DropItem(_worldItemHolder.transform,_heldItem);
-            _heldItem = null;
-            HoldingItem = false;
+            // _pickUpMechanic.DropItem(_worldItemHolder.transform,_heldItem);
+            // _heldItem = null;
+            // HoldingItem = false;
         }
     }
 
