@@ -3,10 +3,8 @@
 //Date: 04/03/2026
 //https://www.youtube.com/watch?v=1mf730eb5Wo
 
-using UnityEditor.Overlays;
 using UnityEngine;
 using System.IO;
-using UnityEngine.UI;
 
 public class SaveSystem 
 {
