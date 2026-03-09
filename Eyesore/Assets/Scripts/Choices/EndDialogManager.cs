@@ -136,6 +136,5 @@ public class EndDialogManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(15f);
         SceneManager.LoadScene("Main Menu");
-
     }
 }

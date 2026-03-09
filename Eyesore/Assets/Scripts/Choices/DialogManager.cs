@@ -40,6 +40,7 @@ public class DialogManager : MonoBehaviour
     }
     void OnDisable()
     {
+        _objectDictionary.Clear();
         _dialogPool.ReturnAll();
     }
     public void ShowDialog(int dialogIndex)
@@ -55,8 +56,9 @@ public class DialogManager : MonoBehaviour
             
         }
 
-       _objectDictionary[dialogIndex].OnTextFinished += RemoveDialog;
+       
        _objectDictionary[dialogIndex].ShowDialog();
+       _objectDictionary[dialogIndex].OnTextFinished += RemoveDialog;
 
     }
 
