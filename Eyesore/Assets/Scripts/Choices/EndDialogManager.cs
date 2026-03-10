@@ -103,7 +103,7 @@ public class EndDialogManager : MonoBehaviour
     {
         _onDialogFinish -= GoBack4;
         StartCoroutine(TypeDialog(_dialogs[3].DialogText,_narratorBadText,3f,true));
-        StartCoroutine(BackToMenu());
+        _onDialogFinish += BackToMenu;
     }
     #endregion
 
@@ -124,7 +124,7 @@ public class EndDialogManager : MonoBehaviour
     {
         _onDialogFinish -= GoneDeeper3;
         StartCoroutine(TypeDialog(_dialogs[6].DialogText,_narratorGoodText,3f,true));
-        StartCoroutine(BackToMenu());
+        _onDialogFinish += BackToMenu;
     }
     #endregion
 
@@ -132,9 +132,15 @@ public class EndDialogManager : MonoBehaviour
     {
         _followedNarrator = newValue;
     }
-    private IEnumerator BackToMenu()
+    private void BackToMenu()
     {
-        yield return new WaitForSecondsRealtime(15f);
+        _onDialogFinish -= BackToMenu;
+        StartCoroutine(MenuWait());
+
+    }
+    private IEnumerator MenuWait()
+    {
+        yield return new WaitForSecondsRealtime(4f);
         SceneManager.LoadScene("Main Menu");
     }
 }

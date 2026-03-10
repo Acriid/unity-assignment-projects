@@ -18,6 +18,7 @@ public class DialogManager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
         if(Instance != null)
         {
             Destroy(gameObject);

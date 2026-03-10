@@ -39,6 +39,20 @@
     description = {A hidden non-essential secret for the players to discover}
 }
 
+\newglossaryentry{interact}
+{
+    name = interact,
+    description = {The player can interact with the environment by opening doors,
+    picking up a key and taking damage from tiles.}    
+}
+
+\newglossaryentry{FOW}
+{
+    name = {Fog Of War},
+    description = {A system in which the player can only see what is immediately around
+    them and what they have previously explored.}    
+}
+
 
 
 
@@ -49,21 +63,30 @@ The prototype will be a 2D top down game in which the player will be given the t
 of escaping the \gls{map} that they were put in.
 
 \section{Mechanics}
-The player is able to move and interact with the environment, the main 
+The player is able to move and \gls{interact} with the environment, the main 
 interactions will be picking up an object to escape and getting damaged
 by the environment.
 
 \subsection{Actions and Challenges}
-The player will be able to move around in a 2D environment and interact with a object
-within that environment. 
+The player will be able to move around in a 2D \gls{map} and interact with an object
+within that \gls{map}. 
 The player may face the challenge of if they should listen to the dialog system or not
 along with moving around hazards on the \gls{map}.
+Another challenge the player faces is remembering where they are and where they went when
+navigating the \gls{map}.
+The player speed was set to a speed in which the player can easily move around the \gls{map}
+while still having time to read the dialog given by the \gls{dialog}.
+The player has to dodge hazards on the map mainly red tiles which damage the player every 2
+seconds the player is touching the tile. If the player takes more than 3 damage within
+5 seconds the player dies. This system allows the player to make mistakes and recover from
+them by waiting before they move on.
 
 
 
 \subsection{Genre}
-The genre of the game would be a Narrative game.
-Some sub-genres include: Puzzle, Horror.
+The genre of the game would be a Narrative game. This genre is seen when the player
+is guided through dialog to what they should do and what is happening.
+Some sub-genres include: Puzzle, Horror. The puzzle element comes from the player
 
 
 \subsection{Game examples}
@@ -75,11 +98,12 @@ player listened to the narrator or not.
 The \gls{dialog} in the prototype will work similar to the narrator in Stanley Parable
 where the system will guide the player to a specific outcome and the player can decide
 if they want to listen or not.
-\subsubsection*{DarkWood: Fog of war}
-The Fog of war in DarkWood only allows the player to see the general shape of the \gls{map}
+\subsubsection*{DarkWood: Fog Of War}
+The Fog Of War in DarkWood only allows the player to see the general shape of the \gls{map}
 while showing the player only a small area around them along with where the character is 
-looking. The Fog of war system will work similar to the one in DarkWood but the player
-will only be allowed to see what is around their character.
+looking. The Fog Of War system will work similar to the one in DarkWood but the player
+will only be allowed to see what is around their character not just where their character
+is looking.
 
 
 
@@ -92,36 +116,40 @@ they know there is more to find even when a clear winning goal is shown.
 \subsection{Goals}
 To spark the player's curiosity through a \gls{dialog} that will speak to the
 player.
-To limit the player's vision through either a fog of war system or a field of view system
+To limit the player's vision through either a Fog Of War system or a field of view system
 in order to get the player curios about what they cannot see.
 
 
 \section{Process}
 User input code has been used from a previous project.
 Item pooling code was used from a previous project for the dialog.
-A generic tilemap was made in asseprite to use for a \gls{map}
+A generic tilemap was made in Asseprite to use for a \gls{map}
+Different ways Fog Of War was tried:
 \newline
-Different ways fog of war was tried:
+To make the \gls{FOW} a tutorial page was followed online mainly form Success Knocks[1]
+where the steps where outlined in how to make the \gls{FOW}. A youtube tutorial[2] was
+followed in order to code the shaders needed for the \gls{FOW}.
 \newline
 A RenderTexture was used along with shaders 
-that paint the texture white. 2 Different shaders were used the FogOfWar
-and vision. The FogOfWar shader is a completely black shader that then checks for
+that paint the texture white. 2 Different shaders were used the Fog Of War
+and vision. The Fog Of War shader is a completely black shader that then checks for
 if there is any vision material and will then change the RenderTexture to white in
 the area that the material is allowing the player to see that area. The reason that
-this solution did not work was the uv's between the FogOfWar camera and the Main camera
-where not aligning, which caused the vision circle to be stretched.
-Thus a single area light was used for the player to see around them to simulate a
-FogOfWar. This solution was chosen because of time constraints, thus it is more
-CPU based instead of the RenderTexture which is more GPU based.
-\newline
-Wow what the hell is hapening.
-\begin{figure}
-    \includegraphics[width=0.7\linewidth]{Images/StreachedFOW.png}
+this solution did not work was the uv's between the Fog Of War camera and the Main camera
+where not aligning, which can be seen in Figure \ref{fig:FOWflawed}, which caused the vision 
+circle to be stretched.Thus a single area light was used for the player to see around 
+them to simulate a Fog Of War. This solution was chosen because of time constraints,
+thus it is more CPU based instead of the RenderTexture which is more GPU based.
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Images/StreachedFOW.png}
     \caption{Image of flawed Fog Of War}
+    \label{fig:FOWflawed}
 \end{figure}
-\newline
-For the dialog system a save/load system is implemented in order to speak to
-the player about what they did which caused them to complete or lose the game.
+
+
 
 
 
@@ -129,22 +157,20 @@ the player about what they did which caused them to complete or lose the game.
 The player's actions may also change depending on what the dialog system tells them
 for example if the dialog system tells the player to go left the player may just be
 motivated to go right.
-
-
+\newline
 Make the player curious to keep them motivated. The player will be motivated by the
 dialog system telling them that there is still something more to do even after the 
 player achieved an ending. If the dialog system is fleshed out and does dialog based
 on what the player does in the game then the player will try new actions in order to
 see what the dialog system will tell them.
-
+\newline
 An \gls{egg} was placed in the game for the player to discover. This helps in getting
 the player to explore more of the \gls{map}.
 
 
 \section{References}
-[1]Sasquatch B Studios, 
-“EVERYTHING you need to know to SAVE and LOAD your game in Unity,” 
-YouTube, Oct. 11, 2024. https://www.youtube.com/watch?v=1mf730eb5Wo (accessed May 14, 2025).
+[1]“Success Knocks | The Business Magazine,” Success Knocks | The Business Magazine, Dec. 03, 2025. https://successknocks.com/implementing-dynamic-fog-of-war-in-unity-for-rts/ (accessed Mar. 10, 2026).
+[2]Daniel Ilett, “Your First Shader | Unity Shader Code Basics 01,” YouTube, Oct. 06, 2025. https://www.youtube.com/watch?v=eMWrMRdP5jY (accessed Mar. 10, 2026).
 
 
 \glsaddall

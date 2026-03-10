@@ -10,7 +10,7 @@ public class DeathCanvas : MonoBehaviour
     }
     private IEnumerator BackToMenu()
     {
-        yield return new WaitForSecondsRealtime(7f);
+        yield return new WaitForSecondsRealtime(5f);
         SceneManager.LoadScene("Main Menu");
     }
 }
