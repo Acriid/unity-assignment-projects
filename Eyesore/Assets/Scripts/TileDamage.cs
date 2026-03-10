@@ -26,8 +26,8 @@ public class TileDamage : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSecondsRealtime(2f);
             _player.DamagePlayer();
+            yield return new WaitForSecondsRealtime(2f);
         }
 
     }
