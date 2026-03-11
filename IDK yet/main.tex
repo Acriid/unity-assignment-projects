@@ -137,7 +137,9 @@ them by waiting before they move on.
 
 \subsection{Genre}
 The genre of the game would be a Narrative game. This genre is seen when the player
-is guided through dialog to what they should do and what is happening.
+is guided through dialog to what they should do. The \gls{dialog} also tells the 
+player a story which the player can piece together by trying to get all the dialog.
+\newline
 Some sub-genres include: Horror. The horror element comes from the game limiting
 the player's vision in order to hide information from the player.
 
@@ -151,7 +153,8 @@ or go against the narrator. Different endings can be achieved based off of if th
 player listened to the narrator or not.
 The \gls{dialog} in the prototype will work similar to the narrator in Stanley Parable
 where the system will guide the player to a specific outcome and the player can decide
-if they want to listen or not.
+if they want to listen or not. Unlike in The Stanley Parable the \gls{dialog} will not
+remember what the player did the previous playthrough.
 \subsubsection*{DarkWood: Fog Of War}
 The \gls{FOW} in DarkWood only allows the player to see the general shape of the \gls{map}
 while showing the player only a small area around them along with where the character is 
@@ -160,7 +163,7 @@ will only be allowed to see what is around their character not just where their 
 is looking.
 
 
-
+\newpage
 \section{Interrogation}
 
 \subsection{Hypothesis}
@@ -170,20 +173,25 @@ they know there is more to find even when a clear winning goal is shown.
 
 
 \subsection{Goals}
-To spark the player's curiosity through a \gls{dialog} that will speak to the
-player. The \gls{dialog} can either say words that help the player or hinder them.
-To limit the player's vision through either a \gls{FOW} system or a field of view system
-in order to get the player curios about what they cannot see and get the player to explore
-more of the \gls{map}. 
+\begin{itemize}
+    \item To spark the player's curiosity through a \gls{dialog} that will speak to the
+    player. The \gls{dialog} can either say words that help the player or hinder them.
+    \item To limit the player's vision through either a \gls{FOW} system or a field of view system
+    in order to get the player curios about what they cannot see and get the player to explore
+    more of the \gls{map}. 
+\end{itemize}
 
 
 
+
+\newpage
 \section{Process}
 User input code has been used from a previous project. The code uses a \gls{ScriptOBJ}
 to read the user inputs while the scripts that use these inputs subscribe to events from
 the \gls{ScriptOBJ} to use them.
 Item pooling code was used from a previous project for the dialog.
-A generic tilemap was made in Asseprite to use for a \gls{map}
+A generic tilemap was made in Asseprite to use for a \gls{map}.
+\newline
 Different ways \gls{FOW} was tried:
 \newline
 To make the \gls{FOW} a tutorial page was followed online mainly form Success Knocks[1]
@@ -200,13 +208,16 @@ where not aligning, which can be seen in Figure \ref{img:FOWflawed}, which cause
 circle to be stretched.
 \newline
 A solution to this problem was disabling the global light from unity and putting a 
-spot light around the player as seen in Figure \ref{img:LightSolution}
+spot light around the player as seen in Figure \ref{img:LightSolution}.
 \newline
 The \gls{dialog} was decided to be in world space instead of an overlay of the 
 camera to make it that the player can miss dialog due to them not waiting for the
 dialog to finish. Dialog objects where made in order to store the data needed for the \gls{dialog}.
 This data would then be read by a manager script which creates dialog in the
 game. 
+\newline
+The \gls{map} is rigid in places where the \gls{dialog} wants the player to be while 
+the \gls{map} turns flexible where the player should not be according to the \gls{dialog}.
 
 
 
@@ -243,8 +254,12 @@ assignment, thus the light solution was used due to time constraints.
 This assignment helped me solidify my coding fundamentals to code for general situations where
 the code can be reused in different contexts along. This will help me in the future because
 I can reuse the code done in this assignment for other assignments which will make the future
-assignments easier. Through play testing it was found that the players did not trust 
-the dialog system until they explored more of the \gls{map}
+assignments easier. 
+\newline
+Through play testing it was found that the players did not trust 
+the dialog system until they explored more of the \gls{map} which helped prove the 
+hypothesis made that players will explore when they know they can even when a 
+clear goal is shown.
 
 
 
@@ -252,13 +267,13 @@ the dialog system until they explored more of the \gls{map}
 
 \section{Player motivation design}
 To motivate the player extrinsically the \gls{dialog} was made which gives the player a clear guide
-and goal where the goal is to escape the \gls{map}
-or the system can just speak to the player.
+and goal where the goal is to escape the \gls{map}. The \gls{dialog} can also just talk to the player
+without giving them a clear way to go.
 \newline
 The game also breaks the \gls{Magic} [3] by telling the player to exit back to main menu
 in one of the endings. Along with this magic circle break the player is given a hint 
-about how to get another ending
-The player's actions may also change depending on what the \gls{dialog} tells them
+about how to get another ending.
+The player's actions may also change depending on what the \gls{dialog} tells them,
 for example if the \gls{dialog} tells the player to go left the player may just be
 motivated to go right.
 \newline

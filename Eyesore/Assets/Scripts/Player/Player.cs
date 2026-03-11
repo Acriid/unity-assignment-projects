@@ -17,12 +17,15 @@ public class Player : MonoBehaviour
     private Vector2 _moveInput;
     public bool HoldingItem = false;
     private Item _heldItem;
+    
 
-
+    private Color _normalColor;
     private int health = 3;
     private Coroutine healthReset;
     void Awake()
     {
+        _normalColor = _playerLight.color;
+
         _inputReader.EnableMoveAction();
         _inputReader.EnablePickUpAction();
         _inputReader.EnableEscapeAction();
@@ -106,7 +109,9 @@ public class Player : MonoBehaviour
             StopCoroutine(healthReset);
             healthReset = null;
         }
+
         StartCoroutine(FlashLight(Color.red));
+
         health--;
 
         healthReset = StartCoroutine(ResetPlayerHealth());
@@ -118,19 +123,19 @@ public class Player : MonoBehaviour
         }
 
     }
+
     public IEnumerator ResetPlayerHealth()
     {
         yield return new WaitForSecondsRealtime(4f);
         health = 3;
     }
+
     public IEnumerator FlashLight(Color flashColour)
     {
-        Color normalColor = _playerLight.color;
         _playerLight.color = flashColour;
 
         yield return new WaitForSecondsRealtime(0.5f);
-        _playerLight.color = normalColor;
-
+        _playerLight.color = _normalColor;
     }
 
     private void OnEscape()
