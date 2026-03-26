@@ -14,9 +14,7 @@ public class EndDialogManager : MonoBehaviour
     [SerializeField] private TMP_Text _narratorBadText;
     [SerializeField] private List<DialogSO> _dialogs;
     private bool _followedNarrator = true;
-    private bool _endedDialog = false;
     private event Action _onDialogFinish;
-    private int _counter = 0;
     void OnEnable()
     {
         Time.timeScale = 0;

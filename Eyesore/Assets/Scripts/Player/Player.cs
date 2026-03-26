@@ -72,14 +72,12 @@ public class Player : MonoBehaviour
         _inputReader.OnMove += OnMove;
         _inputReader.OnPickUp += OnPickUp;
         _inputReader.OnEscape += OnEscape;
-        _inputReader.OnSprint += SprintStart;
     }
     private void UnsubscribeFromFunctions()
     {
         _inputReader.OnMove -= OnMove;
         _inputReader.OnPickUp -= OnPickUp;
         _inputReader.OnEscape -= OnEscape;
-        _inputReader.OnSprint -= SprintStart;
     }
 
 
@@ -160,16 +158,13 @@ public class Player : MonoBehaviour
         EscapeUI.SetActive(true);
     }
 
-    private void SprintStart(bool givenValue)
+    public void ChangeSpeed(float newSpeed)
     {
-        if(givenValue)
-        {
-            _playerSpeed *= 1.5f; 
-        }
-        else
-        {
-            _playerSpeed = defaultSpeed;
-        }
+        _playerSpeed = newSpeed;
+    }
+    public float GetSpeed()
+    {
+        return _playerSpeed;
     }
 
 }
