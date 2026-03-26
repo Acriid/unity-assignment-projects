@@ -1,0 +1,10 @@
+using UnityEngine;
+
+public class SprintTriggerStop : MonoBehaviour
+{
+    [SerializeField] private TimedTrigger _timedTrigger;
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        _timedTrigger.StopTimer();
+    }
+}

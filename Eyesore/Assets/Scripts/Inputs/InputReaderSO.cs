@@ -17,22 +17,34 @@ public class InputReaderSO : ScriptableObject
     private InputAction _navigateAction;
     private InputAction _submitAction;
 
+    private InputAction _toggleLightAction;
+
+    private InputAction _sprintAction;
+
     public event Action<Vector2> OnMove;
     public event Action OnPickUp;
     public event Action OnEscape;
-
+    public event Action OnToggleLight;
+    public event Action<bool> OnSprint;
 
     public event Action OnNavigate;
     public event Action OnSubmit;
 
+    
+
 
     private Action<InputAction.CallbackContext> movePerformed;
-    private Action<InputAction.CallbackContext> moveCancled;
+    private Action<InputAction.CallbackContext> moveCanceled;
     private Action<InputAction.CallbackContext> pickUpPerformed;
     private Action<InputAction.CallbackContext> escapePerformed;
+    private Action<InputAction.CallbackContext> toggleLightPerformed;
+    private Action<InputAction.CallbackContext> sprintStarted;
+    private Action<InputAction.CallbackContext> sprintCanceled;
 
     private Action<InputAction.CallbackContext> navigatePerformed;
     private Action<InputAction.CallbackContext> submitPerformed;
+
+
 
     void OnEnable()
     {
@@ -57,25 +69,37 @@ public class InputReaderSO : ScriptableObject
         _moveAction = _inputActions.Player.Move;
         _pickUpAction = _inputActions.Player.Jump;
        _escapeAction = _inputActions.Player.Escape;
+       _toggleLightAction = _inputActions.Player.ToggleLight;
+       _sprintAction = _inputActions.Player.Sprint;
     }
     private void InitializePlayerEvents()
     {
         movePerformed = ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
-        moveCancled = ctx => OnMove?.Invoke(Vector2.zero);
+        moveCanceled = ctx => OnMove?.Invoke(Vector2.zero);
 
         pickUpPerformed = ctx => OnPickUp?.Invoke();
 
         escapePerformed = ctx => OnEscape?.Invoke();
+
+        toggleLightPerformed = ctx => OnToggleLight?.Invoke();
+
+        sprintStarted = ctx => OnSprint?.Invoke(true);
+        sprintCanceled = ctx => OnSprint?.Invoke(false);
     }
 
     private void SubscribeActions()
     {
         _moveAction.performed += movePerformed;
-        _moveAction.canceled += moveCancled;
+        _moveAction.canceled += moveCanceled;
 
         _pickUpAction.performed += pickUpPerformed;
 
         _escapeAction.performed += escapePerformed;
+
+        _toggleLightAction.performed += toggleLightPerformed;
+
+        _sprintAction.started += sprintStarted;
+        _sprintAction.canceled += sprintCanceled;
 
         _navigateAction.performed += navigatePerformed;
         _submitAction.performed += submitPerformed;
@@ -83,11 +107,16 @@ public class InputReaderSO : ScriptableObject
     private void UnsubscribeActions()
     {
         _moveAction.performed -= movePerformed;
-        _moveAction.canceled -= moveCancled;   
+        _moveAction.canceled -= moveCanceled;   
 
         _pickUpAction.performed -= pickUpPerformed;
 
         _escapeAction.performed -= escapePerformed;
+
+        _toggleLightAction.performed -= toggleLightPerformed;
+
+        _sprintAction.started -= sprintStarted;
+        _sprintAction.canceled -= sprintCanceled;
 
         _navigateAction.performed -= navigatePerformed;
         _submitAction.performed -= submitPerformed;             
@@ -110,6 +139,7 @@ public class InputReaderSO : ScriptableObject
     {
         _pickUpAction.Disable();
     }
+
     public void EnableEscapeAction()
     {
         _escapeAction.Enable();
@@ -118,6 +148,25 @@ public class InputReaderSO : ScriptableObject
     {
         _escapeAction.Disable();
     }
+    
+    public void EnableToggleLightAction()
+    {
+        _toggleLightAction.Enable();
+    }
+    public void DisableToggleLightAction()
+    {
+        _toggleLightAction.Disable();
+    }
+
+    public void EnableSprintAction()
+    {
+        _sprintAction.Enable();
+    }
+    public void DisableSprintAction()
+    {
+        _sprintAction.Disable();
+    }
+
     private void InitializeUIEvents()
     {
         navigatePerformed = ctx => OnNavigate?.Invoke();

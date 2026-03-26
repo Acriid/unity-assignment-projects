@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReaderSO _inputReader;
     [SerializeField] private Rigidbody2D _rigidBody;
-    [SerializeField] private float _playerSpeed;
+    [SerializeField] private float _playerSpeed = 10f;
     [SerializeField] private PickUpMechanic _pickUpMechanic;
     [SerializeField] private GameObject _itemHolder;
     [SerializeField] private GameObject _worldItemHolder;
@@ -22,23 +22,36 @@ public class Player : MonoBehaviour
     private Color _normalColor;
     private int health = 3;
     private Coroutine healthReset;
+
+    private float defaultSpeed;
     void Awake()
     {
         _normalColor = _playerLight.color;
+        defaultSpeed = _playerSpeed;
 
-        _inputReader.EnableMoveAction();
-        _inputReader.EnablePickUpAction();
-        _inputReader.EnableEscapeAction();
+        EnableActions();
         SubscribeToFunctions();
     }
     void OnDisable()
     {
-        _inputReader.DisableMoveAction();
-        _inputReader.DisablePickUpAction();
-        _inputReader.DisableEscapeAction();
+        DisableActions();
         UnsubscribeFromFunctions();
     }
 
+    private void EnableActions()
+    {
+        _inputReader.EnableMoveAction();
+        _inputReader.EnablePickUpAction();
+        _inputReader.EnableEscapeAction();
+        _inputReader.EnableSprintAction();
+    }
+    private void DisableActions()
+    {
+        _inputReader.DisableMoveAction();
+        _inputReader.DisablePickUpAction();
+        _inputReader.DisableEscapeAction();    
+        _inputReader.DisableSprintAction();   
+    }
 
     void Update()
     {
@@ -59,12 +72,14 @@ public class Player : MonoBehaviour
         _inputReader.OnMove += OnMove;
         _inputReader.OnPickUp += OnPickUp;
         _inputReader.OnEscape += OnEscape;
+        _inputReader.OnSprint += SprintStart;
     }
     private void UnsubscribeFromFunctions()
     {
         _inputReader.OnMove -= OnMove;
         _inputReader.OnPickUp -= OnPickUp;
         _inputReader.OnEscape -= OnEscape;
+        _inputReader.OnSprint -= SprintStart;
     }
 
 
@@ -119,6 +134,7 @@ public class Player : MonoBehaviour
         if(health <= 0)
         {
             Time.timeScale = 0;
+            if(_deathCanvas == null) return;
             _deathCanvas.SetActive(true);
         }
 
@@ -140,6 +156,20 @@ public class Player : MonoBehaviour
 
     private void OnEscape()
     {
+        if(EscapeUI == null) return;
         EscapeUI.SetActive(true);
     }
+
+    private void SprintStart(bool givenValue)
+    {
+        if(givenValue)
+        {
+            _playerSpeed *= 1.5f; 
+        }
+        else
+        {
+            _playerSpeed = defaultSpeed;
+        }
+    }
+
 }
