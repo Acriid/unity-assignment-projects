@@ -11,6 +11,7 @@ public class LightToggleTrigger : MonoBehaviour
         _inputReader.OnToggleLight += OnLightToggle;
     }
     void OnDisable()
+    ///
     {
         _inputReader.OnToggleLight -= OnLightToggle;
     }
