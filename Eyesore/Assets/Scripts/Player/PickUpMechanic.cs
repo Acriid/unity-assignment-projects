@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class PickUpMechanic : MonoBehaviour
@@ -23,13 +22,13 @@ public class PickUpMechanic : MonoBehaviour
         UpdateTargetItem(transform);
     }
 
-    public void Initialize()
+    private void Initialize()
     {
         _detectionTrigger = GetComponent<CircleCollider2D>();
         _detectionTrigger.radius = _detectionRadius;
         _detectionTrigger.isTrigger = true;       
     }
-    public void UpdateTargetItem(Transform player)
+    private void UpdateTargetItem(Transform player)
     {
         _itemsInRange.RemoveAll(item => item == null);
 
@@ -52,9 +51,9 @@ public class PickUpMechanic : MonoBehaviour
         
     }
 
-    public void PickUpItem(Transform itemHolder, bool keepGlobal, Item itemToPickUp)
+    public bool PickUpItem(Transform itemHolder, bool keepGlobal, Item itemToPickUp)
     {
-
+        if(itemToPickUp == null) return false;
         itemToPickUp.transform.SetParent(itemHolder,keepGlobal);
         itemToPickUp.transform.SetLocalPositionAndRotation(Vector3.zero, new(0f,0f,0f,0f));
         itemToPickUp.KinematicRigidBody(RigidbodyType2D.Kinematic);
@@ -64,15 +63,18 @@ public class PickUpMechanic : MonoBehaviour
         {
             _targetItem = null;
         }
+        return true;
         
     }
 
-    public void DropItem(Transform itemHolder, Item itemToPutDown)
+    public bool DropItem(Transform itemHolder, Item itemToPutDown)
     {
+        if(itemToPutDown == null) return false;
         itemToPutDown.transform.SetParent(itemHolder,true);
         itemToPutDown.KinematicRigidBody(RigidbodyType2D.Dynamic);
         itemToPutDown.ChangeExcludeLayerMasks(LayerMask.GetMask("Nothing"));
         _itemsInRange.Add(itemToPutDown);
+        return true;
     }
 
     

@@ -10,7 +10,7 @@ public class InputReaderSO : ScriptableObject
 
     private InputAction _moveAction;
 
-    private InputAction _pickUpAction;
+    private InputAction _interactAction;
 
     private InputAction _escapeAction;
 
@@ -22,7 +22,7 @@ public class InputReaderSO : ScriptableObject
     private InputAction _sprintAction;
 
     public event Action<Vector2> OnMove;
-    public event Action OnPickUp;
+    public event Action OnInteract;
     public event Action OnEscape;
     public event Action OnToggleLight;
     public event Action<bool> OnSprint;
@@ -35,7 +35,7 @@ public class InputReaderSO : ScriptableObject
 
     private Action<InputAction.CallbackContext> movePerformed;
     private Action<InputAction.CallbackContext> moveCanceled;
-    private Action<InputAction.CallbackContext> pickUpPerformed;
+    private Action<InputAction.CallbackContext> interactPerformed;
     private Action<InputAction.CallbackContext> escapePerformed;
     private Action<InputAction.CallbackContext> toggleLightPerformed;
     private Action<InputAction.CallbackContext> sprintStarted;
@@ -67,7 +67,7 @@ public class InputReaderSO : ScriptableObject
     private void InitializePlayerActions()
     {
         _moveAction = _inputActions.Player.Move;
-        _pickUpAction = _inputActions.Player.Jump;
+        _interactAction = _inputActions.Player.Jump;
        _escapeAction = _inputActions.Player.Escape;
        _toggleLightAction = _inputActions.Player.ToggleLight;
        _sprintAction = _inputActions.Player.Sprint;
@@ -77,7 +77,7 @@ public class InputReaderSO : ScriptableObject
         movePerformed = ctx => OnMove?.Invoke(ctx.ReadValue<Vector2>());
         moveCanceled = ctx => OnMove?.Invoke(Vector2.zero);
 
-        pickUpPerformed = ctx => OnPickUp?.Invoke();
+        interactPerformed = ctx => OnInteract?.Invoke();
 
         escapePerformed = ctx => OnEscape?.Invoke();
 
@@ -92,7 +92,7 @@ public class InputReaderSO : ScriptableObject
         _moveAction.performed += movePerformed;
         _moveAction.canceled += moveCanceled;
 
-        _pickUpAction.performed += pickUpPerformed;
+        _interactAction.performed += interactPerformed;
 
         _escapeAction.performed += escapePerformed;
 
@@ -109,7 +109,7 @@ public class InputReaderSO : ScriptableObject
         _moveAction.performed -= movePerformed;
         _moveAction.canceled -= moveCanceled;   
 
-        _pickUpAction.performed -= pickUpPerformed;
+        _interactAction.performed -= interactPerformed;
 
         _escapeAction.performed -= escapePerformed;
 
@@ -133,11 +133,11 @@ public class InputReaderSO : ScriptableObject
 
     public void EnablePickUpAction()
     {
-        _pickUpAction.Enable();
+        _interactAction.Enable();
     }
     public void DisablePickUpAction()
     {
-        _pickUpAction.Disable();
+        _interactAction.Disable();
     }
 
     public void EnableEscapeAction()

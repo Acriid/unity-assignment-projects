@@ -6,9 +6,11 @@ public class LightToggleMechanic : MonoBehaviour
 {
     [SerializeField] private InputReaderSO _inputReader;
     [SerializeField] private Light2D _playerLight;
+    private CircleCollider2D _lightCollider;
 
     void OnEnable()
     {
+        _lightCollider = _playerLight.gameObject.GetComponent<CircleCollider2D>();
         EnableLightToggle();
     }
     void OnDisable()
@@ -28,6 +30,7 @@ public class LightToggleMechanic : MonoBehaviour
 
     private void ToggleLight()
     {
+        _lightCollider.enabled = !_playerLight.enabled;
         _playerLight.enabled = !_playerLight.enabled;
     }
 }

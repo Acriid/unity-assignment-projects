@@ -10,6 +10,7 @@ public class EnemyStartTrigger : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             _enemy.SetNavAgentDestination(_destination);
+            this.gameObject.SetActive(false);
         }
     }
 }

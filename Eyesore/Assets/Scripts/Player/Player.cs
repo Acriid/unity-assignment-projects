@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _deathCanvas;
     public GameObject EscapeUI;
     private Vector2 _moveInput;
+
+
     public bool HoldingItem = false;
     private Item _heldItem;
     
@@ -70,13 +72,13 @@ public class Player : MonoBehaviour
     private void SubscribeToFunctions()
     {
         _inputReader.OnMove += OnMove;
-        _inputReader.OnPickUp += OnPickUp;
+        _inputReader.OnInteract += OnInteract;
         _inputReader.OnEscape += OnEscape;
     }
     private void UnsubscribeFromFunctions()
     {
         _inputReader.OnMove -= OnMove;
-        _inputReader.OnPickUp -= OnPickUp;
+        _inputReader.OnInteract -= OnInteract;
         _inputReader.OnEscape -= OnEscape;
     }
 
@@ -87,34 +89,25 @@ public class Player : MonoBehaviour
         _moveInput = newValue;
     }
 
-    private void OnPickUp()
+    private void OnInteract()
+    {
+        PickUpItem();
+    }
+
+    private void PickUpItem()
     {
         if(!HoldingItem)
         {
-            
             _heldItem = _pickUpMechanic.GetTargetItem();
-            if(_heldItem == null) return;
 
-            if(_heldItem.gameObject.TryGetComponent(out DialogTrigger trigger))
-            {
-                trigger.TriggerDialog();
-            }
-            if(_heldItem.gameObject.TryGetComponent(out KeyTrigger keyTrigger))
-            {
-                keyTrigger.ChangeDialog();
-            }
-
-            _pickUpMechanic.PickUpItem(_itemHolder.transform,false,_heldItem);
-            HoldingItem = true;
+            HoldingItem = _pickUpMechanic.PickUpItem(_itemHolder.transform,false,_heldItem);
         }
         else
         {
-            // _pickUpMechanic.DropItem(_worldItemHolder.transform,_heldItem);
-            // _heldItem = null;
-            // HoldingItem = false;
-        }
+            HoldingItem = !_pickUpMechanic.DropItem(_worldItemHolder.transform,_heldItem);
+            _heldItem = null;
+        } 
     }
-
     public void DamagePlayer()
     {
         if(healthReset != null)

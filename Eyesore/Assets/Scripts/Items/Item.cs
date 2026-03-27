@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class Item : MonoBehaviour
+public class Item : InteractionMechanic
 {
     public ItemSO ItemSO;
     [SerializeField] private Rigidbody2D _rigidBody;
@@ -30,5 +30,10 @@ public class Item : MonoBehaviour
     public void KinematicRigidBody(RigidbodyType2D newBodyType)
     {
         _rigidBody.bodyType = newBodyType;
+    }
+    
+    public override void Interact()
+    {
+        
     }
 }
