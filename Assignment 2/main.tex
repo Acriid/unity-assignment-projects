@@ -2,11 +2,31 @@
 \usepackage{glossaries}
 
 
+\newglossaryentry{map}
+{
+    name = map,
+    description = {The playable area in which the player can move around and interact
+    with}
+}
+
+\newglossaryentry{ScriptOBJ}
+{
+    name = {scriptable obejct},
+    description = {A unity class which stores data}
+}
+
+\newglossaryentry{GO}
+{
+    name = {game object},
+    description = {Objects within the game}
+}
+
+
 \begin{document}
 \section{Mechanics}
 What can the player do:
 \begin{enumerate}
-    \item Move around with WASD
+    \item Move around with WASD.
     \item Sprint using Shift and WASD
     \item Interact with the environment through Space.
     \item Toggling the player's light with R.
@@ -15,7 +35,8 @@ Why can the player do these options:
 \begin{enumerate}
     \item Explore the map
     \item Run away from enemies or map hazards
-    \item To pick up keys, open doors and hide in hiding spots.
+    \item To pick up keys, open doors, hide in hiding spots, 
+    switching lights on, flipping levers and solving puzzles.
     \item To see places that can only be seen when the light is off
     or to hide from an enemy.
 \end{enumerate}
@@ -25,8 +46,9 @@ How will these mechanics be balanced
     but still fast enough to not make moving around feel like a drag.
     \item The player sprint speed will be faster than base enemy speed
     but the player will only be able to sprint for a set amount of time.
-    \item The player will only be able to pickup one item at a time and
-    the interact on an item has a cooldown.
+    \item The player will only be able to interact with one item at a time
+    if the player is carrying an item and wants to open a door the player
+    will first have to drop the item before opening the door.
     \item The player can only turn off their light after a cooldown to 
     prevent the spamming of the light.
 \end{enumerate}
@@ -38,11 +60,10 @@ How will these mechanics be implemented.
 \section{General Description}
 
 \section{Hypothesis}
-Might still have to redo the hypothesis
 If important game elements are highlighted
 then players will recognize that element faster
 because the information hierarchy directs the players attention.
-
+\subsection{Hypothesis in prototype}
 \section{Goals}
 Some goals for the prototype
 \begin{enumerate}
@@ -93,7 +114,8 @@ Different ways to bring attention to game elements
 This prototype will be a continuation from the previous prototype. Thus scripts and assets
 from the previous prototype will be used this includes
 \begin{itemize}
-    \item A
+    \item An inputreader scriptable object that uses events to give inputs to scripts
+    \item 
 \end{itemize}
 The cinemachine package was installed from the unity registry in order to do the camera work.
 Added the navmeshplus package from https://github.com/h8man/NavMeshPlus in order to do 2d navmesh

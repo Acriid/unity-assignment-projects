@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputReaderSO _inputReader;
     [SerializeField] private Rigidbody2D _rigidBody;
     [SerializeField] private float _playerSpeed = 10f;
-    [SerializeField] private PickUpMechanic _pickUpMechanic;
+    [SerializeField] private InteractMechanic _pickUpMechanic;
     [SerializeField] private GameObject _itemHolder;
     [SerializeField] private GameObject _worldItemHolder;
     [SerializeField] private Light2D _playerLight;
@@ -55,10 +55,7 @@ public class Player : MonoBehaviour
         _inputReader.DisableSprintAction();   
     }
 
-    void Update()
-    {
-        
-    }
+
     void FixedUpdate()
     {
         MovePlayer(_moveInput);
@@ -91,23 +88,9 @@ public class Player : MonoBehaviour
 
     private void OnInteract()
     {
-        PickUpItem();
+        _pickUpMechanic.Interact(this.gameObject);
     }
 
-    private void PickUpItem()
-    {
-        if(!HoldingItem)
-        {
-            _heldItem = _pickUpMechanic.GetTargetItem();
-
-            HoldingItem = _pickUpMechanic.PickUpItem(_itemHolder.transform,false,_heldItem);
-        }
-        else
-        {
-            HoldingItem = !_pickUpMechanic.DropItem(_worldItemHolder.transform,_heldItem);
-            _heldItem = null;
-        } 
-    }
     public void DamagePlayer()
     {
         if(healthReset != null)
@@ -160,4 +143,30 @@ public class Player : MonoBehaviour
         return _playerSpeed;
     }
 
+
+
+    public void StopMove()
+    {
+        _inputReader.DisableMoveAction();
+    }
+
+    public void StartMove()
+    {
+        _inputReader.EnableMoveAction();
+    }
+
+    public void StopToggle()
+    {
+        _inputReader.DisableToggleLightAction();
+    }
+
+    public void StartToggle()
+    {
+        _inputReader.EnableToggleLightAction();
+    }
+
+    public GameObject GetLightObject()
+    {
+        return _playerLight.gameObject;
+    }
 }

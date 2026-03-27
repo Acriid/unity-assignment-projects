@@ -1,12 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class Item : InteractionMechanic
+public class Item : Interaction
 {
     public ItemSO ItemSO;
-    [SerializeField] private Rigidbody2D _rigidBody;
-    [SerializeField] private Collider2D _collider;
+    private Rigidbody2D _rigidBody;
+    private Collider2D _collider;
+    [SerializeField] private bool _pickedUp = false;
+    [SerializeField] private Transform _itemHolder;
+    private Transform _originalParent;
+
     void OnEnable()
     {
         Initialize();
@@ -19,21 +24,95 @@ public class Item : InteractionMechanic
 
         if(_collider == null) _collider = GetComponent<Collider2D>();
         
+        _originalParent = transform.parent;
     }
 
-    public void ChangeExcludeLayerMasks(LayerMask layerMask)
+    public override void OnInteract(GameObject player)
     {
-        _collider.excludeLayers = layerMask;
+        if(!CanInteract()) return;
+
+        if(!_pickedUp)
+        {
+            PickUpItem(player);
+        }
+        else
+        {
+            DropItem(player);
+        }
+
     }
-
-
-    public void KinematicRigidBody(RigidbodyType2D newBodyType)
+    public override string GetPrompt()
     {
-        _rigidBody.bodyType = newBodyType;
+        return _pickedUp ? $"Drop {ItemSO.ItemName}" : $"Pick up {ItemSO.ItemName}";
     }
     
-    public override void Interact()
+
+    private void PickUpItem(GameObject player)
     {
-        
+        // Find item holder on player
+        Transform holder = _itemHolder != null ? _itemHolder : player.transform;
+
+        // Parent to holder
+        transform.SetParent(holder, true);
+        transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        // Make kinematic
+        if (_rigidBody != null)
+        {
+            _rigidBody.bodyType = RigidbodyType2D.Kinematic;
+            _rigidBody.linearVelocity = Vector2.zero;
+            _rigidBody.angularVelocity = 0f;
+        }
+
+        // Change collision layer
+        if (_collider != null)
+        {
+            _collider.excludeLayers = LayerMask.GetMask("Player");
+        }
+
+        _pickedUp = true;
+        Debug.Log($"Picked up {ItemSO.ItemName}");
     }
+    private void DropItem(GameObject player)
+    {
+        // Unparent
+        transform.SetParent(_originalParent, true);
+
+        // Make dynamic
+        if (_rigidBody != null)
+        {
+            _rigidBody.bodyType = RigidbodyType2D.Dynamic;
+            
+            // Optional: Add throw velocity based on player movement
+            Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+            if (playerRb != null)
+            {
+                _rigidBody.linearVelocity = playerRb.linearVelocity;
+            }
+        }
+
+        // Reset collision layer
+        if (_collider != null)
+        {
+            _collider.excludeLayers = LayerMask.GetMask("Nothing");
+        }
+
+        _pickedUp = false;
+        Debug.Log($"Dropped {ItemSO.ItemName}");
+    }
+    public void KinematicRigidBody(RigidbodyType2D bodyType)
+    {
+        if (_rigidBody != null)
+            _rigidBody.bodyType = bodyType;
+    }
+
+    public void ChangeExcludeLayerMasks(LayerMask mask)
+    {
+        if (_collider != null)
+            _collider.excludeLayers = mask;
+    }
+
+    public bool IsPickedUp() => _pickedUp;
+
+    
 }
