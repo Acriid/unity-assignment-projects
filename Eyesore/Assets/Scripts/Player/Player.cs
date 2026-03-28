@@ -91,6 +91,10 @@ public class Player : MonoBehaviour
         _pickUpMechanic.Interact(this.gameObject);
     }
 
+    public void ForceInteract()
+    {
+        OnInteract();
+    }
     public void DamagePlayer()
     {
         if(healthReset != null)

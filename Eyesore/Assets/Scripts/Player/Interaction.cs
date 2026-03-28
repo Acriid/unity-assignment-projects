@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,7 +8,8 @@ public abstract class Interaction : MonoBehaviour
     [Header("Interaction Settings")]
     [SerializeField] protected string interactionPrompt = "Interact";
     [SerializeField] protected bool canInteract = true;
-
+    [SerializeField] protected List<GameObject> _enableObjects;
+    [SerializeField] protected List<GameObject> _disableObjects;
     // Virtual method to be overridden by child classes
     public virtual void OnInteract(GameObject player)
     {
@@ -31,4 +34,20 @@ public abstract class Interaction : MonoBehaviour
         canInteract = state;
     }
 
+    public virtual void EnableObjects(bool newValue)
+    {
+        if(_enableObjects.Count == 0) return;
+        foreach(GameObject enableObject in _enableObjects)
+        {
+            enableObject.SetActive(newValue);
+        }
+    }
+    public virtual void DisableObjects(bool newValue)
+    {
+        if(_disableObjects.Count == 0) return;
+        foreach(GameObject disableObject in _disableObjects)
+        {
+            disableObject.SetActive(newValue);
+        }
+    }
 }

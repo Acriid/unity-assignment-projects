@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -70,6 +71,8 @@ public class Item : Interaction
             _collider.excludeLayers = LayerMask.GetMask("Player");
         }
 
+        EnableObjects(true);
+        DisableObjects(false);
         _pickedUp = true;
         Debug.Log($"Picked up {ItemSO.ItemName}");
     }
@@ -97,6 +100,8 @@ public class Item : Interaction
             _collider.excludeLayers = LayerMask.GetMask("Nothing");
         }
 
+        EnableObjects(false);
+        DisableObjects(true);
         _pickedUp = false;
         Debug.Log($"Dropped {ItemSO.ItemName}");
     }
