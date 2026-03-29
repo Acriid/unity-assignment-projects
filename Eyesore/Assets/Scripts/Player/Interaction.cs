@@ -39,6 +39,7 @@ public abstract class Interaction : MonoBehaviour
         if(_enableObjects.Count == 0) return;
         foreach(GameObject enableObject in _enableObjects)
         {
+            if(enableObject != null)
             enableObject.SetActive(newValue);
         }
     }
@@ -47,6 +48,7 @@ public abstract class Interaction : MonoBehaviour
         if(_disableObjects.Count == 0) return;
         foreach(GameObject disableObject in _disableObjects)
         {
+            if(disableObject != null)
             disableObject.SetActive(newValue);
         }
     }

@@ -5,6 +5,7 @@ public class ItemTrigger : ActivationTrigger
 {
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _item;
+    [SerializeField] private string _triggerText;
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag(_collisionTag) && collision.gameObject == _item)
@@ -14,9 +15,12 @@ public class ItemTrigger : ActivationTrigger
             DisableGameObjects();
             _player.ForceInteract();
         }
-        else
+        else if(collision.TryGetComponent<Player>(out Player player))
         {
-            ShowUI($"Get {_item.name}");
+            if(player.HoldingItem != true)
+            {
+                ShowUI($"Get {_item.name}");  
+            }
         }
     }
 

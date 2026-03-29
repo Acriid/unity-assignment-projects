@@ -21,8 +21,25 @@
     description = {Objects within the game}
 }
 
+\newglossaryentry{WS}
+{
+    name = {world space},
+    description = {The in game space}
+}
+
+\newglossaryentry{interactable}
+{
+    name = {interactable},
+    description = {An object in the game world which the player can interact with}
+}
+
+
 
 \begin{document}
+\section{General}
+In this prototype Communication Design is prioritized over other types of design.
+Thus the prototype will focus on communicating the general actions and mechanics 
+that the player can do as well as how to do those actions and mechanics.
 \section{Mechanics}
 What can the player do:
 \begin{enumerate}
@@ -49,12 +66,15 @@ How will these mechanics be balanced
     \item The player will only be able to interact with one item at a time
     if the player is carrying an item and wants to open a door the player
     will first have to drop the item before opening the door.
-    \item The player can only turn off their light after a cooldown to 
-    prevent the spamming of the light.
+    \item The player will not be able to see the map clearly when their
+    light is turned off, thus the player will need to toggle between light
+    on and light off states in order to use the mechanic.
 \end{enumerate}
 How will these mechanics be implemented.
 \begin{enumerate}
-    \item 
+    \item A player script will move the player.
+    \item A sprint script will increase the player's speed and keep track of 
+    how long the player has been sprinting 
 \end{enumerate}
 
 \section{General Description}
@@ -64,6 +84,15 @@ If important game elements are highlighted
 then players will recognize that element faster
 because the information hierarchy directs the players attention.
 \subsection{Hypothesis in prototype}
+In the prototype areas where the player should move are highlighted with
+a coloured light. 
+
+Important objects that the player would need to pickup
+to continue in the game are also highlighted while the area where they should
+be used are highlighted to show the player where they should use the items.
+
+The path that the player should follow can also be seen when the player turns
+their light off.
 \section{Goals}
 Some goals for the prototype
 \begin{enumerate}
@@ -72,18 +101,30 @@ Some goals for the prototype
     such a way that they do not need to constantly be reminded of them.
     \item To create a user interface that can communicate the current state
     the player is in.
-    \item To allow all the mechanics to work together to enhance the player
-    experience
+    \item To make specific code from the first prototype that can only be used
+    in specific situations more general so that the code can be reused easily 
+    and is scalable for new features.
+
 \end{enumerate}
 
 
 
 \section{Genre}
-Five Nights at Freddy's: Into the Pit
-Horror.
-
-Something will chase the player (a killbox that only goes a specific path)
-
+Exploration. The prototype is of the exploration genre because the player needs
+to explore the map they were put in to progress.
+Puzzle. The prototype is also of the puzzle genre because the player needs to 
+interact with different interactables in order to progress.
+\subsection{Game Examples}
+\subsubsection*{Portal 1 and Portal 2}
+In both Portal 1 and Portal 2 the player is given a portal gun which allows the player
+to shoot two portals and walk through them . The player can also pick up items with
+the portal gun. In both games you can only have two portals out at a time this leads
+the player to think about how they are going to use their portals because of its limited use.
+In the prototype only being able to interact with one interactable at a time will have a 
+similar effect to the limited use of the portal gun in portal two. This can lead to 
+situations where the player has to hide from an enemy but they are currently carrying
+an item leading the player to drop the item away from the hiding spot and then hiding
+before the enemy catches them.
 
 
 \section{Communication Design}
@@ -100,24 +141,43 @@ which will drain to empty if the player sprints for too long. This is to show th
 that they cannot sprint forever.
 
 The interact mechanic will be shown to the player by showing different items they can
-interact with while highlighting the intractable in different ways. Some interactions
-will have a cooldown before they can interact with the interaction again. 
-The cooldown will be shown by the interaction highlight being changed in some way. (Redo this)
+interact with while highlighting the important intractables in different ways. The player
+will only be able to interact with one interactable at a time.
 
-The game will show the player that they can press R to turn off their light. It will also show
-an indication in areas where you need to turn off the light in order to progress. When an enemy
-is nearby and you need to turn off the light the light will change colour.
+The game will show the player that they can press R on the keyboard to turn off their light. It will also show
+an indication in areas where you need to turn off the light in order to progress. This indication
+is a purple diamond in the world space near the hidden objects. When an enemy
+is nearby and you need to turn off the light the light will change colour. The colour chosen is
+a yellow warning colour for enemies.
 
 Different ways to bring attention to game elements
+\begin{itemize}
+    \item Shine a light on the important element.
+    \item Change the element's colour to make it stand out from the background.
+    \item Put instructions in the foreground to bring the element to the player's attention.
+    \item 
+\end{itemize}
 
 \section{Process}
 This prototype will be a continuation from the previous prototype. Thus scripts and assets
-from the previous prototype will be used this includes
-\begin{itemize}
-    \item An inputreader scriptable object that uses events to give inputs to scripts
-    \item 
-\end{itemize}
-The cinemachine package was installed from the unity registry in order to do the camera work.
-Added the navmeshplus package from https://github.com/h8man/NavMeshPlus in order to do 2d navmesh
+from the previous prototype.
+
+The cinemachine package was installed from the unity registry in order to do the camera work. A
+cinemachine camera was made to follow the player.
+
+Added the navmeshplus package from https://github.com/h8man/NavMeshPlus in order to do 2d navmesh.
+This package helps takes unity navmesh, which is predominantly used for 3d projects, and allows it
+to work in a 2d environment.
+
+A change from the first to the second prototype was the picking up of items. In the first prototype
+the script was done to only work with items thus the player could only interact with items. In the 
+second prototype it was changed to work with any interaction in general by making an interaction 
+root script which any other type of interaction inherits from.
+
+In the tutorial the areas between the different mechanic tutorials were extended to allow the users
+to read about the mechanics and not just need to experience them.
+
+\section{Reflection}
+
 
 \end{document}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
@@ -11,11 +12,17 @@ public class Item : Interaction
     private Collider2D _collider;
     [SerializeField] private bool _pickedUp = false;
     [SerializeField] private Transform _itemHolder;
+    [SerializeField] private Player _player;
+    [SerializeField] private Light2D _light;
     private Transform _originalParent;
 
     void OnEnable()
     {
         Initialize();
+    }
+    void OnDisable()
+    {
+        EnableObjects(false);
     }
     private void Initialize()
     {
@@ -26,6 +33,8 @@ public class Item : Interaction
         if(_collider == null) _collider = GetComponent<Collider2D>();
         
         _originalParent = transform.parent;
+
+        TryGetComponent<Light2D>(out _light);
     }
 
     public override void OnInteract(GameObject player)
@@ -50,6 +59,17 @@ public class Item : Interaction
 
     private void PickUpItem(GameObject player)
     {
+
+        if(_player != null)
+        {
+            _player.HoldingItem = true;
+        }
+
+        if(_light != null)
+        {
+            _light.enabled = false;
+        }
+
         // Find item holder on player
         Transform holder = _itemHolder != null ? _itemHolder : player.transform;
 
@@ -78,6 +98,16 @@ public class Item : Interaction
     }
     private void DropItem(GameObject player)
     {
+        if(_player != null)
+        {
+            _player.HoldingItem = false;
+        }
+
+        if(_light != null)
+        {
+            _light.enabled = true;
+        }
+
         // Unparent
         transform.SetParent(_originalParent, true);
 
