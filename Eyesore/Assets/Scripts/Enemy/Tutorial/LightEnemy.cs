@@ -7,11 +7,15 @@ public class LightEnemy : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _navAgent;
     [SerializeField] private Vector2 _resetDestination;
-    [SerializeField] private Vector2 _playerResetDestination;
+    [SerializeField] private GameObject _playerResetDestination;
     [SerializeField] private List<GameObject> _enableObjects;
     [SerializeField] private List<GameObject> _disableObjects;
     private GameObject _player;
-    
+
+    void Start()
+    {
+        _resetDestination = transform.position;
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -30,7 +34,15 @@ public class LightEnemy : MonoBehaviour
     {
         _navAgent.ResetPath();
         this.gameObject.transform.position = _resetDestination;
-        _player.transform.position = _playerResetDestination;
+        _player.transform.position = _playerResetDestination.transform.position;
+
+        if(_player.TryGetComponent<Player>(out Player playerComponent))
+        {
+            if(playerComponent.HoldingItem)
+            {
+                playerComponent.ForceInteract();
+            }
+        }
 
         foreach(GameObject enableObjects in _enableObjects)
         {

@@ -33,13 +33,56 @@
     description = {An object in the game world which the player can interact with}
 }
 
+\newglossaryentry{NavMesh}
+{
+    name = {navigation mesh},
+    description = {A mesh put on the game map to dictate where ai can and cannot walk.}
+}
 
+\newglossaryentry{element}
+{
+    name = {game element},
+    description = {A part of the game.}
+}
+
+\newglossaryentry{information}
+{
+    name = {information hierarchy},
+    description = {The information that the player sees first }
+}
+
+\newglossaryentry{tilemap}
+{
+    name = {tilemap},
+    description = {The sprites used to make the map of the game.}
+}
+
+\newglossaryentry{sprite}
+{
+    name = {sprite},
+    description = {The visual representation of the object in the game.}
+}
+
+\newglossaryentry{playtest}
+{
+    name = {play testing},
+    description = {Getting people not involved with the prototype to play the game
+    to get feedback about the game.}
+}
 
 \begin{document}
 \section{General}
 In this prototype Communication Design is prioritized over other types of design.
 Thus the prototype will focus on communicating the general actions and mechanics 
-that the player can do as well as how to do those actions and mechanics.
+that the player can do as well as how to do those actions and mechanics. This is
+done through a tutorial where the player will be introduced to the mechanics of 
+the game. After the tutorial the player will then be put into a series of levels
+where they will use the mechanics they learnt in the tutorial. During both the tutorial
+and levels important game elements will be highlighted in order to get the player
+to recognize them quicker and help the player complete the game.
+
+
+
 \section{Mechanics}
 What can the player do:
 \begin{enumerate}
@@ -75,9 +118,22 @@ How will these mechanics be implemented.
     \item A player script will move the player.
     \item A sprint script will increase the player's speed and keep track of 
     how long the player has been sprinting 
+    \item Two scripts will be made one which defines the interaction and another
+    which allows the player to interact with the defined interaction.
+    \item A script will read player input and if they press the correct button
+    the light will switch off.
 \end{enumerate}
 
-\section{General Description}
+\section{Challenges}
+The player can use the mechanics in order to beat some challenges from the game.
+These challenges include running away from the enemy by using the sprint mechanic
+or hiding from the enemy by either finding a hiding spot and turning off the player
+light or by interacting with a game element hiding spot. The player will also need
+to move items from one space to another and they may have to drop the item in order
+to hide which causes another challenge. The player would need to remember where they
+dropped their item.
+
+
 
 \section{Hypothesis}
 If important game elements are highlighted
@@ -91,8 +147,10 @@ Important objects that the player would need to pickup
 to continue in the game are also highlighted while the area where they should
 be used are highlighted to show the player where they should use the items.
 
-The path that the player should follow can also be seen when the player turns
-their light off.
+Enemies have a red light around them to signal danger to the player, while the 
+player's own light turns yellow when the enemy is nearby.
+
+
 \section{Goals}
 Some goals for the prototype
 \begin{enumerate}
@@ -110,10 +168,11 @@ Some goals for the prototype
 
 
 \section{Genre}
+Puzzle. The prototype is of the puzzle genre because the player needs to 
+interact with different interactables in order to progress. The way the player
+needs to interact is something that the player needs to figure out.
 Exploration. The prototype is of the exploration genre because the player needs
 to explore the map they were put in to progress.
-Puzzle. The prototype is also of the puzzle genre because the player needs to 
-interact with different interactables in order to progress.
 \subsection{Game Examples}
 \subsubsection*{Portal 1 and Portal 2}
 In both Portal 1 and Portal 2 the player is given a portal gun which allows the player
@@ -155,29 +214,48 @@ Different ways to bring attention to game elements
     \item Shine a light on the important element.
     \item Change the element's colour to make it stand out from the background.
     \item Put instructions in the foreground to bring the element to the player's attention.
-    \item 
 \end{itemize}
 
 \section{Process}
 This prototype will be a continuation from the previous prototype. Thus scripts and assets
-from the previous prototype.
+from the previous prototype. Although it is a continuation a new map was made because the new
+map shows off more of the Hypothesis which is highlighting important game elements to allow
+the player to identify them faster. The same tilemap was
 
-The cinemachine package was installed from the unity registry in order to do the camera work. A
+The cinemachine package was installed from the unity registry in order to do the camera work. cinemachine
+is a unity package made by unity to give developers more control over the unity camera. A
 cinemachine camera was made to follow the player.
 
 Added the navmeshplus package from https://github.com/h8man/NavMeshPlus in order to do 2d navmesh.
 This package helps takes unity navmesh, which is predominantly used for 3d projects, and allows it
-to work in a 2d environment.
+to work in a 2d environment. Using this package enemies can easily move around the map.
 
 A change from the first to the second prototype was the picking up of items. In the first prototype
 the script was done to only work with items thus the player could only interact with items. In the 
 second prototype it was changed to work with any interaction in general by making an interaction 
 root script which any other type of interaction inherits from.
 
-In the tutorial the areas between the different mechanic tutorials were extended to allow the users
-to read about the mechanics and not just need to experience them.
+In the tutorial the areas between the different mechanic tutorials were extended to allow the players
+to read about the mechanics and not just need to experience them. Not much reading was given in order
+to not overwhelm the player with new information.
+
+
 
 \section{Reflection}
+During the designing of the prototype I enjoyed changing the code from the first prototype. The code
+I usually changed followed the following criteria: Code that can only be used in a single specific
+situation. One example of this code was the item script that I made during the first prototype, I 
+changed it to a general interaction script in this prototype which caused the efficiency of coding
+to go up because I reused the code for different situations.
+Time management was an issue during this prototype because other assignments had to be done while doing
+this prototype. This issue helped me improve my time management to be able to work on all assignments by
+allocating them all time every day.
+
+During playtesting no highlighting was done to see how the players would play the game. The players diamond
+not know where to go and were generally lost to what they should do. After adding the highlights to important
+game elements the players went through the tutorial much faster than when they did not have the highlight and
+the playtesters were also not lost during the tutorial on what they are supposed to do. This evidence suggests
+that the Hypothesis is correct.
 
 
 \end{document}
