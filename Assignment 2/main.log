@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  31 MAR 2026 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  1 APR 2026 00:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/DIGA3008A Game/unity-assignment-projects/Assignment 2/main.tex"
-(c:/DIGA3008A Game/unity-assignment-projects/Assignment 2/main.tex
+**"c:/DIGA3001A Games/unity-assignment-projects/Assignment 2/main.tex"
+(c:/DIGA3001A Games/unity-assignment-projects/Assignment 2/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -222,52 +222,115 @@ Package: glossary-tree 2025/11/09 v4.9 (NLCT)
 \l__glossaries_tree_namesymbolwidth_padding_dim=\dimen181
 \l__glossaries_tree_level_int=\count330
 \glstreeindent=\skip66
-)) (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)) (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+ (c:/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen182
+\Gin@req@width=\dimen183
+)
+\glswrite=\write3
+\glo@main@file=\write4
+\openout4 = `main.glo'.
+
+Package glossaries Info: Writing glossary file main.glo on input line 5.
+ (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count331
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
- [1
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+ (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count332
+\scratchdimen=\dimen184
+\scratchbox=\box62
+\nofMPsegments=\count333
+\nofMParguments=\count334
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count335
+\MPscratchDim=\dimen185
+\MPnumerator=\count336
+\makeMPintoPDFobject=\count337
+\everyMPtoPDFconversion=\toks35
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+)) [1
 
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-Overfull \hbox (16.55632pt too wide) in paragraph at lines 236--239
-[]\OT1/cmr/m/n/10 Added the navmesh-plus pack-age from https://github.com/h8man/NavMeshPlus
+\openout3 = `main.ist'.
+
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<Images/KeyHighlight.png, id=19, 258.9675pt x 246.1697pt>
+File: Images/KeyHighlight.png Graphic file (type png)
+<use Images/KeyHighlight.png>
+Package pdftex.def Info: Images/KeyHighlight.png  used on input line 279.
+(pdftex.def)             Requested size: 137.9979pt x 131.183pt.
+<Images/DoorHighlight.png, id=21, 272.51813pt x 247.67531pt>
+File: Images/DoorHighlight.png Graphic file (type png)
+<use Images/DoorHighlight.png>
+Package pdftex.def Info: Images/DoorHighlight.png  used on input line 285.
+(pdftex.def)             Requested size: 137.9979pt x 125.41705pt.
+<Images/EnemyHighlight.png, id=22, 258.9675pt x 228.855pt>
+File: Images/EnemyHighlight.png Graphic file (type png)
+<use Images/EnemyHighlight.png>
+Package pdftex.def Info: Images/EnemyHighlight.png  used on input line 295.
+(pdftex.def)             Requested size: 137.9979pt x 121.95605pt.
+<Images/PlayerEnemyWarning.png, id=23, 336.50719pt x 240.14719pt>
+File: Images/PlayerEnemyWarning.png Graphic file (type png)
+<use Images/PlayerEnemyWarning.png>
+Package pdftex.def Info: Images/PlayerEnemyWarning.png  used on input line 301.
+(pdftex.def)             Requested size: 137.9979pt x 98.48296pt.
+ [5 <./Images/KeyHighlight.png> <./Images/DoorHighlight.png> <./Images/EnemyHighlight.png> <./Images/PlayerEnemyWarning.png>]
+Overfull \hbox (62.77414pt too wide) in paragraph at lines 332--334
+\OT1/cmr/m/n/10 [1]h8man, \NavMesh-Plus," GitHub, Nov. 26, 2022. https://github.com/h8man/NavMeshPlus
  []
 
-[4{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [5] (./main.aux)
+No file main.gls.
+[6{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 8908 strings out of 467533
- 193987 string characters out of 5423669
- 673384 words of memory out of 5000000
- 37802 multiletter control sequences out of 15000+600000
- 629574 words of font info for 46 fonts, out of 8000000 for 9000
+ 9817 strings out of 467533
+ 208340 string characters out of 5423669
+ 673612 words of memory out of 5000000
+ 38677 multiletter control sequences out of 15000+600000
+ 630337 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 78i,6n,79p,2531b,209s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 78i,8n,79p,2553b,353s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (5 pages, 64701 bytes).
+Output written on main.pdf (6 pages, 225721 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 57 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

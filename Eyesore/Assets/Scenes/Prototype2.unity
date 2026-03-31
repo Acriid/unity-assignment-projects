@@ -38678,6 +38678,10 @@ PrefabInstance:
       propertyPath: _worldItemHolder
       value: 
       objectReference: {fileID: 1676371123}
+    - target: {fileID: 8121440956966943057, guid: 06d49c2acc3f7c745a820e79c0049a1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,6 +1,8 @@
 \documentclass{article}
-\usepackage{glossaries}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{graphicx}
 
+\makeglossaries
 
 \newglossaryentry{map}
 {
@@ -70,6 +72,18 @@
     to get feedback about the game.}
 }
 
+\newglossaryentry{inheritance}
+{
+    name = {inheritance},
+    description = {Deriving new scripts from existing scripts while keeping similar implementation}
+}
+
+\newglossaryentry{subscript}
+{
+    name = {subscript},
+    description = {A script that has inherited from another script}
+}
+
 \begin{document}
 \section{General}
 In this prototype Communication Design is prioritized over other types of design.
@@ -80,7 +94,6 @@ the game. After the tutorial the player will then be put into a series of levels
 where they will use the mechanics they learnt in the tutorial. During both the tutorial
 and levels important game elements will be highlighted in order to get the player
 to recognize them quicker and help the player complete the game.
-
 
 
 \section{Mechanics}
@@ -130,8 +143,8 @@ These challenges include running away from the enemy by using the sprint mechani
 or hiding from the enemy by either finding a hiding spot and turning off the player
 light or by interacting with a game element hiding spot. The player will also need
 to move items from one space to another and they may have to drop the item in order
-to hide which causes another challenge. The player would need to remember where they
-dropped their item.
+to hide from enemies which causes another challenge. The player would need to remember where they
+dropped their item due to the player being able to accidentally throw their item.
 
 
 
@@ -139,16 +152,7 @@ dropped their item.
 If important game elements are highlighted
 then players will recognize that element faster
 because the information hierarchy directs the players attention.
-\subsection{Hypothesis in prototype}
-In the prototype areas where the player should move are highlighted with
-a coloured light. 
 
-Important objects that the player would need to pickup
-to continue in the game are also highlighted while the area where they should
-be used are highlighted to show the player where they should use the items.
-
-Enemies have a red light around them to signal danger to the player, while the 
-player's own light turns yellow when the enemy is nearby.
 
 
 \section{Goals}
@@ -168,11 +172,11 @@ Some goals for the prototype
 
 
 \section{Genre}
-Puzzle. The prototype is of the puzzle genre because the player needs to 
+The main genre is Puzzle. The prototype is of the puzzle genre because the player needs to 
 interact with different interactables in order to progress. The way the player
 needs to interact is something that the player needs to figure out.
 Exploration. The prototype is of the exploration genre because the player needs
-to explore the map they were put in to progress.
+to explore the map they were put in to progress with the puzzle they are faced with.
 \subsection{Game Examples}
 \subsubsection*{Portal 1 and Portal 2}
 In both Portal 1 and Portal 2 the player is given a portal gun which allows the player
@@ -225,27 +229,80 @@ Different ways to bring attention to game elements
 
 \section{Process}
 This prototype will be a continuation from the previous prototype. Thus scripts and assets
-from the previous prototype. Although it is a continuation a new map was made because the new
-map shows off more of the Hypothesis which is highlighting important game elements to allow
-the player to identify them faster. The same tilemap was
+from the previous prototype will be used. Although it is a continuation a new map was made because the new
+map shows off more of the Hypothesis and communication design which is highlighting important game elements to allow
+the player to identify them faster. The same tilemap was used from the first prototype.
 
 The cinemachine package was installed from the unity registry in order to do the camera work. cinemachine
 is a unity package made by unity to give developers more control over the unity camera. A
 cinemachine camera was made to follow the player.
 
-Added the navmeshplus package from https://github.com/h8man/NavMeshPlus in order to do 2d navmesh.
-This package helps takes unity navmesh, which is predominantly used for 3d projects, and allows it
-to work in a 2d environment. Using this package enemies can easily move around the map.
+Added the navmeshplus package from github [1] in order to do 2d ai navigation.
+This package helps takes the defualt unity navmesh, which is predominantly used for 3d projects, and allows it
+to work in a 2d environment. Using this package enemies can easily move around the 2d map.
 
-A change from the first to the second prototype was the picking up of items. In the first prototype
-the script was done to only work with items thus the player could only interact with items. In the 
-second prototype it was changed to work with any interaction in general by making an interaction 
-root script which any other type of interaction inherits from.
+A coding system where a general script is made for different general interactions while specific scripts
+where used with inheritance from the general script to account for the specific situations. 
+
+The coding system was used in the trigger system to allow for the text to change when the player
+reaches certain spots on the map. A subscript was made to do the sprinting tutorial.
+
+The coding system was used in the interaction system that allowed the player to interact with
+different game elements. A subscript was made for each different interaction the player can do.
 
 In the tutorial the areas between the different mechanic tutorials were extended to allow the players
 to read about the mechanics and not just need to experience them. Not much reading was given in order
 to not overwhelm the player with new information.
 
+The colour decisions for the highlighting lights where based on a traffic light. Green for the important elements,
+yellow for warning against nearby enemies and red for the enemies.
+
+
+
+
+
+\subsection{Hypothesis in prototype}
+In the prototype areas where the player should move are highlighted with
+a coloured light. 
+
+Important objects that the player would need to pickup
+to continue in the game are also highlighted while the area where they should
+be used are highlighted to show the player where they should use the items. 
+
+Enemies have a red light around them to signal danger to the player, while the 
+player's own light turns yellow when the enemy is nearby. 
+
+
+\begin{figure}[ht!]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{Images/KeyHighlight.png}
+        \caption{Image of key highlight}
+        \label{img:KeyHighlight}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{Images/DoorHighlight.png}
+            \caption{Image of door highlight}
+            \label{img:DoorHighlight}
+    \end{minipage}
+\end{figure}
+
+
+\begin{figure}[ht!]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{Images/EnemyHighlight.png}
+        \caption{Image of enemy highlight}
+        \label{img:EnemyHighlight}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{Images/PlayerEnemyWarning.png}
+            \caption{Image of player warning}
+            \label{img:WarningHighlight}
+    \end{minipage}
+\end{figure}
 
 
 \section{Reflection}
@@ -254,9 +311,15 @@ I usually changed followed the following criteria: Code that can only be used in
 situation. One example of this code was the item script that I made during the first prototype, I 
 changed it to a general interaction script in this prototype which caused the efficiency of coding
 to go up because I reused the code for different situations.
+A change from the first to the second prototype was the picking up of items. In the first prototype
+the script was done to only work with items thus the player could only interact with items. In the 
+second prototype it was changed to work with any interaction in general by making an interaction 
+root script which any other type of interaction inherits from.
 Time management was an issue during this prototype because other assignments had to be done while doing
 this prototype. This issue helped me improve my time management to be able to work on all assignments by
 allocating them all time every day.
+I would say I achieved the goals I set out to do.
+
 
 During playtesting no highlighting was done to see how the players would play the game. The players diamond
 not know where to go and were generally lost to what they should do. After adding the highlights to important
@@ -264,5 +327,12 @@ game elements the players went through the tutorial much faster than when they d
 the playtesters were also not lost during the tutorial on what they are supposed to do. This evidence suggests
 that the Hypothesis is correct.
 
+
+\section{References}
+[1]h8man, “NavMeshPlus,” GitHub, Nov. 26, 2022. https://github.com/h8man/NavMeshPlus
+‌
+
+\glsaddall
+\printglossary
 
 \end{document}
