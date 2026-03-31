@@ -5,6 +5,6 @@ public class StartGame : MonoBehaviour
 {
     public void OnClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Prototype2");
     }
 }
