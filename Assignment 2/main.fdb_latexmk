@@ -1,10 +1,10 @@
 # Fdb version 4
-["pdflatex"] 1774996462.214 "c:/DIGA3001A Games/unity-assignment-projects/Assignment 2/main.tex" "main.pdf" "main" 1774996463.25639 0
+["pdflatex"] 1775031030.13111 "c:/DIGA3001A Games/unity-assignment-projects/Assignment 2/main.tex" "main.pdf" "main" 1775031031.10034 0
   "Images/DoorHighlight.png" 1774981333 47263 2b415ff3aa40ef1ffc7f79acf3a86109 ""
   "Images/EnemyHighlight.png" 1774981200 14326 c76af6444227a01c505c74e20e5ef726 ""
   "Images/KeyHighlight.png" 1774981261 43478 952ff3d9cef72c8e6b159356f414a1dd ""
   "Images/PlayerEnemyWarning.png" 1774981494 37182 f68d2a589f6c859e0f3b928be95f6321 ""
-  "c:/DIGA3001A Games/unity-assignment-projects/Assignment 2/main.tex" 1774996461 14629 bca5c97bcc6282811d2a22d9760998da ""
+  "c:/DIGA3001A Games/unity-assignment-projects/Assignment 2/main.tex" 1775031029 14772 ca9c281c121dd9e4500b812f86433dbd ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1770217435 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1770217435 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1770218068 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -59,9 +59,9 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1770221132 5587484 49bd08ff372a6985d7d70778694ddaac ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1770221356 3636161 2ec4a537dfac11f5bf7f7a83e4357dab ""
   "c:/texlive/2025/texmf.cnf" 1770221109 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1774996463 2114 e78570583c8517f784399bb68c901e14 "pdflatex"
+  "main.aux" 1775031031 2114 827e4d5e82af26b76f366981d317518a "pdflatex"
   "main.gls" 0 -1 0 ""
-  "main.tex" 1774996461 14629 bca5c97bcc6282811d2a22d9760998da ""
+  "main.tex" 1775031029 14772 ca9c281c121dd9e4500b812f86433dbd ""
   (generated)
   "main.aux"
   "main.glo"

@@ -119,12 +119,12 @@ How will these mechanics be balanced
     but still fast enough to not make moving around feel like a drag.
     \item The player sprint speed will be faster than base enemy speed
     but the player will only be able to sprint for a set amount of time.
-    \item The player will only be able to interact with one item at a time
+    \item The player will only be able to interact with one interaction at a time
     if the player is carrying an item and wants to open a door the player
     will first have to drop the item before opening the door.
     \item The player will not be able to see the map clearly when their
     light is turned off, thus the player will need to toggle between light
-    on and light off states in order to use the mechanic.
+    on and light off states.
 \end{enumerate}
 How will these mechanics be implemented.
 \begin{enumerate}
@@ -133,7 +133,7 @@ How will these mechanics be implemented.
     how long the player has been sprinting 
     \item Two scripts will be made one which defines the interaction and another
     which allows the player to interact with the defined interaction.
-    \item A script will read player input and if they press the correct button
+    \item A script will read player input and if they press the correct button ,R,
     the light will switch off.
 \end{enumerate}
 
@@ -166,7 +166,6 @@ Some goals for the prototype
     \item To make specific code from the first prototype that can only be used
     in specific situations more general so that the code can be reused easily 
     and is scalable for new features.
-
 \end{enumerate}
 
 
@@ -175,7 +174,7 @@ Some goals for the prototype
 The main genre is Puzzle. The prototype is of the puzzle genre because the player needs to 
 interact with different interactables in order to progress. The way the player
 needs to interact is something that the player needs to figure out.
-Exploration. The prototype is of the exploration genre because the player needs
+The sub genre is Exploration. The prototype is of the exploration genre because the player needs
 to explore the map they were put in to progress with the puzzle they are faced with.
 \subsection{Game Examples}
 \subsubsection*{Portal 1 and Portal 2}
@@ -185,9 +184,10 @@ the portal gun. In both games you can only have two portals out at a time this l
 the player to think about how they are going to use their portals because of its limited use.
 It is also communicated where the player can shoot their portals with a white surface,
 this communication also helps the player in how they should approach the puzzle they
-are presented with. 
+are presented with. Using the portals the player also needs to explore the levels
+to find how they should use their portals to beat the level.
 In the prototype only being able to interact with one interactable at a time will have a 
-similar effect to the limited use of the portal gun in portal two. This can lead to 
+similar effect to the limited use of the portal gun in the Portal games. This can lead to 
 situations where the player has to hide from an enemy but they are currently carrying
 an item leading the player to drop the item away from the hiding spot and then hiding
 before the enemy catches them.
@@ -202,22 +202,22 @@ through a light.
 
 The sprinting mechanic will be shown by showing the button needed to sprint on screen
 and giving the player a long part of the map in which they need to sprint to get through.
-If the player takes too long getting through this part part they will need to try it again.
+If the player takes too long getting through this part they will need to try it again.
 
 The sprinting mechanic cannot be used forever thus a stamina bar will be shown on screen
 which will drain to empty if the player sprints for too long. This is to show the player
 that they cannot sprint forever and that they need to be mindful of where and for how
 long they sprint.
 
-The interact mechanic will be shown to the player by showing different items they can
+The interact mechanic will be shown to the player by showing different interactions they can
 interact with while highlighting the important intractables in different ways. The player
 will only be able to interact with one interactable at a time.
 
 The game will show the player that they can press R on the keyboard to turn off their light. It will also show
 an indication in areas where you need to turn off the light in order to progress. This indication
-is a purple diamond in the world space near the hidden objects. When an enemy
-is nearby and you need to turn off the light the light will change colour. The colour chosen is
-a yellow warning colour for enemies.
+is a purple diamond in the world space near the hidden objects. 
+When an enemy is nearby and you need to turn off the light the light will change colour. 
+The colour chosen is a yellow warning colour for enemies.
 
 Different ways to bring attention to game elements
 \begin{itemize}
@@ -233,16 +233,16 @@ from the previous prototype will be used. Although it is a continuation a new ma
 map shows off more of the Hypothesis and communication design which is highlighting important game elements to allow
 the player to identify them faster. The same tilemap was used from the first prototype.
 
-The cinemachine package was installed from the unity registry in order to do the camera work. cinemachine
+The Cinemachine package was installed from the unity registry in order to do the camera work. Cinemachine
 is a unity package made by unity to give developers more control over the unity camera. A
-cinemachine camera was made to follow the player.
+Cinemachine camera was made to follow the player.
 
-Added the navmeshplus package from github [1] in order to do 2d ai navigation.
-This package helps takes the defualt unity navmesh, which is predominantly used for 3d projects, and allows it
+Added the NavMeshPlus package from GitHub [1] in order to do 2d ai navigation.
+This package helps takes the default unity navigation mesh, which is predominantly used for 3d projects, and allows it
 to work in a 2d environment. Using this package enemies can easily move around the 2d map.
 
 A coding system where a general script is made for different general interactions while specific scripts
-where used with inheritance from the general script to account for the specific situations. 
+where used with inheritance from the general script to account for the specific situations was made. 
 
 The coding system was used in the trigger system to allow for the text to change when the player
 reaches certain spots on the map. A subscript was made to do the sprinting tutorial.
@@ -256,8 +256,6 @@ to not overwhelm the player with new information.
 
 The colour decisions for the highlighting lights where based on a traffic light. Green for the important elements,
 yellow for warning against nearby enemies and red for the enemies.
-
-
 
 
 
