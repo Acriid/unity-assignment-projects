@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  2 APR 2026 15:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  2 APR 2026 15:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -46,12 +46,12 @@ LaTeX Font Info:    ... okay on input line 2.
  [1
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (107.05652pt too wide) in paragraph at lines 69--72
-\OT1/cmr/m/n/10 https://www.aiandgames.com/p/revisiting-alien-isolation https://www.gamedeveloper.com/design/the-
+Overfull \hbox (122.05652pt too wide) in paragraph at lines 77--81
+[]\OT1/cmr/m/n/10 https://www.aiandgames.com/p/revisiting-alien-isolation https://www.gamedeveloper.com/design/the-
  []
 
 
-Overfull \hbox (87.55649pt too wide) in paragraph at lines 69--72
+Overfull \hbox (87.55649pt too wide) in paragraph at lines 77--81
 \OT1/cmr/m/n/10 perfect-organism-the-ai-of-alien-isolation https://www.gamedeveloper.com/programming/behavior-
  []
 
@@ -64,13 +64,13 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  440 strings out of 467533
  8225 string characters out of 5423669
- 441759 words of memory out of 5000000
+ 440759 words of memory out of 5000000
  29425 multiletter control sequences out of 15000+600000
  629574 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  35i,5n,38p,208b,128s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (2 pages, 54480 bytes).
+Output written on main.pdf (2 pages, 55489 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  19 compressed objects within 1 object stream

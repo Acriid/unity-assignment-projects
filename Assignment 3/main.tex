@@ -14,7 +14,10 @@ Some of these reactions include
 \end{itemize}
 
 \section*{Enemy Ai}
-How will I show the enemy AI. Through a Finite State Machine
+The enemy ai will run with a finite state machine, due to the low complexity
+of the prototype the finite state machine will work because the number of 
+transitions is low between the 3 states.
+(What will the speed be of the enemy in each state.)
 \subsection*{Enemy States}
 \subsubsection*{Idle}
 The enemy will randomly move around the map.
@@ -65,10 +68,16 @@ The director will give the enemy nearby player objectives when needed.
 
 \section{Games with dynamic Ai systems}
 \subsection*{Alien: Isolation}
+There are two parts to the AI in Alien: Isolation that is the Director AI and the
+Alien AI. The Director AI knows where the alien and player are at all time, but 
+it never communicates this to the Alien AI.
+
+
 
 https://www.aiandgames.com/p/revisiting-alien-isolation
 https://www.gamedeveloper.com/design/the-perfect-organism-the-ai-of-alien-isolation
 https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work
+https://blog.littlepolygon.com/posts/fsm/
 
 \section{Micro Design}
 
