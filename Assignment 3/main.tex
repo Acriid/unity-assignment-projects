@@ -13,11 +13,75 @@ Some of these reactions include
     completing it.
 \end{itemize}
 
+\section*{Enemy Ai}
+How will I show the enemy AI. Through a Finite State Machine
+\subsection*{Enemy States}
+\subsubsection*{Idle}
+The enemy will randomly move around the map.
+In this state the enemy will listen for sounds from the player. If any
+sound is heard the enemy will go to the position they heard the sound 
+and continue idling.
+If the enemy is too far from the player the director will send the enemy
+closer to the player.
+If the enemy is too close to the player for too long then the director
+will send the enemy further from the player.
+If the enemy sees the player they will enter the chase state.
+
+\subsubsection*{Chase}
+The enemy will constantly walk towards the last seen player's position. If the enemy
+loses sight of the player they will listen for player sounds and then the
+enemy will go to the position of the sound.
+If no sound is heard and the enemy can't see the player the enemy will then
+enter the guard state. 
+If the enemy sees the player enter a hiding spot the enemy will force the player out of the hiding spot.
+
+\subsubsection*{Guard}
+If there is an objective that the player must complete nearby the enemy will
+move to that objective and then constantly look in an area around that objective.
+If there is no objective nearby the enemy will enter the idle state.
+If the enemy hears a sound it will move towards that sound and will guard the
+area where the sound was heard. The enemy will then move back to the objective
+and continue to guard it until the guard time runs out. The enemy will then return
+to the idle state when the guard time runs out.
+
+\section*{Director Ai}
+The director will be responsible for keeping track of how annoying the enemy
+is currently being towards the player, thus the director will know where the
+player and enemy is at all times.
+This will be done by keeping track of an annoyance meter. 
+Certain actions that the enemy does will increase or decrease the annoyance meter.
+If the enemy is near the player the annoyance meter will increase while if the enemy
+is far from the player the annoyance meter will decrease.
+Certain actions the enemy does will increase the annoyance meter. If the enemy is
+in the guard state the annoyance meter will go up.
+The annoyance meter will not change when the enemy is in the chase state.
+If the annoyance meter is full the director will make the enemy walk away from the
+player.
+If the annoyance meter is empty the director will make the enemy walk towards the
+player.
+The director will give the enemy nearby player objectives when needed.
+
+
+
 \section{Games with dynamic Ai systems}
 \subsection*{Alien: Isolation}
+
 https://www.aiandgames.com/p/revisiting-alien-isolation
 https://www.gamedeveloper.com/design/the-perfect-organism-the-ai-of-alien-isolation
+https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work
 
 \section{Micro Design}
+
+\section*{General Ideas}
+Use a behavior tree to show why the ai is making certain decisions.
+
+Two types of AI - Director, knows where the player and enemy is at 
+all times and nudges the enemy to either leave the player alone or
+start bothering the player more.
+Enemy where the enemy "sees" around it and can move to sounds, objectives,
+and if it knows with certainty where the player is the enemy can cause a 
+game over on the player. The enemy will only know what is around it and
+can only act on that information.
+
 
 \end{document}

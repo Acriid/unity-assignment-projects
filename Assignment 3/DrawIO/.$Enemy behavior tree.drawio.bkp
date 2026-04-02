@@ -1,0 +1,46 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="8dYt-_L5HojqcinEVfXt">
+    <mxGraphModel dx="1042" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="179MroEP-7MBfaGXCV1w-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Until Fail" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sequence" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Player Alive" vertex="1">
+          <mxGeometry height="60" width="120" x="940" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Player objective compleate" vertex="1">
+          <mxGeometry height="60" width="120" x="1090" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Inverter" vertex="1">
+          <mxGeometry height="60" width="120" x="1090" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sequence" vertex="1">
+          <mxGeometry height="60" width="120" x="1020" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Walk (destination)" vertex="1">
+          <mxGeometry height="60" width="120" x="270" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="GetWalkDestination" vertex="1">
+          <mxGeometry height="60" width="120" x="40" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Selector" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="GetSafeDestination" vertex="1">
+          <mxGeometry height="60" width="120" x="400" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Teleport Enemy (destination)" vertex="1">
+          <mxGeometry height="60" width="120" x="590" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="179MroEP-7MBfaGXCV1w-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Is Null (destination)" vertex="1">
+          <mxGeometry height="60" width="120" x="540" y="710" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
