@@ -1,7 +1,35 @@
 \documentclass{article}
 \begin{document}
 
-\section{What want to do}
+\section*{Mechanics}
+The prototype will be a continuation of the previous prototype
+thus the mechanics will be the same as in the previous prototype.
+Small overview of the mechanics.
+\begin{itemize}
+    \item Player can move with WASD.
+    \item Player can sprint with LShift.
+    \item Player can interact with Space.
+    \item Player can toggle light with R.
+\end{itemize}
+\section*{Challenges}
+\subsection*{Player Challenges}
+The player will need to use the mechanics to avoid the enemy, while
+trying to get their objectives complete. This includes distracting the 
+enemy, hiding from the enemy, and moving around the enemy. 
+Since the focus of this prototype is on the enemy ai the main challenges
+that the player needs to face are challenges based around the enemy ai.
+
+\subsection*{Enemy Challenges}
+The enemy will act like a player with different objectives from the actual 
+player. The enemy objectives will be to stop the player. The only mechanics
+that the enemy has is movement and a director ai that will help it while if the
+enemy hits the player they will win.
+
+
+\section*{Hypothesis}
+
+
+\section{Goals}
 Make an enemy ai that reacts to the player and changes
 its behavior according to the player's actions.
 Some of these reactions include
@@ -70,7 +98,29 @@ The director will give the enemy nearby player objectives when needed.
 \subsection*{Alien: Isolation}
 There are two parts to the AI in Alien: Isolation that is the Director AI and the
 Alien AI. The Director AI knows where the alien and player are at all time, but 
-it never communicates this to the Alien AI.
+it never communicates this to the Alien AI. 
+Alien: Isolation is a horror game thus the player needs to be scared, but if the player
+is scared the entire time they would just give up. This lead to the Director keeping track
+of a menace meter. The menace meter tells the Director when it should get the Alien to 
+back off from the player and allow the player some breathing room and time to progress.
+The Alien AI can only act on what it senses, this leads the AI feel like its hunting the
+player. This is due to the Alien not moving around optimally and taking its time to move
+to its destination. 
+The Alien can also respond to the player's action if the player makes too much noise and if
+the Alien is close enough to sense that noise.
+The Alien has different sensors, visual, auditory and touch. The Alien acts on these senses
+to try and kill the player.
+The Alien Ai is made form a behavior tree.
+
+The parts of Alien: Isolation that I will use in my game will be the similar to the Director AI
+and the Alien AI. I will have the Director Ai keep track of an annoyance meter and direct an Enemy
+Ai to and away from the player. The Enemy will have a sound sensor and a vision range which it will
+use to defeat the player. Unlike the Alien AI which uses a behavior tree the Enemy Ai in the prototype
+will use a finite state machine. This is because recreating a behavior tree needs a lot of conditions
+just to get to the behavior that the AI needs to do at the moment and if made incorrectly can worsen
+performance. The finite state machine can get complex if there are too many states, but this will
+not happen due to only 3 states being planned for the prototype.
+
 
 
 
@@ -80,17 +130,13 @@ https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work
 https://blog.littlepolygon.com/posts/fsm/
 
 \section{Micro Design}
+The enemy ai will cause moment to moment gameplay by influencing the
+player's decision making through the enemy behavior. This will cause
+the player to either avoid certain areas or delay doing certain tasks
+because the enemy is currently obstructing those game elements.
+The player mechanics will be refined to give more feedback to the
+player that they are currently using a mechanic.
 
-\section*{General Ideas}
-Use a behavior tree to show why the ai is making certain decisions.
-
-Two types of AI - Director, knows where the player and enemy is at 
-all times and nudges the enemy to either leave the player alone or
-start bothering the player more.
-Enemy where the enemy "sees" around it and can move to sounds, objectives,
-and if it knows with certainty where the player is the enemy can cause a 
-game over on the player. The enemy will only know what is around it and
-can only act on that information.
-
-
+\section*{Process}
+\section*{Reflection}
 \end{document}
