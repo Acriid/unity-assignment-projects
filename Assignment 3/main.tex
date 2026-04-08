@@ -27,25 +27,36 @@ enemy hits the player they will win.
 
 
 \section*{Hypothesis}
+How will the change of a horror aesthetic to a greybox aesthetic affect how the player 
+interacts with the game when the game has a horror game enemy ai and other horror elements? 
 
 
 \section{Goals}
 Make an enemy ai that reacts to the player and changes
-its behavior according to the player's actions.
+its behavior according to the player's actions, which in turn
+will change the way that the player reacts to the enemy ai.
 Some of these reactions include
 \begin{itemize}
-    \item Patrolling an area more if the player frequents that area
+    \item Patrolling an area more if the player frequents that area. 
     \item Learning the players next objective and then trying to stop
     the player from completing that objective.
     \item Possibly moving the players next objective to stop them from
     completing it.
 \end{itemize}
 
+
+
+
+
+
 \section*{Enemy Ai}
 The enemy ai will run with a finite state machine, due to the low complexity
 of the prototype the finite state machine will work because the number of 
 transitions is low between the 3 states.
 (What will the speed be of the enemy in each state.)
+The Enemy AI will have 3 total senses. One sense to see the player when there
+is light, one sense to see the player when there is no light, one sense
+to hear the player.
 \subsection*{Enemy States}
 \subsubsection*{Idle}
 The enemy will randomly move around the map.
