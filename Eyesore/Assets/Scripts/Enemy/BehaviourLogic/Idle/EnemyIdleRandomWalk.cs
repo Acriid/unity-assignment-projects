@@ -12,6 +12,7 @@ public class EnemyIdleRandomWalk : EnemyIdleSOBase
     }
     private void MoveEnemy()
     {
+
         if(!_enemy.GetNavPath())
             _enemy.MoveEnemy(GetRandomPointInCircle());
     }

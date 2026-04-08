@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class FieldOfView : MonoBehaviour
+public class FieldOfViewMesh : MonoBehaviour
 {
     [SerializeField] private MeshFilter _meshFilter;
     [SerializeField] private LayerMask _raycastLayer;

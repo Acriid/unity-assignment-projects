@@ -15,6 +15,12 @@ public class EnemyIdleSOBase : ScriptableObject
 
     public virtual void DoEnterLogic() {}
     public virtual void DoExitLogic() {}
-    public virtual void DoFrameUpdateLogic() {}
+    public virtual void DoFrameUpdateLogic()
+    {
+        if(_enemy.GetCanSeePlayer())
+        {
+            _enemy.StateMachine.ChangeState(_enemy.ChaseState);
+        }
+    }
     public virtual void DoPhysicsLogic() {}
 }

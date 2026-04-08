@@ -1,8 +1,8 @@
-PWD c:/DIGA3008A Game/unity-assignment-projects/Assignment 3
+PWD c:/DIGA3001A Games/unity-assignment-projects/Assignment 3
 INPUT c:/texlive/2025/texmf.cnf
 INPUT c:/texlive/2025/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/DIGA3008A Game/unity-assignment-projects/Assignment 3/main.tex
+INPUT c:/DIGA3001A Games/unity-assignment-projects/Assignment 3/main.tex
 OUTPUT main.log
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
