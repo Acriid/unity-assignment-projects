@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,8 +13,10 @@ public class Enemy : MonoBehaviour
     private static WaitForSeconds _waitForSeconds0_5 = new(0.2f);
     [SerializeField] protected NavMeshAgent _navAgent;
     [SerializeField] protected Rigidbody2D _enemyRigidBody;
-    [SerializeField] protected FieldOfView _fov;
+    [SerializeField] protected List<FieldOfView> _fovs;
     [SerializeField] protected GameObject _playerRef;
+
+
 
     #region StateMachine Variables
     [SerializeField] protected EnemyIdleSOBase _enemyIdleSOBase;
@@ -34,7 +37,7 @@ public class Enemy : MonoBehaviour
     #endregion
 
 
-    private Coroutine _playerChase;
+
     void Awake()
     {
         _navAgent = _navAgent != null ? _navAgent : GetComponent<NavMeshAgent>();
@@ -42,7 +45,22 @@ public class Enemy : MonoBehaviour
 
 
         InitializeStateMachine();
+
+
     }
+
+    
+    public bool GetCanSeePlayer()
+    {
+        bool result = false;
+        foreach (FieldOfView fov in _fovs)
+        {
+            if(fov.CanSeePlayer)
+                result = true;
+        }
+        return result;
+    }
+
 
     void Update()
     {
@@ -57,14 +75,15 @@ public class Enemy : MonoBehaviour
 
 
 
-    public void MoveEnemy(Vector2 destination)
+    public bool MoveEnemy(Vector2 destination)
     {
 
         NavMeshPath path = new();
-        if(!_navAgent.CalculatePath(destination,path)) return;
-        if(path.status != NavMeshPathStatus.PathComplete) return;
+        if(!_navAgent.CalculatePath(destination,path)) return false;
+        if(path.status != NavMeshPathStatus.PathComplete) return false;
 
-        _navAgent.SetDestination(destination);     
+        _navAgent.SetDestination(destination); 
+        return true;    
 
         
     }
@@ -93,11 +112,6 @@ public class Enemy : MonoBehaviour
 
 
         StateMachine.Initialize(IdleState);
-    }
-
-    public bool GetCanSeePlayer()
-    {
-        return _fov.CanSeePlayer;
     }
 
     public void ChasePlayer()

@@ -15,6 +15,8 @@ public class FieldOfView : MonoBehaviour
 
     public bool CanSeePlayer;
 
+    public event Action<bool> OnSeePlayer;
+
     void Start()
     {
         if(_playerRef == null)
@@ -53,20 +55,24 @@ public class FieldOfView : MonoBehaviour
                 if(!Physics2D.Raycast(transform.position,directionToTarget,distanceToTarget,_obstructionMask))
                 {
                     CanSeePlayer = true;
+                    OnSeePlayer?.Invoke(true);
                 }
                 else
                 {
                     CanSeePlayer = false;
+                    OnSeePlayer?.Invoke(false);
                 }
             }
             else
             {
                 CanSeePlayer = false;
+                OnSeePlayer?.Invoke(false);
             }
         }
         else if(CanSeePlayer)
         {
             CanSeePlayer = false;
+            OnSeePlayer?.Invoke(false);
         }
     }
 
