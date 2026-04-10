@@ -6,9 +6,11 @@ public class HideInteraction : Interaction
     [SerializeField] private string _newTag;
     [SerializeField] private bool _isHidden = false;
     private string _originalTag;
+    private LayerMask _originalLayer;
     private GameObject _lightObject = null;
     private Player _playerComponent = null;
     private SpriteRenderer _playerRenderer = null;
+    private BoxCollider2D _playerCollider = null;
     public override void OnInteract(GameObject player)
     {
         if(!_isHidden)
@@ -25,12 +27,16 @@ public class HideInteraction : Interaction
     {
         //Change tag
         _originalTag = player.tag;
+        _originalLayer = player.layer;
+        
         player.tag = _newTag;
+        player.layer = 0;
 
         
         _playerComponent = player.GetComponent<Player>();
         _playerRenderer = player.GetComponent<SpriteRenderer>();
         _lightObject = _playerComponent.GetLightObject();
+        _playerCollider = player.GetComponent<BoxCollider2D>();
 
         //Remove actions
         _playerComponent.StopMove();
@@ -42,6 +48,8 @@ public class HideInteraction : Interaction
         //Remove sprite
         _playerRenderer.enabled = false;
 
+        //Remove collider
+        _playerCollider.enabled = false;
 
         _isHidden = true;
     }
@@ -65,6 +73,9 @@ public class HideInteraction : Interaction
         _playerComponent = null;
         _lightObject = null;
         _playerRenderer = null;
+
+        //Restore collider
+        _playerCollider.enabled = true;
 
         _isHidden = false;
     }

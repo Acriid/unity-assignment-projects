@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class SprintMechanic : MonoBehaviour
 {
-    private static readonly WaitForSeconds _waitForSeconds2 = new(2f);
+    private static readonly WaitForSeconds _waitForSeconds2 = new(10f);
 
 
 
@@ -22,6 +22,7 @@ public class SprintMechanic : MonoBehaviour
     private Vector2 _moveValue;
     private Coroutine _sprintReset;
 
+    [SerializeField] private float _sprintWaitTime = 10f;
 
     [SerializeField] private Slider _sprintMeter;
     [SerializeField] private CinemachineCamera _camera;
@@ -30,6 +31,7 @@ public class SprintMechanic : MonoBehaviour
     void OnEnable()
     {
         _sprintTimeLeft = _maxSprintTime;
+        _sprintMeter.maxValue = _maxSprintTime;
         _baseSpeed = _player.GetSpeed();
         EnableSprint();
     }
@@ -110,7 +112,7 @@ public class SprintMechanic : MonoBehaviour
     private IEnumerator ShowSprintReset(float waitValue)
     {
         float smallWait = _maxSprintTime/waitValue/50f;
-        yield return _waitForSeconds2;
+        yield return new WaitForSeconds(_sprintWaitTime);
         while(_sprintTimeLeft < _maxSprintTime)
         {
             _sprintTimeLeft += smallWait;

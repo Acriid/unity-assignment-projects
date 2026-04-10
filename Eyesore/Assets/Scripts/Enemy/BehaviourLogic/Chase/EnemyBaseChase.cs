@@ -8,5 +8,6 @@ public class EnemyBaseChase : EnemyChaseSOBase
     {
         base.DoFrameUpdateLogic();
         _enemy.ChasePlayer();
+        _enemy.ShowRun();
     }
 }

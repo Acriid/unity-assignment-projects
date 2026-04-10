@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected EnemyIdleSOBase _enemyIdleSOBase;
     [SerializeField] protected EnemyGuardSOBase _enemyGuardSOBase;
     [SerializeField] protected EnemyChaseSOBase _enemyChaseSOBase;
+    
 
     public EnemyIdleSOBase EnemyIdleSOBaseInstance {get; set;}
     public EnemyGuardSOBase EnemyGuardSOBaseInstance {get; set;}
@@ -36,7 +37,8 @@ public class Enemy : MonoBehaviour
     public EnemyGuardState GuardState {get; set;}
     #endregion
 
-
+    private bool _showCooldown;
+    [SerializeField] private GameObject _showText;
 
     void Awake()
     {
@@ -124,6 +126,30 @@ public class Enemy : MonoBehaviour
 
         _navAgent.SetDestination(_playerRef.transform.position);  
 
+    }
+
+    public bool ValidPath(Vector2 destination)
+    {
+        NavMeshPath path = new();
+        return _navAgent.CalculatePath(destination,path);
+    }
+
+
+    public void ShowRun()
+    {
+        if(!_showCooldown)
+        {
+            _showCooldown = true;
+            _showText.SetActive(true);
+            StartCoroutine(RunCoolDown());
+        }
+    }
+
+    private IEnumerator RunCoolDown()
+    {
+        yield return new WaitForSeconds(3f);
+        _showCooldown = false;
+        _showText.SetActive(false);
     }
 
 }

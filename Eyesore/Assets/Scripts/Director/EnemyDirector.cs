@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyDirector : MonoBehaviour
 {
@@ -11,11 +13,13 @@ public class EnemyDirector : MonoBehaviour
     [SerializeField] private float _currentDistance = 0f;
     [SerializeField] private float _minDistance = 5f;
     [SerializeField] private float _maxAnnoyance = 5f;
-    private float _currentAnnoyance = 0f;
+    private float _currentAnnoyance = 2.5f;
     [SerializeField] private float _minAnnoyance = 0.5f;
     private readonly float _annoyanceRateMin = -0.33f;
     private readonly float _annoyanceRateMax = 0.16f;
     private Coroutine _annoyanceChange;
+    private bool _alreadySent = false;
+
     void Awake()
     {
         _enemyComponent = Enemy.GetComponent<Enemy>();
@@ -52,14 +56,49 @@ public class EnemyDirector : MonoBehaviour
     private void IncreaseAnnoyance(float increaseValue)
     {
         _currentAnnoyance += increaseValue;
-        if(_currentAnnoyance >= _maxAnnoyance)
+        if(_currentAnnoyance >= _maxAnnoyance && !_alreadySent)
         {
-            //Do something
+            Debug.Log("sending enemy away");
+            _currentAnnoyance -= 0.5f;
+            _enemyComponent.MoveEnemy(GetPointNearOrFarPlayer(50f));
         }
-        else if(_currentAnnoyance <= _minAnnoyance)
+        else if(_currentAnnoyance <= _minAnnoyance && !_alreadySent)
         {
-            //Do something 2
+            Debug.Log("sending enemy closer");
+            _currentAnnoyance += 0.5f;
+            _enemyComponent.MoveEnemy(GetPointNearOrFarPlayer(25f));
         }
+    }
+
+    private Vector2 GetPointNearOrFarPlayer(float distance)
+    {
+        int Testing = 0;
+        while(Testing < 500)
+        {
+            Vector2 randomPosition = (Vector2)Player.transform.position +  UnityEngine.Random.insideUnitCircle * distance;
+
+
+            if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, 10f, NavMesh.AllAreas))
+            {
+                _alreadySent = true;
+                StartCoroutine(ResetSend());
+                return hit.position;
+            }
+
+            Testing++;
+        }
+        
+        _alreadySent = true;
+        StartCoroutine(ResetSend());
+        NavMesh.SamplePosition(Player.transform.position, out NavMeshHit fallback, 10f, NavMesh.AllAreas);
+        return fallback.position;
+
+    }
+
+    private IEnumerator ResetSend()
+    {
+        yield return new WaitForSeconds(10f);
+        _alreadySent = false;
     }
 
 }
