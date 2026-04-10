@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SoundMechanic : MonoBehaviour
+public class SoundMechanicManager : MonoBehaviour
 {
-    public SoundMechanic Instance {get; private set;}
+    public static SoundMechanicManager Instance {get; private set;}
     [SerializeField] private int _poolSize;
     [SerializeField] private GameObject _soundPrefab;
 
@@ -32,11 +32,11 @@ public class SoundMechanic : MonoBehaviour
         _soundPool.ReturnAll();
     }
 
-    public void MakeSound()
+    public void MakeSound(Vector2 SoundPosition)
     {
         SoundObject soundObject = _soundPool.Get();
 
-        soundObject.MakeSound();
+        soundObject.MakeSound(SoundPosition);
 
         soundObject.OnSoundFinished += RemoveSound;
 
@@ -50,6 +50,8 @@ public class SoundMechanic : MonoBehaviour
     {
         SoundObject soundObject = _soundQueue.Dequeue();
 
+
+        soundObject.StopSound();
         soundObject.OnSoundFinished -= RemoveSound;
 
 

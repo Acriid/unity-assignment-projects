@@ -24,10 +24,9 @@ public class SprintMechanic : MonoBehaviour
 
 
     [SerializeField] private Slider _sprintMeter;
-
-
-
     [SerializeField] private CinemachineCamera _camera;
+
+
     void OnEnable()
     {
         _sprintTimeLeft = _maxSprintTime;
@@ -118,5 +117,10 @@ public class SprintMechanic : MonoBehaviour
             _sprintMeter.value = _sprintTimeLeft;
             yield return new WaitForSeconds(smallWait);
         }
+    }
+
+    public bool GetSprinting()
+    {
+        return _sprinting;
     }
 }

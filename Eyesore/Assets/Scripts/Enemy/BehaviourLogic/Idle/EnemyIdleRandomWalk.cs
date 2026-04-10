@@ -26,13 +26,17 @@ public class EnemyIdleRandomWalk : EnemyIdleSOBase
             if(_currentTime >= _waitTime)
             {
                 if(_enemy.MoveEnemy(GetRandomPointInCircle()))
+                {
                     _currentTime = 0f;
+                }
             }
               
         }
     }
-    private Vector2 GetRandomPointInCircle()
+    private Vector3 GetRandomPointInCircle()
     {
-        return (Vector2)_enemyTransform.position + Random.insideUnitCircle * _movementRange;
+        Vector3 result = _enemyTransform.position + (Vector3)Random.insideUnitCircle * _movementRange;
+        result.z = 0f;
+        return result;
     }
 }

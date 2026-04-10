@@ -87,6 +87,11 @@ public class Enemy : MonoBehaviour
 
         
     }
+    public void ForceMoveEnemy(Vector2 destination)
+    {
+        _navAgent.ResetPath();
+        _navAgent.SetDestination(destination);
+    }
 
     public bool GetNavPath()
     {
