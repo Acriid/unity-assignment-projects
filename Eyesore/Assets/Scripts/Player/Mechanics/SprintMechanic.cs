@@ -27,12 +27,16 @@ public class SprintMechanic : MonoBehaviour
     [SerializeField] private Slider _sprintMeter;
     [SerializeField] private CinemachineCamera _camera;
 
-
+    private float _sprintCameraSize = 0f;
+    private float _originalSize = 0f;
+    private float _zoomSpeed = 20f;
     void OnEnable()
     {
         _sprintTimeLeft = _maxSprintTime;
         _sprintMeter.maxValue = _maxSprintTime;
         _baseSpeed = _player.GetSpeed();
+        _sprintCameraSize = _camera.Lens.OrthographicSize * 1.3f;
+        _originalSize = _camera.Lens.OrthographicSize;
         EnableSprint();
     }
     void OnDisable()
@@ -43,6 +47,7 @@ public class SprintMechanic : MonoBehaviour
     void Update()
     {
         RemoveSprint(_moveValue);
+        UpdateCameraZoom();
     }
 
     public void EnableSprint()
@@ -77,6 +82,7 @@ public class SprintMechanic : MonoBehaviour
             _player.ChangeSpeed(_baseSpeed);
             _sprintReset ??= StartCoroutine(ShowSprintReset(5f));
         }
+
     }
 
     private void ReadMove(Vector2 moveValue)
@@ -106,6 +112,7 @@ public class SprintMechanic : MonoBehaviour
         {
             SprintStart(false);
         }
+
     }
 
 
@@ -124,5 +131,16 @@ public class SprintMechanic : MonoBehaviour
     public bool GetSprinting()
     {
         return _sprinting;
+    }
+
+    private void UpdateCameraZoom()
+    {
+        float targetSize = _sprinting ? _sprintCameraSize : _originalSize;
+        
+        _camera.Lens.OrthographicSize = Mathf.Lerp(
+            _camera.Lens.OrthographicSize,
+            targetSize,
+            _zoomSpeed * Time.deltaTime
+        );
     }
 }
