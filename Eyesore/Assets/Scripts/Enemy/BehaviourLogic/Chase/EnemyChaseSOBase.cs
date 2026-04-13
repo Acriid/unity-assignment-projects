@@ -15,8 +15,10 @@ public class EnemyChaseSOBase : ScriptableObject
     {
         if(!_enemy.GetCanSeePlayer())
         {
-            _enemy.StateMachine.ChangeState(_enemy.IdleState);
+            _enemy.StateMachine.ChangeState(_enemy.GuardState);
         }
     }
     public virtual void DoPhysicsLogic() {}
+
+    
 }

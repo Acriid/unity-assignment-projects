@@ -152,4 +152,15 @@ public class Enemy : MonoBehaviour
         _showText.SetActive(false);
     }
 
+
+    public void TimeState(float time, EnemyState newState)
+    {
+        StartCoroutine(TimeSwitch(time,newState));
+    }
+
+    public IEnumerator TimeSwitch(float time, EnemyState newState)
+    {
+        yield return new WaitForSeconds(time);
+        StateMachine.ChangeState(newState);
+    }
 }

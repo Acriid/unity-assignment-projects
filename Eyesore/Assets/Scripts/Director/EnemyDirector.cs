@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,12 +10,15 @@ public class EnemyDirector : MonoBehaviour
     public GameObject Enemy;
     public GameObject Player;
     private Enemy _enemyComponent;
+    [Header("Annoyance Distance")]
     [SerializeField] private float _maxDistance = 30f;
-    [SerializeField] private float _currentDistance = 0f;
+    private float _currentDistance = 0f;
     [SerializeField] private float _minDistance = 5f;
+    [Header("Annoyance Meter")]
     [SerializeField] private float _maxAnnoyance = 5f;
     private float _currentAnnoyance = 2.5f;
     [SerializeField] private float _minAnnoyance = 0.5f;
+    [SerializeField] private List<GoalObject> _goalList;
     private readonly float _annoyanceRateMin = -0.33f;
     private readonly float _annoyanceRateMax = 0.16f;
     private Coroutine _annoyanceChange;
@@ -25,8 +29,13 @@ public class EnemyDirector : MonoBehaviour
         _enemyComponent = Enemy.GetComponent<Enemy>();
 
         StartCoroutine(ChangeAnnoyance());
-    }
 
+        _enemyComponent.EnemyGuardSOBaseInstance.EnteredGuard += SetGuardDestination;
+    }
+    void OnDisable()
+    {
+        _enemyComponent.EnemyGuardSOBaseInstance.EnteredGuard -= SetGuardDestination;
+    }
     private IEnumerator ChangeAnnoyance()
     {
         //Range -0.33 to 1.66 when chasing its instantly full.
@@ -55,6 +64,7 @@ public class EnemyDirector : MonoBehaviour
     }
     private void IncreaseAnnoyance(float increaseValue)
     {
+        if(_enemyComponent.StateMachine.CurrentEnemyState == _enemyComponent.GuardState) return;
         _currentAnnoyance += increaseValue;
         if(_currentAnnoyance >= _maxAnnoyance && !_alreadySent)
         {
@@ -99,6 +109,31 @@ public class EnemyDirector : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         _alreadySent = false;
+    }
+
+    private void SetGuardDestination()
+    {
+        float minDistance = Mathf.Infinity;
+        GoalObject objectToGuard = null;
+        foreach(GoalObject guardObject in _goalList)
+        {
+            if(!guardObject.GoalSO.GoalComplete)
+            {
+                float distance = Vector2.Distance(guardObject.GoalSO.GoalPosition, Enemy.transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    objectToGuard = guardObject;
+                }
+            }
+        }
+        if(objectToGuard == null) 
+        {   
+            Debug.Log("No goal Found");
+            _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(Enemy.transform.position);
+            return;
+        }
+        _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(objectToGuard.GoalSO.GoalPosition);
     }
 
 }

@@ -5,12 +5,16 @@ public class HideInteraction : Interaction
 {
     [SerializeField] private string _newTag;
     [SerializeField] private bool _isHidden = false;
+
+    [SerializeField] private Enemy _enemy;
     private string _originalTag;
     private LayerMask _originalLayer;
     private GameObject _lightObject = null;
     private Player _playerComponent = null;
     private SpriteRenderer _playerRenderer = null;
     private BoxCollider2D _playerCollider = null;
+
+    private bool _enemySaw = false;
     public override void OnInteract(GameObject player)
     {
         if(!_isHidden)
@@ -25,22 +29,39 @@ public class HideInteraction : Interaction
 
     private void Hide(GameObject player)
     {
-        //Change tag
-        _originalTag = player.tag;
-        _originalLayer = player.layer;
-        
-        player.tag = _newTag;
-        player.layer = 0;
 
-        
         _playerComponent = player.GetComponent<Player>();
         _playerRenderer = player.GetComponent<SpriteRenderer>();
         _lightObject = _playerComponent.GetLightObject();
         _playerCollider = player.GetComponent<BoxCollider2D>();
 
-        //Remove actions
-        _playerComponent.StopMove();
-        _playerComponent.StopToggle();
+        if (_enemy != null && _enemy.StateMachine.CurrentEnemyState == _enemy.ChaseState)
+        {
+            _enemySaw = true;
+        }
+
+
+        //Change tag
+        if (!_enemySaw)
+        {
+            _originalTag = player.tag;
+            _originalLayer = player.layer;
+            
+            player.tag = _newTag;
+            player.layer = 0;
+
+            
+
+
+            //Remove actions
+            _playerComponent.StopMove();
+            _playerComponent.StopToggle();
+
+            
+            //Remove collider
+            _playerCollider.enabled = false;
+        }
+
 
         //Remove light
         _lightObject.SetActive(false);
@@ -48,8 +69,6 @@ public class HideInteraction : Interaction
         //Remove sprite
         _playerRenderer.enabled = false;
 
-        //Remove collider
-        _playerCollider.enabled = false;
 
         _isHidden = true;
     }

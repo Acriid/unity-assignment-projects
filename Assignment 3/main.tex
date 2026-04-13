@@ -1,4 +1,14 @@
 \documentclass{article}
+\usepackage{glossaries}
+\usepackage{graphicx}
+
+\newglossaryentry{Director}
+{
+    name = {Director},
+    description = {The ai responsible for moving the enemy towards and away from
+    the player and directing the enemy to different spots on the map.}
+}
+
 \begin{document}
 
 \section*{Mechanics}
@@ -157,7 +167,7 @@ Always sense which is what the enemy can always see.
 During the development of the enemy, when the player is hiding in a hiding spot and the enemy is nearby
 the Director will try to send the enemy away, but because the random spot the director chooses to send
 the enemy away to can be outside of the NavMesh causing the enemy to move near the player. This gives the
-idea that the enemy is searching the area for the player.
+idea that the enemy is searching the area for the player. The director can also send the enemy 
 
 Sound manager is being made while following the youtube video. Some changes from the video will be made.
 
