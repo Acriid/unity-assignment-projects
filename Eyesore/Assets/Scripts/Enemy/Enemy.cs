@@ -40,6 +40,10 @@ public class Enemy : MonoBehaviour
     private bool _showCooldown;
     [SerializeField] private GameObject _showText;
 
+    private bool _soundCooldownBool = false;
+    private float _soundCooldownFloat = 2f;
+    [SerializeField] private AudioClip[] _footstepSounds;
+
     void Awake()
     {
         _navAgent = _navAgent != null ? _navAgent : GetComponent<NavMeshAgent>();
@@ -67,6 +71,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         StateMachine.CurrentEnemyState.FrameUpdate();
+        FootstepSound();
     }
     void FixedUpdate()
     {
@@ -79,6 +84,8 @@ public class Enemy : MonoBehaviour
 
     public bool MoveEnemy(Vector2 destination)
     {
+
+
 
         NavMeshPath path = new();
         if(!_navAgent.CalculatePath(destination,path)) return false;
@@ -162,5 +169,23 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         StateMachine.ChangeState(newState);
+    }
+
+    private void FootstepSound()
+    {
+
+        if(!_soundCooldownBool && _navAgent.velocity.sqrMagnitude > 0.1f)
+        {
+            _soundCooldownBool = true;
+            StartCoroutine(PlaySound());
+        }
+
+    }
+
+    private IEnumerator PlaySound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(_footstepSounds,this.transform,1f);
+        yield return new WaitForSeconds(_soundCooldownFloat);
+        _soundCooldownBool = false;
     }
 }

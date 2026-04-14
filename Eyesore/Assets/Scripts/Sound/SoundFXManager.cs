@@ -45,6 +45,11 @@ public class SoundFXManager : MonoBehaviour
         StartCoroutine(RemoveSound(clipLength));
     }
 
+    public void PlaySoundFXClip(AudioClip[] audioClip, Transform spawnTransform, float volume)
+    {
+        int randomChoice = UnityEngine.Random.Range(0,audioClip.Length);
+        PlaySoundFXClip(audioClip[randomChoice],spawnTransform,volume);
+    }
     private IEnumerator RemoveSound(float clipLength)
     {
         yield return new WaitForSeconds(clipLength);

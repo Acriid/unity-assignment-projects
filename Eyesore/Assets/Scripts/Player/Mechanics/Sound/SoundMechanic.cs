@@ -5,13 +5,15 @@ public class SoundMechanic : MonoBehaviour
     [SerializeField] private InputReaderSO _inputReader;
 
     [SerializeField] private float _timeBetweenSounds = 5f;
-    [SerializeField] private SprintMechanic _sprintMechanic;
-    private bool _sneaking;
+    [SerializeField] private AudioClip[] _footStepSounds;
+    private float _defualtTime;
     private float _timeTillNextSound = 0f;
     private Vector2 _moveValue;
+    private bool _crouching = false;
     void OnEnable()
     {
         _timeTillNextSound = _timeBetweenSounds;
+        _defualtTime = _timeBetweenSounds;
         EnableMove();
     }
     void OnDisable()
@@ -29,14 +31,18 @@ public class SoundMechanic : MonoBehaviour
     private void EnableMove()
     {
         _inputReader.OnMove += ReadMove;
+        _inputReader.OnSprint += OnSprint;
+        _inputReader.OnCrouch += OnCrouch;
     }
     private void DisableMove()
     {
         _inputReader.OnMove -= ReadMove;
+        _inputReader.OnSprint -= OnSprint;
+        _inputReader.OnCrouch -= OnCrouch;
     }
     private void MakeSound(Vector2 moveValue)
     {
-        if(_sneaking) return;
+        if(_crouching) return;
         if(moveValue != Vector2.zero)
         {
             _timeTillNextSound -= Time.deltaTime;
@@ -44,8 +50,18 @@ public class SoundMechanic : MonoBehaviour
 
         if(_timeTillNextSound <= 0f)
         {
-           SoundMechanicManager.Instance.MakeSound(this.transform.position);
+            SoundFXManager.Instance.PlaySoundFXClip(_footStepSounds,this.transform,1f);
+            SoundMechanicManager.Instance.MakeSound(this.transform.position);
            _timeTillNextSound = _timeBetweenSounds;
         }
+    }
+    private void OnSprint(bool newValue)
+    {
+        _timeBetweenSounds = newValue? 0.5f : _defualtTime;
+        _timeTillNextSound = _timeBetweenSounds;
+    }
+    private void OnCrouch(bool newValue)
+    {
+        _crouching = newValue;
     }
 }

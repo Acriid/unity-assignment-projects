@@ -75,12 +75,13 @@ public class SprintMechanic : MonoBehaviour
         if(_sprinting)
         {
             _player.ChangeSpeed(_baseSpeed * increaseFloat);
-
+            _inputReader.DisableCrouchAction();
         }
         else
         {
             _player.ChangeSpeed(_baseSpeed);
             _sprintReset ??= StartCoroutine(ShowSprintReset(5f));
+            _inputReader.EnableCrouchAction();
         }
 
     }

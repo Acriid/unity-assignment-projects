@@ -20,6 +20,7 @@ public class InputReaderSO : ScriptableObject
     private InputAction _toggleLightAction;
 
     private InputAction _sprintAction;
+    private InputAction _crouchAction;
 
     //Devtools
     private InputAction _showEnemyAction;
@@ -33,6 +34,7 @@ public class InputReaderSO : ScriptableObject
     public event Action OnEscape;
     public event Action OnToggleLight;
     public event Action<bool> OnSprint;
+    public event Action<bool> OnCrouch;
 
     public event Action OnNavigate;
     public event Action OnSubmit;
@@ -51,6 +53,8 @@ public class InputReaderSO : ScriptableObject
     private Action<InputAction.CallbackContext> toggleLightPerformed;
     private Action<InputAction.CallbackContext> sprintStarted;
     private Action<InputAction.CallbackContext> sprintCanceled;
+    private Action<InputAction.CallbackContext> crouchStarted;
+    private Action<InputAction.CallbackContext> crouchCanceled;
 
     private Action<InputAction.CallbackContext> navigatePerformed;
     private Action<InputAction.CallbackContext> submitPerformed;
@@ -96,6 +100,7 @@ public class InputReaderSO : ScriptableObject
        _escapeAction = _inputActions.Player.Escape;
        _toggleLightAction = _inputActions.Player.ToggleLight;
        _sprintAction = _inputActions.Player.Sprint;
+       _crouchAction = _inputActions.Player.Crouch;
     }
     private void InitializePlayerEvents()
     {
@@ -110,6 +115,9 @@ public class InputReaderSO : ScriptableObject
 
         sprintStarted = ctx => OnSprint?.Invoke(true);
         sprintCanceled = ctx => OnSprint?.Invoke(false);
+
+        crouchStarted = ctx => OnCrouch?.Invoke(true);
+        crouchCanceled = ctx => OnCrouch?.Invoke(false);
     }
 
     private void SubscribeActions()
@@ -125,6 +133,9 @@ public class InputReaderSO : ScriptableObject
 
         _sprintAction.started += sprintStarted;
         _sprintAction.canceled += sprintCanceled;
+
+        _crouchAction.started += crouchStarted;
+        _crouchAction.canceled += crouchCanceled;
 
         _navigateAction.performed += navigatePerformed;
         _submitAction.performed += submitPerformed;
@@ -142,6 +153,9 @@ public class InputReaderSO : ScriptableObject
 
         _sprintAction.started -= sprintStarted;
         _sprintAction.canceled -= sprintCanceled;
+
+        _crouchAction.started -= crouchStarted;
+        _crouchAction.canceled -= crouchCanceled;
 
         _navigateAction.performed -= navigatePerformed;
         _submitAction.performed -= submitPerformed;             
@@ -236,6 +250,14 @@ public class InputReaderSO : ScriptableObject
         _sprintAction.Disable();
     }
 
+    public void EnableCrouchAction()
+    {
+        _crouchAction.Enable();
+    }
+    public void DisableCrouchAction()
+    {
+        _crouchAction.Disable();
+    }
     private void InitializeUIEvents()
     {
         navigatePerformed = ctx => OnNavigate?.Invoke();
