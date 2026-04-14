@@ -5714,6 +5714,7 @@ MonoBehaviour:
   _disableObjects: []
   _newTag: Untagged
   _isHidden: 0
+  _enemy: {fileID: 0}
 --- !u!483693784 &111803419
 TilemapRenderer:
   serializedVersion: 2
@@ -38452,6 +38453,7 @@ MonoBehaviour:
   _disableObjects: []
   _newTag: Untagged
   _isHidden: 0
+  _enemy: {fileID: 0}
 --- !u!483693784 &1081009866
 TilemapRenderer:
   serializedVersion: 2
@@ -51965,6 +51967,7 @@ MonoBehaviour:
   _disableObjects: []
   _newTag: Untagged
   _isHidden: 0
+  _enemy: {fileID: 0}
 --- !u!483693784 &1992982851
 TilemapRenderer:
   serializedVersion: 2

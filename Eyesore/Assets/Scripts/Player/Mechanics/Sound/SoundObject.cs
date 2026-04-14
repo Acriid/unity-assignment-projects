@@ -53,7 +53,7 @@ public class SoundObject : MonoBehaviour
             
             if(collision.gameObject.TryGetComponent<Enemy>(out Enemy component))
             {
-                component.MoveEnemy(this.transform.position);
+                component.ForceMoveEnemy(this.transform.position);
                 this.gameObject.SetActive(false);
             }
         }
@@ -64,7 +64,7 @@ public class SoundObject : MonoBehaviour
         {
             if(collision.gameObject.TryGetComponent<Enemy>(out Enemy component))
             {
-                component.MoveEnemy(PlayerSoundSO.SoundPosition);
+                component.ForceMoveEnemy(PlayerSoundSO.SoundPosition);
                 this.gameObject.SetActive(false);
             }
         }

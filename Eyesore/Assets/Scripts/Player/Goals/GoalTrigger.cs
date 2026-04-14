@@ -26,6 +26,7 @@ public class GoalTrigger : GoalObject
             GoalItem.GetComponent<Collider2D>().enabled = false;
             GoalItem.GetComponent<Light2D>().color = Color.blueViolet;
             GoalItem.transform.SetParent(this.transform,true);
+            GoalItem.transform.position = _keyPosition;
             if(GoalItem.TryGetComponent<Item>(out _itemComponent))
             {
                 _itemComponent.SetInteractable(false);

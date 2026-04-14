@@ -21,7 +21,13 @@ public class EnemyGuardSOBase : ScriptableObject
         }
     }
     public virtual void DoExitLogic() {}
-    public virtual void DoFrameUpdateLogic() {}
+    public virtual void DoFrameUpdateLogic()
+    {
+        if(_enemy.GetCanSeePlayer())
+        {
+            _enemy.StateMachine.ChangeState(_enemy.ChaseState);
+        }
+    }
     public virtual void DoPhysicsLogic() {}
 
     public virtual void SetGuardPosition(Vector2 guardPosition) {}

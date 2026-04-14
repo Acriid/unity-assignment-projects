@@ -59,9 +59,13 @@ Small overview of the mechanics.
     \item Player can interact with Space.
     \item Player can toggle light with R.
 \end{itemize}
+\subsection*{New Mechanics}
+The player will be able to crouch with the left control key to help
+them hide from the enemy.
+
 \section*{Challenges}
 \subsection*{Player Challenges}
-The player will need to use the mechanics to avoid the enemy, while
+The player will need to use the game mechanics to avoid the enemy, while
 trying to get their objectives complete. This includes distracting the 
 enemy, hiding from the enemy, and moving around the enemy. 
 Since the focus of this prototype is on the enemy ai the main challenges
@@ -70,8 +74,8 @@ that the player needs to face are challenges based around the enemy ai.
 \subsection*{Enemy Challenges}
 The enemy will act like a player with different objectives from the actual 
 player. The enemy objectives will be to stop the player. The only mechanics
-that the enemy has is movement and a director ai that will help it while if the
-enemy hits the player they will win.
+that the enemy has is movement, some senses to detect the player and a 
+director ai that will help it. If the enemy hits the player the enemy will win.
 
 
 \section*{Hypothesis}
@@ -152,6 +156,9 @@ player.
 The director will give the enemy nearby player objectives when needed.
 
 
+\section*{Genre}
+The genre of the prototype is survival horror. This is because the player will have to
+survive against an enemy AI while trying to accomplish some sort of arbitrary goal.
 
 \section{Games with dynamic Ai systems}
 \subsection*{Alien: Isolation}
@@ -190,11 +197,15 @@ https://blog.littlepolygon.com/posts/fsm/
 
 \section{Micro Design}
 The enemy ai will cause moment to moment gameplay by influencing the
-player's decision making through the enemy behavior. This will cause
+player's decision making through the different enemy states. This will cause
 the player to either avoid certain areas or delay doing certain tasks
 because the enemy is currently obstructing those game elements.
+The enemy direct will help with the moment to moment gameplay by
+giving the player some breathing time when the enemy is bothering the player
+too much or when the enemy is barely bothering the player.
 The player mechanics will be refined to give more feedback to the
-player that they are currently using a mechanic.
+player that they are currently using a mechanic. This includes moving the camera
+a bit outward when running. 
 
 \section*{Process}
 StateMachine for the enemy is being made while following the layout of the youtube videos.
@@ -213,9 +224,31 @@ Adding Devtools to more easily see how the enemy moves and what the enemy is cur
 help to show off the enemy ai.
 
 Sound manager is being made while following the youtube video. Some changes from the video will be made. Audio
-will only be added to the player and enemy footsteps, because
+will only be added to the player and enemy footsteps, because this communicates to the player when they make
+a sound the enemy can hear and it communicates to the player how far away the enemy currently is from them.
+
+Changed the map from a smaller map with only one goal to a bigger map with 3 goals to better show off the 
+enemy guard state. 
+
+Added lights to the new map to allow the player to see more of the map while also giving them a light source 
+other than the player light.
+
+The camera shakes while crouching or sprinting, this is not intended but it adds a sense of anxiety to the
+character which fits with the horror theme.
+
+
+\subsection*{Hypothesis in prototype}
+The horror elements added that where talked about in the hypothesis were:
+\begin{itemize}
+    \item Limited vision.
+    \item Enemy Ai that tries to hunt the player.
+    \item Limited actions to take against enemy.
+    \item Ominous footsteps from enemy.
+    \item Urgency to run when the enemy can see you.
+\end{itemize}
 
 \section*{Reflection}
+
 
 \section*{Small Checklist}
 \begin{itemize}
@@ -227,9 +260,7 @@ https://www.youtube.com/watch?v=RQd44qSaqww
 https://www.youtube.com/watch?v=iOYo7flBUW4
 https://www.youtube.com/watch?v=j1-OyLo77ss
 https://www.youtube.com/watch?v=DU7cgVsU2rM
+https://pixabay.com/sound-effects/search/footsteps/ 
 
 
-
-downloaded audio from https://pixabay.com/sound-effects/search/footsteps/
-downloaded from freesound_community, lordsonny and universfield
 \end{document}

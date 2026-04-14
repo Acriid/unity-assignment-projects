@@ -118,6 +118,13 @@ public class Player : MonoBehaviour
 
     }
 
+    public void KillPlayer()
+    {
+        Time.timeScale = 0;
+        if(_deathCanvas == null) return;
+        _deathCanvas.SetActive(true);
+    }
+
     public IEnumerator ResetPlayerHealth()
     {
         yield return new WaitForSecondsRealtime(4f);

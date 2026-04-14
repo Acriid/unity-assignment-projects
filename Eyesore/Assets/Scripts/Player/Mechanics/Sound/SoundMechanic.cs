@@ -50,7 +50,10 @@ public class SoundMechanic : MonoBehaviour
 
         if(_timeTillNextSound <= 0f)
         {
-            SoundFXManager.Instance.PlaySoundFXClip(_footStepSounds,this.transform,1f);
+            if(_footStepSounds.Length != 0)
+            {
+                SoundFXManager.Instance.PlaySoundFXClip(_footStepSounds,this.transform,1f); 
+            }
             SoundMechanicManager.Instance.MakeSound(this.transform.position);
            _timeTillNextSound = _timeBetweenSounds;
         }

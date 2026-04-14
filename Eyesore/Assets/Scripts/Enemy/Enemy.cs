@@ -188,4 +188,12 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(_soundCooldownFloat);
         _soundCooldownBool = false;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().KillPlayer();
+        }
+    }
 }

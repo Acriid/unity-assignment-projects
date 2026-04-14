@@ -69,13 +69,13 @@ public class EnemyDirector : MonoBehaviour
         {
             Debug.Log("sending enemy away");
             _currentAnnoyance -= 0.5f;
-            _enemyComponent.MoveEnemy(GetPointNearOrFarPlayer(50f));
+            _enemyComponent.ForceMoveEnemy(GetPointNearOrFarPlayer(50f));
         }
         else if(_currentAnnoyance <= _minAnnoyance && !_alreadySent)
         {
             Debug.Log("sending enemy closer");
             _currentAnnoyance += 0.5f;
-            _enemyComponent.MoveEnemy(GetPointNearOrFarPlayer(25f));
+            _enemyComponent.ForceMoveEnemy(GetPointNearOrFarPlayer(25f));
         }
     }
 
