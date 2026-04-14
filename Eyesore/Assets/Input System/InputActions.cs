@@ -1128,6 +1128,94 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""DevTools"",
+            ""id"": ""3bef2882-c7e4-42fd-a5be-c2969ea6a788"",
+            ""actions"": [
+                {
+                    ""name"": ""ShowEnemy"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb82676d-0411-4394-a721-fe2aec8fedf8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c41e6e5-fcda-4a83-a861-392f9aa402ee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowEnemyStats"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ff0dd98-4b22-4e92-a3e4-ad95b864fc28"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerGodmode"",
+                    ""type"": ""Button"",
+                    ""id"": ""729f13b7-7a05-45f5-9e63-630caa60a20f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a7b70963-b717-402b-a49b-1c1701c4af67"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowEnemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d23222c2-2a13-4138-851e-6d52569b2b8e"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef7f6082-30d7-4dc8-a828-dd70e8cb27a6"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowEnemyStats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fb5ba42-ca7f-49a1-b6bd-50b80f1686d3"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerGodmode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1218,12 +1306,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // DevTools
+        m_DevTools = asset.FindActionMap("DevTools", throwIfNotFound: true);
+        m_DevTools_ShowEnemy = m_DevTools.FindAction("ShowEnemy", throwIfNotFound: true);
+        m_DevTools_ResetScene = m_DevTools.FindAction("ResetScene", throwIfNotFound: true);
+        m_DevTools_ShowEnemyStats = m_DevTools.FindAction("ShowEnemyStats", throwIfNotFound: true);
+        m_DevTools_PlayerGodmode = m_DevTools.FindAction("PlayerGodmode", throwIfNotFound: true);
     }
 
     ~@InputActions()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputActions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputActions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DevTools.enabled, "This will cause a leak and performance issues, InputActions.DevTools.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1696,6 +1791,135 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+
+    // DevTools
+    private readonly InputActionMap m_DevTools;
+    private List<IDevToolsActions> m_DevToolsActionsCallbackInterfaces = new List<IDevToolsActions>();
+    private readonly InputAction m_DevTools_ShowEnemy;
+    private readonly InputAction m_DevTools_ResetScene;
+    private readonly InputAction m_DevTools_ShowEnemyStats;
+    private readonly InputAction m_DevTools_PlayerGodmode;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "DevTools".
+    /// </summary>
+    public struct DevToolsActions
+    {
+        private @InputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public DevToolsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "DevTools/ShowEnemy".
+        /// </summary>
+        public InputAction @ShowEnemy => m_Wrapper.m_DevTools_ShowEnemy;
+        /// <summary>
+        /// Provides access to the underlying input action "DevTools/ResetScene".
+        /// </summary>
+        public InputAction @ResetScene => m_Wrapper.m_DevTools_ResetScene;
+        /// <summary>
+        /// Provides access to the underlying input action "DevTools/ShowEnemyStats".
+        /// </summary>
+        public InputAction @ShowEnemyStats => m_Wrapper.m_DevTools_ShowEnemyStats;
+        /// <summary>
+        /// Provides access to the underlying input action "DevTools/PlayerGodmode".
+        /// </summary>
+        public InputAction @PlayerGodmode => m_Wrapper.m_DevTools_PlayerGodmode;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_DevTools; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="DevToolsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(DevToolsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="DevToolsActions" />
+        public void AddCallbacks(IDevToolsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DevToolsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DevToolsActionsCallbackInterfaces.Add(instance);
+            @ShowEnemy.started += instance.OnShowEnemy;
+            @ShowEnemy.performed += instance.OnShowEnemy;
+            @ShowEnemy.canceled += instance.OnShowEnemy;
+            @ResetScene.started += instance.OnResetScene;
+            @ResetScene.performed += instance.OnResetScene;
+            @ResetScene.canceled += instance.OnResetScene;
+            @ShowEnemyStats.started += instance.OnShowEnemyStats;
+            @ShowEnemyStats.performed += instance.OnShowEnemyStats;
+            @ShowEnemyStats.canceled += instance.OnShowEnemyStats;
+            @PlayerGodmode.started += instance.OnPlayerGodmode;
+            @PlayerGodmode.performed += instance.OnPlayerGodmode;
+            @PlayerGodmode.canceled += instance.OnPlayerGodmode;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="DevToolsActions" />
+        private void UnregisterCallbacks(IDevToolsActions instance)
+        {
+            @ShowEnemy.started -= instance.OnShowEnemy;
+            @ShowEnemy.performed -= instance.OnShowEnemy;
+            @ShowEnemy.canceled -= instance.OnShowEnemy;
+            @ResetScene.started -= instance.OnResetScene;
+            @ResetScene.performed -= instance.OnResetScene;
+            @ResetScene.canceled -= instance.OnResetScene;
+            @ShowEnemyStats.started -= instance.OnShowEnemyStats;
+            @ShowEnemyStats.performed -= instance.OnShowEnemyStats;
+            @ShowEnemyStats.canceled -= instance.OnShowEnemyStats;
+            @PlayerGodmode.started -= instance.OnPlayerGodmode;
+            @PlayerGodmode.performed -= instance.OnPlayerGodmode;
+            @PlayerGodmode.canceled -= instance.OnPlayerGodmode;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DevToolsActions.UnregisterCallbacks(IDevToolsActions)" />.
+        /// </summary>
+        /// <seealso cref="DevToolsActions.UnregisterCallbacks(IDevToolsActions)" />
+        public void RemoveCallbacks(IDevToolsActions instance)
+        {
+            if (m_Wrapper.m_DevToolsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="DevToolsActions.AddCallbacks(IDevToolsActions)" />
+        /// <seealso cref="DevToolsActions.RemoveCallbacks(IDevToolsActions)" />
+        /// <seealso cref="DevToolsActions.UnregisterCallbacks(IDevToolsActions)" />
+        public void SetCallbacks(IDevToolsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DevToolsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DevToolsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="DevToolsActions" /> instance referencing this action map.
+    /// </summary>
+    public DevToolsActions @DevTools => new DevToolsActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1923,5 +2147,41 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "DevTools" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="DevToolsActions.AddCallbacks(IDevToolsActions)" />
+    /// <seealso cref="DevToolsActions.RemoveCallbacks(IDevToolsActions)" />
+    public interface IDevToolsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "ShowEnemy" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShowEnemy(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ResetScene" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnResetScene(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ShowEnemyStats" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShowEnemyStats(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PlayerGodmode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPlayerGodmode(InputAction.CallbackContext context);
     }
 }

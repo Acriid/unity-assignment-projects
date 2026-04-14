@@ -21,6 +21,13 @@ public class InputReaderSO : ScriptableObject
 
     private InputAction _sprintAction;
 
+    //Devtools
+    private InputAction _showEnemyAction;
+    private InputAction _resetSceneAction;
+    private InputAction _showEnemyStatsAction;
+    private InputAction _godModePlayerAction;
+
+    //Events
     public event Action<Vector2> OnMove;
     public event Action OnInteract;
     public event Action OnEscape;
@@ -30,9 +37,13 @@ public class InputReaderSO : ScriptableObject
     public event Action OnNavigate;
     public event Action OnSubmit;
 
-    
+    //Devtools
+    public event Action OnShowEnemyAction;
+    public event Action OnResetScene;
+    public event Action OnShowEnemyStats;
+    public event Action OnGodModePlayer;
 
-
+    //Actions
     private Action<InputAction.CallbackContext> movePerformed;
     private Action<InputAction.CallbackContext> moveCanceled;
     private Action<InputAction.CallbackContext> interactPerformed;
@@ -44,6 +55,11 @@ public class InputReaderSO : ScriptableObject
     private Action<InputAction.CallbackContext> navigatePerformed;
     private Action<InputAction.CallbackContext> submitPerformed;
 
+    //Devtools
+    private Action<InputAction.CallbackContext> showEnemyPerformed;
+    private Action<InputAction.CallbackContext> resetScenePerformed;
+    private Action<InputAction.CallbackContext> showEnemyStatsPerformed;
+    private Action<InputAction.CallbackContext> godModePlayerPerformed;
 
 
     void OnEnable()
@@ -57,10 +73,19 @@ public class InputReaderSO : ScriptableObject
         InitializeUIEvents();
 
         SubscribeActions();
+
+
+        //Devtools
+        InitializeDevtools();
+        InitializeDevtoolEvents();
+        SubscribeDevtools();
     }
     void OnDisable()
     {
         UnsubscribeActions();
+
+        //Devtools
+        UnsubscribeDevtools();
     }
 
 
@@ -121,6 +146,50 @@ public class InputReaderSO : ScriptableObject
         _navigateAction.performed -= navigatePerformed;
         _submitAction.performed -= submitPerformed;             
     }
+
+    private void InitializeDevtools()
+    {
+        _showEnemyAction = _inputActions.DevTools.ShowEnemy;
+        _showEnemyStatsAction = _inputActions.DevTools.ShowEnemyStats;
+        _resetSceneAction = _inputActions.DevTools.ResetScene;
+        _godModePlayerAction = _inputActions.DevTools.PlayerGodmode;
+    }
+    private void InitializeDevtoolEvents()
+    {
+        showEnemyPerformed = ctx => OnShowEnemyAction?.Invoke();
+        showEnemyStatsPerformed = ctx => OnShowEnemyStats?.Invoke();
+        resetScenePerformed = ctx => OnResetScene?.Invoke();
+        godModePlayerPerformed = ctx => OnGodModePlayer?.Invoke();
+    }
+    private void SubscribeDevtools()
+    {
+        _showEnemyAction.performed += showEnemyPerformed;
+        _showEnemyStatsAction.performed += showEnemyStatsPerformed;
+        _resetSceneAction.performed += resetScenePerformed;
+        _godModePlayerAction.performed += godModePlayerPerformed;
+    }
+    private void UnsubscribeDevtools()
+    {
+        _showEnemyAction.performed -= showEnemyPerformed;
+        _showEnemyStatsAction.performed -= showEnemyStatsPerformed;
+        _resetSceneAction.performed -= resetScenePerformed; 
+        _godModePlayerAction.performed -= godModePlayerPerformed;      
+    }
+    public void EnableDevtools()
+    {
+        _showEnemyAction.Enable();
+        _showEnemyStatsAction.Enable();
+        _resetSceneAction.Enable();
+        _godModePlayerAction.Enable();
+    }
+    public void DisableDevtools()
+    {
+        _showEnemyAction.Disable();
+        _showEnemyStatsAction.Disable();
+        _resetSceneAction.Disable(); 
+        _godModePlayerAction.Disable();      
+    }
+
 
     public void EnableMoveAction()
     {

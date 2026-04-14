@@ -1042,6 +1042,94 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "DevTools",
+            "id": "3bef2882-c7e4-42fd-a5be-c2969ea6a788",
+            "actions": [
+                {
+                    "name": "ShowEnemy",
+                    "type": "Button",
+                    "id": "cb82676d-0411-4394-a721-fe2aec8fedf8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetScene",
+                    "type": "Button",
+                    "id": "8c41e6e5-fcda-4a83-a861-392f9aa402ee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowEnemyStats",
+                    "type": "Button",
+                    "id": "3ff0dd98-4b22-4e92-a3e4-ad95b864fc28",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerGodmode",
+                    "type": "Button",
+                    "id": "729f13b7-7a05-45f5-9e63-630caa60a20f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a7b70963-b717-402b-a49b-1c1701c4af67",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d23222c2-2a13-4138-851e-6d52569b2b8e",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef7f6082-30d7-4dc8-a828-dd70e8cb27a6",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowEnemyStats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3fb5ba42-ca7f-49a1-b6bd-50b80f1686d3",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerGodmode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

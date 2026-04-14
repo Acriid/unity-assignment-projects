@@ -12,16 +12,14 @@ public class EnemyDirector : MonoBehaviour
     private Enemy _enemyComponent;
     [Header("Annoyance Distance")]
     [SerializeField] private float _maxDistance = 30f;
-    private float _currentDistance = 0f;
     [SerializeField] private float _minDistance = 5f;
     [Header("Annoyance Meter")]
     [SerializeField] private float _maxAnnoyance = 5f;
-    private float _currentAnnoyance = 2.5f;
+    [SerializeField] private float _currentAnnoyance = 2.5f;
     [SerializeField] private float _minAnnoyance = 0.5f;
     [SerializeField] private List<GoalObject> _goalList;
     private readonly float _annoyanceRateMin = -0.33f;
     private readonly float _annoyanceRateMax = 0.16f;
-    private Coroutine _annoyanceChange;
     private bool _alreadySent = false;
 
     void Awake()
@@ -66,6 +64,7 @@ public class EnemyDirector : MonoBehaviour
     {
         if(_enemyComponent.StateMachine.CurrentEnemyState == _enemyComponent.GuardState) return;
         _currentAnnoyance += increaseValue;
+        _currentAnnoyance = Mathf.Clamp(_currentAnnoyance,0.3f,5.2f);
         if(_currentAnnoyance >= _maxAnnoyance && !_alreadySent)
         {
             Debug.Log("sending enemy away");
@@ -136,4 +135,13 @@ public class EnemyDirector : MonoBehaviour
         _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(objectToGuard.GoalSO.GoalPosition);
     }
 
+
+    public EnemyState GetCurrentEnemyState()
+    {
+        return _enemyComponent.StateMachine.CurrentEnemyState;
+    }
+    public float GetCurrentEnemyAnnoyance()
+    {
+        return _currentAnnoyance;
+    }
 }
