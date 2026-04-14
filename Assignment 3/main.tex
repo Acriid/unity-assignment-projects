@@ -9,6 +9,44 @@
     the player and directing the enemy to different spots on the map.}
 }
 
+\newglossaryentry{NavMesh}
+{
+    name = {Navigation Mesh},
+    description = {The area in which the AI of the game is allowed to move.}
+}
+
+\newglossaryentry{ESenses}
+{
+    name = {Enemy senses},
+    description = {What the enemy can see or get information from.}
+}
+
+\newglossaryentry{StateMachine}
+{
+    name = {StateMachine},
+    description = {The software design pattern used to model the logic of the enemy AI.}
+}
+
+\newglossaryentry{State}
+{
+    name = {State},
+    description = {The possible modes that the state machine can exist in. States dictates
+    the current enemy behavior.}
+}
+
+\newglossaryentry{AI}
+{
+    name = {Artificial Intelligence},
+    description = {A set of rules that dictates how the game element reacts to different game
+    elements within the game.}
+}
+
+\newglossaryentry{GE}
+{
+    name = {Game Element},
+    description = {An umbrella term to describe something that is a part of the game.}
+}
+
 \begin{document}
 
 \section*{Mechanics}
@@ -171,13 +209,16 @@ idea that the enemy is searching the area for the player. The director can also 
 to the back of the player, but this is random. This does give the feeling of the enemy trying to get the 
 jump on the player.
 
+Adding Devtools to more easily see how the enemy moves and what the enemy is currently doing. This also will
+help to show off the enemy ai.
+
 Sound manager is being made while following the youtube video. Some changes from the video will be made.
 
 \section*{Reflection}
 
 \section*{Small Checklist}
 \begin{itemize}
-    \item Add 2 more Goals
+    \item Add 2 more Goals (add lights to place too.)
     \item Add crouch button to silence noise made
     \item Add some audio (footsteps for player and ai)
     \item Finish Document.
