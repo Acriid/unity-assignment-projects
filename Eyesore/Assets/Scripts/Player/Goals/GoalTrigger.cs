@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -8,6 +8,8 @@ public class GoalTrigger : GoalObject
     private Vector2 _keyPosition;
     private Item _itemComponent;
     public Player Player;
+
+    
     void Awake()
     {
         _keyPosition = this.transform.position;
@@ -32,6 +34,8 @@ public class GoalTrigger : GoalObject
                 _itemComponent.SetInteractable(false);
             }
             GoalSO.GoalComplete = true;
+
+            SendGoalComplete(this);
         }
     }
 }
