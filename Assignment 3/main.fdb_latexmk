@@ -1,8 +1,14 @@
 # Fdb version 4
-["pdflatex"] 1776204800.57052 "c:/DIGA3001A Games/unity-assignment-projects/Assignment 3/main.tex" "main.pdf" "main" 1776204801.54788 0
-  "c:/DIGA3001A Games/unity-assignment-projects/Assignment 3/main.tex" 1776204799 11958 9167af24fe0be30d8308137889c6cdcf ""
+["pdflatex"] 1776254448.07532 "c:/DIGA3001A Games/unity-assignment-projects/Assignment 3/main.tex" "main.pdf" "main" 1776254449.12224 0
+  "Images/ExpandedMap.png" 1776197438 6216 8575c4647d33dbcbf44ce80ff15b0f7b ""
+  "Images/FinishedMap.png" 1776199213 34321 b99cf21ed65ddb51450e8ef32323c74e ""
+  "Images/InitialMap.png" 1776168144 9942 86099b47ba69bb5ba81dc69a70491d5b ""
+  "Images/TutorialArea.png" 1776205263 16297 e055878686a5c27839d0350b9478b85f ""
+  "c:/DIGA3001A Games/unity-assignment-projects/Assignment 3/main.tex" 1776254447 17007 81e678c23dfc7cf4ab3c125972fa82cb ""
+  "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1770217435 2971 def0b6c1f0b107b3b936def894055589 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1770217435 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1770218068 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1770217793 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1770217793 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1770217424 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1770217424 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -53,10 +59,13 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1770221132 5587484 49bd08ff372a6985d7d70778694ddaac ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1770221356 3636161 2ec4a537dfac11f5bf7f7a83e4357dab ""
   "c:/texlive/2025/texmf.cnf" 1770221109 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1776204801 411 e73bae3e36cdbd7ec3bf39115e0b5df4 "pdflatex"
-  "main.tex" 1776204799 11958 9167af24fe0be30d8308137889c6cdcf ""
+  "main.aux" 1776254449 863 e3c41921bc70a3abb8f5d541af8d1e68 "pdflatex"
+  "main.gls" 0 -1 0 ""
+  "main.tex" 1776254447 17007 81e678c23dfc7cf4ab3c125972fa82cb ""
   (generated)
   "main.aux"
+  "main.glo"
+  "main.ist"
   "main.log"
   "main.pdf"
   (rewritten before read)

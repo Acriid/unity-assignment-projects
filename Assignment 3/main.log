@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  15 APR 2026 00:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  15 APR 2026 14:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,26 +237,32 @@ File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen182
 \Gin@req@width=\dimen183
-) (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)
+\glswrite=\write3
+\glo@main@file=\write4
+\openout4 = `main.glo'.
+
+Package glossaries Info: Writing glossary file main.glo on input line 5.
+ (c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count331
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
  (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count332
@@ -277,45 +283,70 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) [1
 
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3]
-Overfull \hbox (122.05652pt too wide) in paragraph at lines 193--197
-[]\OT1/cmr/m/n/10 https://www.aiandgames.com/p/revisiting-alien-isolation https://www.gamedeveloper.com/design/the-
+\openout3 = `main.ist'.
+
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4]
+<Images/InitialMap.png, id=19, 263.18324pt x 289.68225pt>
+File: Images/InitialMap.png Graphic file (type png)
+<use Images/InitialMap.png>
+Package pdftex.def Info: Images/InitialMap.png  used on input line 259.
+(pdftex.def)             Requested size: 137.9979pt x 151.89539pt.
+<Images/ExpandedMap.png, id=21, 637.63219pt x 234.8775pt>
+File: Images/ExpandedMap.png Graphic file (type png)
+<use Images/ExpandedMap.png>
+Package pdftex.def Info: Images/ExpandedMap.png  used on input line 265.
+(pdftex.def)             Requested size: 137.9979pt x 50.83098pt.
+<Images/FinishedMap.png, id=22, 557.83406pt x 208.52907pt>
+File: Images/FinishedMap.png Graphic file (type png)
+<use Images/FinishedMap.png>
+Package pdftex.def Info: Images/FinishedMap.png  used on input line 274.
+(pdftex.def)             Requested size: 137.9979pt x 51.58484pt.
+<Images/TutorialArea.png, id=23, 339.51843pt x 149.8097pt>
+File: Images/TutorialArea.png Graphic file (type png)
+<use Images/TutorialArea.png>
+Package pdftex.def Info: Images/TutorialArea.png  used on input line 280.
+(pdftex.def)             Requested size: 137.9979pt x 60.88974pt.
+ [5 <./Images/InitialMap.png> <./Images/ExpandedMap.png> <./Images/FinishedMap.png> <./Images/TutorialArea.png>] [6]
+Overfull \hbox (133.35281pt too wide) in paragraph at lines 328--346
+\OT1/cmr/m/n/10 nite State Ma-chine | Tu-to-rial," YouTube, May 18, 2023. https://www.youtube.com/watch?v=RQd44qSaqww 
  []
 
 
-Overfull \hbox (87.55649pt too wide) in paragraph at lines 193--197
-\OT1/cmr/m/n/10 perfect-organism-the-ai-of-alien-isolation https://www.gamedeveloper.com/programming/behavior-
- []
-
-[4]
-Overfull \hbox (128.44545pt too wide) in paragraph at lines 259--264
-[]\OT1/cmr/m/n/10 https://www.youtube.com/watch?v=RQd44qSaqww https://www.youtube.com/watch?v=iOYo7flBUW4
+Overfull \hbox (27.08403pt too wide) in paragraph at lines 328--346
+\T1/cmr/m/n/10 ^^W\OT1/cmr/m/n/10 [7]\How to Add a Field of View for Your En-e-mies [Unity Tu-to-rial]," www.youtube.com.
  []
 
 
-Overfull \hbox (105.30653pt too wide) in paragraph at lines 259--264
-\OT1/cmr/m/n/10 https://www.youtube.com/watch?v=j1-OyLo77ss https://www.youtube.com/watch?v=DU7cgVsU2rM
+Overfull \hbox (40.98228pt too wide) in paragraph at lines 328--346
+\OT1/cmr/m/n/10 Tu-to-rial," YouTube, Dec. 08, 2022. https://www.youtube.com/watch?v=DU7cgVsU2rM 
  []
 
-[5] (./main.aux)
+
+Overfull \hbox (33.5472pt too wide) in paragraph at lines 328--346
+\T1/cmr/m/n/10 ^^W\OT1/cmr/m/n/10 [9]\Pixabay," Pix-abay.com, 2024. https://pixabay.com/sound-effects/search/footsteps/
+ []
+
+[7{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+No file main.gls.
+[8] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 9589 strings out of 467533
- 203509 string characters out of 5423669
- 673384 words of memory out of 5000000
- 38453 multiletter control sequences out of 15000+600000
- 629574 words of font info for 46 fonts, out of 8000000 for 9000
+ 9665 strings out of 467533
+ 205106 string characters out of 5423669
+ 673612 words of memory out of 5000000
+ 38525 multiletter control sequences out of 15000+600000
+ 630337 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 78i,6n,79p,2553b,198s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 78i,8n,79p,2553b,353s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (5 pages, 66283 bytes).
+Output written on main.pdf (8 pages, 156686 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
