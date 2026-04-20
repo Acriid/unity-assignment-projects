@@ -109,6 +109,25 @@ Cons
     \item May be prone to contradictions.
 \end{itemize}
 
+\section*{Procedural Generation Algorithm}
+The algorithm I will make will follow the Binary Space Partitioning first to get the rooms
+and their layout. 
+Then it will connect the rooms together with hallways. It will do this by choosing a room in the middle 
+and branching out. If the distance between two rooms are too big it will not connect the hallway between
+them.
+The algorithm will keep track of rooms with only one entrance to them and then choose those rooms to
+be key or door rooms. If there are not enough single entrance rooms then the algorithm will check which
+room has two hallways and then will remove one hallway. If there are not enough two hallway rooms
+it will remove from three hallway rooms.
+After it has mapped out the rooms and hallways it will then place the tiles for the floor from the tilemap.
+After it has placed the floor it will place the walls around the floors.
+The algorithm will then place the lights scarcely throughout the map on the floor.
+It will also place hiding spots scarcely throughout the map on the walls.
+
+\section*{Macro Design}
+\section*{Process}
+\section*{Reflection}
+\section*{References}
 https://www.youtube.com/watch?v=zIRTOgfsjl0
 https://www.youtube.com/watch?v=3g440SA2hKU
 https://www.youtube.com/watch?v=nbi88hY9hcw
