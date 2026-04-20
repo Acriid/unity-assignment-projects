@@ -1,31 +1,116 @@
 \documentclass{article}
 \begin{document}
 
-\section*{What want to do}
-Make an algorithm that makes levels. This include:
-\begin{itemize}
-    \item Entrance and Exit from room.
-    \item Correct floor, door and wall placements.
-    \item Navmesh of the room.
-    \item A goal for the room. (item to get, item to drop)
-\end{itemize}
-\subsection*{Room Checkpoints}
-\begin{itemize}
-    \item Entrance is not blocked.
-    \item Exit is not blocked.
-    \item Floors are all connected.
-    \item There are no walls on top of the floor
-    \item The floor is a minimum of x by x and maximum of y by y
-    \item All the walls are connected.
-    \item The goal is accessible.
-\end{itemize}
-Can use different types of room generation. Use one algorithm to generate the 
-entire map. Use another algorithm to generate the rooms.
-\begin{itemize}
-    \item Binary space partitioning
-    \item Random walk
-    \item Binding of Isaac 
-\end{itemize}
-\section*{Assignment 3 Feedback}
+\section*{Hypothesis}
 
+
+\section*{Goal}
+The goal of this prototype is to make a procedural generation algorithm that generates a 
+level for the player. 
+The algorithm needs to make different rooms that connect to each other while also generating
+lights in each rooms. The algorithm will also need to generate a key room which holds a key that
+the player needs to pick up, along with a door room which the player needs to bring the key towards.
+The algorithm will be considered a success if 
+\begin{itemize}
+    \item All rooms can be accessed.
+    \item The player cannot escape the level.
+    \item The key is created correctly.
+    \item The door is created correctly.
+    \item There are lights in the room.
+    \item The enemy AI made in prototype 3 can navigate the level.
+    \item The correct generation is consistent.
+\end{itemize}
+
+\section*{Challenges}
+The general objective of the prototype is to find a key that opens a door in a dungeon like structure, 
+while avoiding an enemy AI that is trying to hunt the player.
+Some challenges the player may face while trying to complete their objectives
+\begin{itemize}
+    \item Finding out where the key is.
+    \item Evading the enemy.
+    \item Hiding from the enemy.
+    \item Finding the door that the key unlocks.
+\end{itemize}
+
+\section*{Mechanics}
+The mechanics that the player can use were shown in previous documents.
+Here is a summary of the mechanics that the player can use:
+\begin{itemize}
+    \item Move with WASD.
+    \item Sprint with LShift.
+    \item Interact with various game elements through Space.
+    \item Toggle the player light with R.
+\end{itemize}
+\section*{Balance}
+The movement mechanic has been balanced in such a way that the base player movement speed is slower
+than the base enemy movement speed this is to force the player to use their sprint to get always
+or to avoid the enemy entirely. 
+The sprint mechanic can only be used for a second just to quickly get away form the enemy this
+shows the player that it is better to avoid the enemy than to run from them.
+The player can only interact with one interaction at a time this forces the player to drop the item 
+they are carrying before interacting with another interaction.
+A small cooldown was added to the light toggle to make the player think more of when they
+need to toggle their light to hide from the enemy.
+
+\section*{Games with procedural generation}
+\subsection*{The Binding of Isaac}
+https://www.boristhebrave.com/2020/09/12/dungeon-generation-in-binding-of-isaac/
+The Binding of Isaac uses a 9x8 grid with each grid cell numbered. The top left grid cell is 0 while
+the bottom right cell is 79, this is kept track of with a one dimensional array of 80 length where
+the units digit is the x position and the tens digit is the y position on the grid. The algorithm 
+for The Binding of Isaac then chooses a random number of rooms to fit in this grid. It always places
+the starting room at grid space 35. It then determines the neighbor of the starting room by adding
++1/-1/+10/-10 , if the algorithm can't place a room it gives up. The algorithm keeps track of dead end
+rooms which is a room that does not add any neighbors. The algorithm then decides to put special rooms
+on the dead end rooms. There are always one of any special room in a level.
+
+I want to take the dead end rooms that only have one entrance and exit and then put then to be either the 
+key room or the door room.
+\subsection*{Townscaper}
+https://www.gamedeveloper.com/game-platforms/how-townscaper-works-a-story-four-games-in-the-making
+\section*{Different Procedural Generation Algorithms}
+These algorithms will help in creating the procedural generation algorithm for the prototype.
+\subsection*{Binary Space Partitioning}
+Binary Space Partitioning is a technique to generate procedural dungeons. It does this by
+recursively dividing a large area into smaller non overlapping areas. 
+The algorithm does this by making a single rectangular map then it chooses a random direction
+and position along the axis and then splits the rectangular map. It repeats this procedure
+until the number of rectangular that you want are met. It also makes sure that it does not
+split the rectangles beyond a minimum, thus the rectangles will always have a minimum size.
+When the entire rectangle has been split the algorithm then shrinks each rectangle to finish
+the level generation.
+Pros:
+\begin{itemize}
+    \item No rooms will overlap.
+    \item Rooms are guaranteed to be able to reach each other.
+\end{itemize}
+Cons:
+\begin{itemize}
+    \item Can only generate rectangular rooms.
+    \item Can not generate hallways between rooms.
+\end{itemize}
+
+\subsection*{Wave Function Collapse}
+Wave Function Collapse is an algorithm based on constraints. The function ensures consistency
+through adjacency rules which determine which tiles can be placed next to each other. The 
+function takes a sample input and generates similar to the sample inputs. The functions
+picks a cell at random and then collapses it by choosing a random tile. It then chooses
+a grid space next to the chosen tile with the least entropy, least amount of tile options.
+This process of collapsing repeats until the entire grid is collapsed or a contradiction 
+appears when the algorithm cannot find any possible tiles to place down, leading the program
+to either backtrack or start from the beginning.
+Pros:
+\begin{itemize}
+    \item Makes natural looking maps.
+\end{itemize}
+Cons
+\begin{itemize}
+    \item Takes a lot of processing power
+    \item May be prone to contradictions.
+\end{itemize}
+
+https://www.youtube.com/watch?v=zIRTOgfsjl0
+https://www.youtube.com/watch?v=3g440SA2hKU
+https://www.youtube.com/watch?v=nbi88hY9hcw
+https://www.youtube.com/watch?v=hCD0FNVhrIQ
 \end{document}
