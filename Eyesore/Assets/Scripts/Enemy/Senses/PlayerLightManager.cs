@@ -7,6 +7,7 @@ public class PlayerLightManager : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            if(_lightCollider == null) return;
             _lightCollider.enabled = true;
         }
     }
@@ -14,6 +15,7 @@ public class PlayerLightManager : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            if(_lightCollider == null) return;
             _lightCollider.enabled = false;
         }
     }

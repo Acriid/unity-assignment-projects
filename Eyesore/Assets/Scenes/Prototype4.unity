@@ -165,7 +165,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 852238415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &315072175
 GameObject:
@@ -585,6 +585,7 @@ Transform:
   m_Children:
   - {fileID: 1757032169}
   - {fileID: 2081434016}
+  - {fileID: 873740870}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &848913449
@@ -599,6 +600,71 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &852238414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852238415}
+  m_Layer: 0
+  m_Name: RoomGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852238415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852238414}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1003089670}
+  - {fileID: 28984964}
+  - {fileID: 2047698414}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &873740869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 873740870}
+  m_Layer: 0
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &873740870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873740869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 848913448}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &906685623
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,13 +829,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomFirstDungeonGenerator
   _tilePainter: {fileID: 28984963}
   _startPosition: {x: 0, y: 0}
+  _lightPlacer: {fileID: 2047698415}
   RandomWalkSO: {fileID: 11400000, guid: 2af6c8d0856309344b11bcc4790fecd2, type: 2}
-  _minRoomWidth: 6
-  _minRoomHeight: 6
-  _dungeonWidth: 100
-  _dungeonHeight: 100
+  _minRoomWidth: 15
+  _minRoomHeight: 15
+  _dungeonWidth: 200
+  _dungeonHeight: 200
   _offset: 1
-  _randomWalkRooms: 1
+  _randomWalkRooms: 0
+  _placeLights: 1
 --- !u!4 &1003089670
 Transform:
   m_ObjectHideFlags: 0
@@ -783,7 +851,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 852238415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1280753487
 PrefabInstance:
@@ -1071,6 +1139,54 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2047698413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2047698414}
+  - component: {fileID: 2047698415}
+  m_Layer: 0
+  m_Name: LightPlacer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2047698414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047698413}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 852238415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2047698415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047698413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7ba5f39083f2340a2dcea7a4723d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightPlacingAlgorithm
+  _lightPrefab: {fileID: 8147292466785852857, guid: 57ab66ad30e84314a94b1e797aa169b7, type: 3}
+  _lightParent: {fileID: 873740870}
+  _lightToRoomRatio: 0.7
+  _lightsPerRoom: 2
 --- !u!1 &2081434013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,8 +1435,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 374518490}
   - {fileID: 848913448}
-  - {fileID: 28984964}
-  - {fileID: 1003089670}
   - {fileID: 1316315525}
   - {fileID: 827818812}
   - {fileID: 1280753487}
+  - {fileID: 852238415}

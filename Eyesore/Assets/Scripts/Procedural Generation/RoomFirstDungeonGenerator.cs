@@ -12,6 +12,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     [Range(0,10)]
     [SerializeField] private int _offset = 1;
     [SerializeField] private bool _randomWalkRooms = false;
+    [SerializeField] private bool _placeLights = false;
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
@@ -47,6 +48,16 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 
         _tilePainter.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor,_tilePainter);
+
+        if(_placeLights)
+        {
+            _lightPlacer.ClearLights();
+
+
+            HashSet<BoundsInt> roomsRandom = new();
+            roomsRandom.UnionWith(roomsList);
+            _lightPlacer.PlaceLights(roomsRandom);
+        }
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomWalk(List<BoundsInt> roomsList)
