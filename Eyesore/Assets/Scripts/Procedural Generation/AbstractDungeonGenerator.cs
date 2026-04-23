@@ -6,6 +6,7 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     [SerializeField] protected TilePainter _tilePainter = null;
     [SerializeField] protected Vector2Int _startPosition = Vector2Int.zero;
     [SerializeField] protected LightPlacingAlgorithm _lightPlacer = null;
+    [SerializeField] protected EntityPlacerAlgorithm _entityPlacer = null;
 
     public void GenerateDungeon()
     {

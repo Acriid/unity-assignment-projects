@@ -58,6 +58,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
             roomsRandom.UnionWith(roomsList);
             _lightPlacer.PlaceLights(roomsRandom);
         }
+
+
+        _entityPlacer.PlaceEntities(roomsList);
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomWalk(List<BoundsInt> roomsList)
