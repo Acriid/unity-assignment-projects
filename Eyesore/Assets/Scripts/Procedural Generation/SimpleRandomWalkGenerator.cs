@@ -10,25 +10,20 @@ public class SimpleRandomWalkGenerator : AbstractDungeonGenerator
     public RandomWalkSO RandomWalkSO;
     protected override void RunProceduralGeneration()
     {
-        HashSet<Vector2Int> floorPositions = RunRandomWalk();
-
-        foreach (var position in floorPositions)
-        {
-            Debug.Log(position);
-        }
+        HashSet<Vector2Int> floorPositions = RunRandomWalk(RandomWalkSO,_startPosition);
     }
 
-    protected HashSet<Vector2Int> RunRandomWalk()
+    protected HashSet<Vector2Int> RunRandomWalk(RandomWalkSO parameters, Vector2Int position)
     {
-        var currentPosition = _startPosition;
+        var currentPosition = position;
         HashSet<Vector2Int> floorPositions = new();
-        for(int i = 0; i < RandomWalkSO.Iterations; i++)
+        for(int i = 0; i < parameters.Iterations; i++)
         {
-            var path = ProceduralGenerationAlgorithm.SimpleRandomWalk(currentPosition, RandomWalkSO.WalkLength);
+            var path = ProceduralGenerationAlgorithm.SimpleRandomWalk(currentPosition, parameters.WalkLength);
 
             floorPositions.UnionWith(path);
 
-            if(RandomWalkSO.StartRandomlyEachIteration)
+            if(parameters.StartRandomlyEachIteration)
             {
                 currentPosition = floorPositions.ElementAt(Random.Range(0,floorPositions.Count));
             }

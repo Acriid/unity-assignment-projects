@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 28984962}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.51109, y: 1.27411, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -763,11 +763,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomFirstDungeonGenerator
   _tilePainter: {fileID: 28984963}
   _startPosition: {x: 0, y: 0}
-  minRoomWidth: 20
-  minRoomHeight: 20
-  dungeonWidth: 100
-  dungeonHeight: 100
-  offset: 2
+  RandomWalkSO: {fileID: 11400000, guid: 2af6c8d0856309344b11bcc4790fecd2, type: 2}
+  _minRoomWidth: 6
+  _minRoomHeight: 6
+  _dungeonWidth: 100
+  _dungeonHeight: 100
+  _offset: 1
+  _randomWalkRooms: 1
 --- !u!4 &1003089670
 Transform:
   m_ObjectHideFlags: 0
@@ -777,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 1003089668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.51109, y: 1.27411, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
+public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 {
-    [SerializeField] private int minRoomWidth = 4, minRoomHeight = 4;
-    [SerializeField] private int dungeonWidth = 20, dungeonHeight = 20;
+    [SerializeField] private int _minRoomWidth = 4, _minRoomHeight = 4;
+    [SerializeField] private int _dungeonWidth = 20, _dungeonHeight = 20;
     [Range(0,10)]
-    [SerializeField] private int offset = 1;
+    [SerializeField] private int _offset = 1;
+    [SerializeField] private bool _randomWalkRooms = false;
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
@@ -19,10 +20,21 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
     private void CreateRooms()
     {
         var roomsList = ProceduralGenerationAlgorithm.BinarySpacePartitioning(new BoundsInt((Vector3Int)_startPosition,
-         new Vector3Int(dungeonWidth,dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+         new Vector3Int(_dungeonWidth,_dungeonHeight, 0)), _minRoomWidth, _minRoomHeight);
+
+
 
         HashSet<Vector2Int> floor = new();
-        floor = CreateSimpleRooms(roomsList);
+
+        if(_randomWalkRooms)
+        {
+            floor = CreateRoomsRandomWalk(roomsList);
+        }
+        else
+        {
+            floor = CreateSimpleRooms(roomsList);
+        }
+        
 
         List<Vector2Int> roomCenters = new();
         foreach (var room in roomsList)
@@ -35,6 +47,28 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
 
         _tilePainter.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor,_tilePainter);
+    }
+
+    private HashSet<Vector2Int> CreateRoomsRandomWalk(List<BoundsInt> roomsList)
+    {
+        HashSet<Vector2Int> floor = new();
+        for(int i = 0; i<roomsList.Count; i++)
+        {
+            var roomBounds = roomsList[i];
+            var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
+            var roomFloor = RunRandomWalk(RandomWalkSO,roomCenter);
+            foreach(var position in roomFloor)
+            {
+                bool xCorrect = position.x >= (roomBounds.xMin + _offset) && position.x <= (roomBounds.xMax - _offset);
+                bool yCorrect = position.y >= (roomBounds.yMin + _offset) && position.y <= (roomBounds.yMax - _offset);
+                if(xCorrect && yCorrect)
+                {
+                    floor.Add(position);
+                }
+            }
+
+        }
+        return floor;
     }
 
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
@@ -109,9 +143,9 @@ public class RoomFirstDungeonGenerator : AbstractDungeonGenerator
         HashSet<Vector2Int> floor = new();
         foreach(var room in roomsList)
         {
-            for (int column = offset; column < room.size.x - offset; column++)
+            for (int column = _offset; column < room.size.x - _offset; column++)
             {
-                for(int row = offset; row < room.size.y - offset; row++)
+                for(int row = _offset; row < room.size.y - _offset; row++)
                 {
                     Vector2Int position = (Vector2Int)room.min + new Vector2Int(column,row);
                     floor.Add(position);
