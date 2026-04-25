@@ -1,45 +1,45 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EntityPlacerAlgorithm : MonoBehaviour
 {
     [SerializeField] private GameObject _playerObject;
     [SerializeField] private GameObject _enemyObject;
-    [SerializeField] private float _minDistance = 50f;
+    public event Action PlacedEntities;
 
     public void PlaceEntities(List<BoundsInt> roomsList)
     {
-        bool foundSpots = false;
-        int currentIndex = 0;
 
-        Vector3 playerPosition = Vector3.zero;
         Vector3 enemyPosition = Vector3.zero;
 
+        float bestDistance = 0f;
 
-        while(!foundSpots && currentIndex < roomsList.Count)
+
+        BoundsInt currentRoom = roomsList[Random.Range(0,roomsList.Count -1)];
+        Vector3 playerPosition = currentRoom.center;
+
+        for(int i = 0 ; i < roomsList.Count ; i++)
         {
-            BoundsInt currentRoom = roomsList[currentIndex];
-            playerPosition = currentRoom.center;
+            currentRoom = roomsList[i];
+            enemyPosition = currentRoom.center;
 
-            for(int i = currentIndex + 1 ; i < roomsList.Count ; i++)
+            float currentDistance = Vector3.Distance(playerPosition,enemyPosition);
+
+            if(currentDistance >= bestDistance)
             {
-                currentRoom = roomsList[i];
-                enemyPosition = currentRoom.center;
+                bestDistance = currentDistance;
 
-                float currentDistance = Vector3.Distance(playerPosition,enemyPosition);
-
-                if(currentDistance >= _minDistance)
-                {
-                    foundSpots = true;
-                    break;
-                }
             }
-
         }
+
 
 
         _playerObject.transform.position = playerPosition;
         _enemyObject.transform.position = enemyPosition;
+
+        PlacedEntities?.Invoke();
     }
 }

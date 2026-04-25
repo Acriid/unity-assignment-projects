@@ -42,6 +42,7 @@ public class SoundMechanic : MonoBehaviour
     }
     private void MakeSound(Vector2 moveValue)
     {
+        if(SoundFXManager.Instance == null) return;
         if(_crouching) return;
         if(moveValue != Vector2.zero)
         {

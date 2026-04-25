@@ -13,14 +13,18 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     [SerializeField] private int _offset = 1;
     [SerializeField] private bool _randomWalkRooms = false;
     [SerializeField] private bool _placeLights = false;
+    private List<BoundsInt> roomsList = new();
     protected override void RunProceduralGeneration()
     {
+
+        _entityPlacer.PlacedEntities += PlaceGoals;
+
         CreateRooms();
     }
 
     private void CreateRooms()
     {
-        var roomsList = ProceduralGenerationAlgorithm.BinarySpacePartitioning(new BoundsInt((Vector3Int)_startPosition,
+        roomsList = ProceduralGenerationAlgorithm.BinarySpacePartitioning(new BoundsInt((Vector3Int)_startPosition,
          new Vector3Int(_dungeonWidth,_dungeonHeight, 0)), _minRoomWidth, _minRoomHeight);
 
 
@@ -60,7 +64,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         }
 
 
+        BakeNavMesh();
         _entityPlacer.PlaceEntities(roomsList);
+
+        
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomWalk(List<BoundsInt> roomsList)
@@ -118,6 +125,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
                 position += Vector2Int.down;
             }
             corridor.Add(position);
+            corridor.Add(position += Vector2Int.left);
+            corridor.Add(position += Vector2Int.right);
         }
         while(position.x != destination.x)
         {
@@ -129,7 +138,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
             {
                 position += Vector2Int.left;
             }
-            corridor.Add(position);            
+            corridor.Add(position); 
+            corridor.Add(position += Vector2Int.up);
+            corridor.Add(position += Vector2Int.down);           
         }
         return corridor;
     }
@@ -167,5 +178,12 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
             }
         }
         return floor;
+    }
+
+    private void PlaceGoals()
+    {
+        _entityPlacer.PlacedEntities -= PlaceGoals;
+
+        _goalPlacer.PlaceKey(roomsList);
     }
 }

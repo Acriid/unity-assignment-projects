@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c408ca39dd460364aab2584772502e51, type: 3}
-  m_Name: AlgorithmSettings
-  m_EditorClassIdentifier: Assembly-CSharp::RandomWalkSO
-  Iterations: 100
-  WalkLength: 50
-  StartRandomlyEachIteration: 1
+  m_Script: {fileID: 11500000, guid: 925d04d6d4c8b314eb8b958a5a694146, type: 3}
+  m_Name: Key
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  ItemName: Door Key
+  ItemDescription: Escape
+  ItemSprite: {fileID: 0}
+  ItemObject: {fileID: 0}

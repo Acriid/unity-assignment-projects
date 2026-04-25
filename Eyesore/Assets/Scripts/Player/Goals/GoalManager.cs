@@ -22,19 +22,24 @@ public class GoalManager : MonoBehaviour
         }
         Instance = this;
 
-
-        foreach(GoalObject goal in _goalObjects)
+        if(_goalObjects.Count > 0)
         {
-            goal.GoalComplete += HandleGoalCompleted;
+            foreach(GoalObject goal in _goalObjects)
+            {
+                goal.GoalComplete += HandleGoalCompleted;
+            }    
         }
     }
 
     void OnDisable()
     {
-        foreach(GoalObject goal in _goalObjects)
+        if(_goalObjects.Count > 0)
         {
-            goal.GoalComplete -= HandleGoalCompleted;
-        } 
+            foreach(GoalObject goal in _goalObjects)
+            {
+                goal.GoalComplete -= HandleGoalCompleted;
+            }    
+        }
     }
 
     private void HandleGoalCompleted(GoalObject goalObject)

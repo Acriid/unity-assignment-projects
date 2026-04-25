@@ -28,10 +28,13 @@ public class EnemyDirector : MonoBehaviour
 
         StartCoroutine(ChangeAnnoyance());
 
+        if(!Enemy.activeSelf) return;
         _enemyComponent.EnemyGuardSOBaseInstance.EnteredGuard += SetGuardDestination;
     }
     void OnDisable()
     {
+        if(Enemy != null && !Enemy.activeSelf) return;
+        if(_enemyComponent == null) return;
         _enemyComponent.EnemyGuardSOBaseInstance.EnteredGuard -= SetGuardDestination;
     }
     private IEnumerator ChangeAnnoyance()
@@ -62,6 +65,7 @@ public class EnemyDirector : MonoBehaviour
     }
     private void IncreaseAnnoyance(float increaseValue)
     {
+        if(!Enemy.activeSelf) return;
         if(_enemyComponent.StateMachine.CurrentEnemyState == _enemyComponent.GuardState) return;
         _currentAnnoyance += increaseValue;
         _currentAnnoyance = Mathf.Clamp(_currentAnnoyance,0.3f,5.2f);

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c408ca39dd460364aab2584772502e51, type: 3}
-  m_Name: AlgorithmSettings
-  m_EditorClassIdentifier: Assembly-CSharp::RandomWalkSO
-  Iterations: 100
-  WalkLength: 50
-  StartRandomlyEachIteration: 1
+  m_Script: {fileID: 11500000, guid: 16f5e54bcf759f04281744e6d93bc9a7, type: 3}
+  m_Name: Goal
+  m_EditorClassIdentifier: Assembly-CSharp::GoalSO
+  GoalComplete: 0
+  GoalPosition: {x: 147, y: 139.5}

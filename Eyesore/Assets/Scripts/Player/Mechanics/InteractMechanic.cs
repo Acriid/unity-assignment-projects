@@ -31,7 +31,7 @@ public class InteractMechanic : MonoBehaviour
 
     private void UpdateTargetInteraction(Transform player)
     {
-        // Remove null references (destroyed interactions)
+
         _interactionsInRange.RemoveAll(interaction => interaction == null);
         
         _targetInteraction = null;
@@ -52,23 +52,23 @@ public class InteractMechanic : MonoBehaviour
         }
     }
 
-    // ✅ NEW: General interaction method
+
     public bool Interact(GameObject player)
     {
         if (_targetInteraction == null) return false;
 
-        // Call the interaction's virtual method
+
         _targetInteraction.OnInteract(player);
         return true;
     }
 
-    // Get current target for UI feedback
+
     public Interaction GetTargetInteraction()
     {
         return _targetInteraction;
     }
 
-    // Check if there's anything to interact with
+
     public bool HasInteraction()
     {
         return _targetInteraction != null;

@@ -16,6 +16,7 @@ public class GoalTrigger : GoalObject
         if(GoalSO != null)
         {
             GoalSO.SetGoalPosition(this.transform.position);
+            GoalSO.GoalComplete = false;
         }
     }
 
@@ -23,6 +24,7 @@ public class GoalTrigger : GoalObject
     {
         if(collision.CompareTag(_collisionTag) && collision.gameObject == GoalItem)
         {
+            GoalSO.SetGoalPosition(this.transform.position);
             Player.ForceInteract();
             GoalItem.GetComponent<Rigidbody2D>().linearVelocity = new(0,0);
             GoalItem.GetComponent<Collider2D>().enabled = false;
