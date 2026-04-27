@@ -10,7 +10,16 @@ public static class WallGenerator
         var basicWallPositions = FindWallsInDirections(floorPositions,Direction2D.CardinalDirectionsList);
         foreach(var position in basicWallPositions)
         {   
-            tilemapPainter.PaintSingleBasicWall(position);
+            if(UnityEngine.Random.Range(1,101) == 19)
+            {
+                tilemapPainter.PaintSingleBasicWall(position);
+                tilemapPainter.PaintSingleHidingSpot(position);
+            }
+            else
+            {
+                tilemapPainter.PaintSingleBasicWall(position);
+            }
+            
         }
     }
 

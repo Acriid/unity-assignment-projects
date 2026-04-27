@@ -85900,14 +85900,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4689031569052240665, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689031569052240665, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -12
-      objectReference: {fileID: 0}
     - target: {fileID: 6874009771332503025, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -85988,13 +85980,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7449576324784408855, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
-      propertyPath: m_text
-      value: You completed the prototype
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4955970614184366310, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}

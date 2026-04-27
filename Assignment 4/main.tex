@@ -91,7 +91,7 @@ Cons:
 \end{itemize}
 
 \subsection*{Wave Function Collapse}
-Wave Function Collapse is an algorithm based on constraints. The function ensures consistency
+Wave Function Collapse (WFC) is an algorithm based on constraints. The function ensures consistency
 through adjacency rules which determine which tiles can be placed next to each other. The 
 function takes a sample input and generates similar to the sample inputs. The functions
 picks a cell at random and then collapses it by choosing a random tile. It then chooses
@@ -123,6 +123,8 @@ After it has mapped out the rooms and hallways it will then place the tiles for 
 After it has placed the floor it will place the walls around the floors.
 The algorithm will then place the lights scarcely throughout the map on the floor.
 It will also place hiding spots scarcely throughout the map on the walls.
+It will then place the player randomly and then will place the enemy as far away from the player as possible.
+
 
 \section*{Macro Design}
 The overall goal that the player needs to achieve is to escape. To achieve this goal the player will need
@@ -132,10 +134,37 @@ The overall story of the game is that the player found themselves in some sort o
 The player can escape quickly if they follow the voice of the narrator from prototype 1, but if they defy the narrator
 it leads the player to the level in prototype 3. The player would then need to escape from their own consequences.
 \section*{Process}
-Wave Function was not used during the process of making the room generation algorithm.
+WFC was not used during the process of making the room generation algorithm. This is because the game has no
+decorations for the level which limits the effectiveness of WFC, because it works best when making predetermined 
+tile patterns. The entire level is procedurally generated so there are no predetermined tile patterns.
 
-Lots of tuning of numbers mainly for the random walk algorithm , size of map, size of rooms, offset of rooms,
-say what the numbers do then say why they were tuned to that specific number.
+The algorithm corridor generation differed from the original plan of selecting a singular room and then branching out
+from that room. The algorithm has a list of all the rooms and then chooses the first room in the list then it finds the 
+closest room that is a part of the room list. It then removes that room from the room list and connects the current room
+the the closest room. It continues doing this until the room list is empty.
+I made this change because it ensures that the rooms are all connected in a more realistic way by allowing all the rooms
+to have the same amount of emphasis instead of putting the most emphasis on the centre room. This shows the player that
+all the rooms are important and not just one room is important.
+
+The algorithm for the BSP chooses a dungeon rectangle and then splits it until it can't split the rectangle anymore.
+Each split is a room and the algorithm will never split the rooms below a specified size. The sizes chosen for the map
+is 200 units by 200 units, while the minimum room size is set to 15 units by 15 units. The 200 x 200 size was chosen
+because it allows enough 15 x 15 rooms so that the player still has to traverse the map to get to the objective. Another
+reason is that the enemy needs to move through different rooms to make the player feel like they are being hunted.
+The 15 x 15 minimum room choice is to make the rooms not feel claustrophobic, but still small enough to make traversing
+the map a chore.
+
+The algorithm uses random walk with two important variables: iterations and walk length. Iterations is how many times the 
+algorithm should randomly walk while walk length is how far the algorithm walks per iteration. The higher the iteration the
+more likely the end generation to be a square of walk length. The numbers chosen for iterations is 100 while the walk length
+is 50. These values where chosen, because if a room is the minimum size of 15x15 it will be a rectangle, but the bigger rooms
+will look as if they are decaying which gives the player a feeling of eeriness.
+
+The algorithm does not keep track of rooms with only 1 entrance/exit to place the key and objective, rather the algorithm randomly
+places the key and then places the objective as far away from the key as possible. 
+
+
+
 \section*{Reflection}
 \section*{References}
 https://www.gamedeveloper.com/game-platforms/how-townscaper-works-a-story-four-games-in-the-making

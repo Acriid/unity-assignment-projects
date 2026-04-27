@@ -40,6 +40,8 @@ public class EntityPlacerAlgorithm : MonoBehaviour
         _playerObject.transform.position = playerPosition;
         _enemyObject.transform.position = enemyPosition;
 
+        if(!_enemyObject.activeSelf) _enemyObject.SetActive(true);
+
         PlacedEntities?.Invoke();
     }
 }
