@@ -1138,7 +1138,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2382,7 +2382,7 @@ GameObject:
   - component: {fileID: 2081434018}
   - component: {fileID: 2081434017}
   - component: {fileID: 2081434020}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
