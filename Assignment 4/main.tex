@@ -1,4 +1,49 @@
 \documentclass{article}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{graphicx}
+
+\newglossaryentry{generation}
+{
+    name = Procedural Generation,
+    description = {The generation of game elements during runtime}
+}
+
+\newglossaryentry{runtime}
+{
+    name = Runtime,
+    description = {The time in which the game code is running}
+}
+
+\newglossaryentry{rogue}
+{
+    name = RogueLike,
+    description = {The time in which the game code is running}
+}
+
+\newglossaryentry{tilemap}
+{
+    name = {tilemap},
+    description = {The sprites used to make the map of the game.}
+}
+
+\newglossaryentry{objective}
+{
+    name = {Objective},
+    description = {The area which the player needs to bring the key.}
+}
+
+\newglossaryentry{element}
+{
+    name = {game element},
+    description = {A part of the game.}
+}
+
+\newglossaryentry{RandomWalk}
+{
+    name = {Random Walk Agent},
+    description = {Way to keep track of where the algorithm is currently at}
+}
+
 \begin{document}
 
 \section*{Hypothesis}
@@ -50,8 +95,7 @@ The sprint mechanic can only be used for a second just to quickly get away form 
 shows the player that it is better to avoid the enemy than to run from them.
 The player can only interact with one interaction at a time this forces the player to drop the item 
 they are carrying before interacting with another interaction.
-A small cooldown was added to the light toggle to make the player think more of when they
-need to toggle their light to hide from the enemy.
+
 
 \section*{Games with procedural generation}
 \subsection*{The Binding of Isaac}
@@ -66,7 +110,14 @@ on the dead end rooms. There are always one of any special room in a level.
 
 I want to take the dead end rooms that only have one entrance and exit and then put then to be either the 
 key room or the door room.
-\subsection*{Townscaper}
+
+\section*{Genre}
+The genre of the game is horror, because the player will need to run from an enemy that is hunting them.
+The gameplay is inspired by Alien: Isolation which is discussed in more detail from the previous prototype
+game design document. 
+This prototype explores the RogueLike genre more by using procedural generation to make each playthrough 
+different. The core gameplay of hiding from the enemy while trying to move a key to an objective stays the
+same the map changes every time.
 
 \section*{Different Procedural Generation Algorithms}
 These algorithms will help in creating the procedural generation algorithm for the prototype.
@@ -109,6 +160,20 @@ Cons
     \item May be prone to contradictions.
 \end{itemize}
 
+\subsection*{Random Walk}
+Random Walk is when an agent randomly walks around. The algorithm takes in a walklength and how many times
+it should walk this walklength. It is one of the most simple procedural generation algorithms.
+Pros:
+\begin{itemize}
+    \item Makes organic looking caves.
+    \item Very easy to setup.
+\end{itemize}
+Cons:
+\begin{itemize}
+    \item Can leave some spots open causing a disconnect in the floor
+    \item Generation can fail due to randomness.
+\end{itemize}
+
 \section*{Procedural Generation Algorithm}
 The algorithm I will make will follow the Binary Space Partitioning first to get the rooms
 and their layout. 
@@ -135,6 +200,8 @@ The player can escape quickly if they follow the voice of the narrator from prot
 it leads the player to the level in prototype 3. The player would then need to escape from their own consequences.
 The level of the prototype is made through a procedural generation algorithm using BSP. This will cause the rooms in 
 the levels to take on a rectangular shape.
+
+
 \section*{Process}
 WFC was not used during the process of making the room generation algorithm. This is because the game has no
 decorations for the level which limits the effectiveness of WFC, because it works best when making predetermined 
@@ -164,17 +231,51 @@ more likely the end generation to be a square of walk length. The numbers chosen
 is 50. These values where chosen, because if a room is the minimum size of 15x15 it will be a rectangle, but the bigger rooms
 will look as if they are decaying which gives the player a feeling of eeriness.
 
+\begin{figure}[ht!]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{Images/RandomWalkGeneration.png}
+        \caption{Random Walk Generation}
+        \label{img:RandomWalk}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{Images/BinarySpacePartitioning.png}
+            \caption{No Random Walk Generation}
+            \label{img:BinarySpacePartitioning}
+    \end{minipage}
+\end{figure}
+
 The algorithm does not keep track of rooms with only 1 entrance/exit to place the key and objective, rather the algorithm randomly
 places the key and then places the objective as far away from the key as possible. 
 
+Another devtool was added in order to help show off the map generation. This is to more easily find if the generation achieved
+the generation goals listed in Goals.
 
 
 \section*{Reflection}
+The making of the algorithm was easy the hard part was tuning the values to get a result that works for the game. If the values
+were too low for the random walk algorithm the rooms will be generated too small and with random walls stopping the flow of movement
+with walls placed in the middle of the rooms. With larger values the walls that are randomly placed within the room act as hiding
+spots for the player.
+
+One problem with the procedural generation is that some generations cause the player to have to move around the enemy in order to
+progress. This is a bit frustrating because you either have to wait in a hiding spot or try to manoeuver around the enemy which can
+increase the games difficulty. To fix this problem the algorithm would then need to keep track of the amount of entrances to the rooms.
+This can be an improvement of the project in the future.
+
+The RogueLike elements does add to the eeriness of the level, but it can be just as annoying and frustrating when the algorithm 
+generates in a way that disadvantages the player causing them to lose the game quickly. Some ways to improve on this is to use 
+the Wave Function Collapse algorithm because if the function is given a input of the wanted end result then the algorithm can
+clean up the generated rooms and stop unwanted generations.
+
+All the algorithms researched have their own strengths and weaknesses. If the algorithms are used to their strengths to make
+up for the other algorithms' weaknesses then the procedural generation can improve.
+
 \section*{References}
-https://www.gamedeveloper.com/game-platforms/how-townscaper-works-a-story-four-games-in-the-making
-https://www.boristhebrave.com/2020/09/12/dungeon-generation-in-binding-of-isaac/
-https://www.youtube.com/watch?v=zIRTOgfsjl0
-https://www.youtube.com/watch?v=3g440SA2hKU
-https://www.youtube.com/watch?v=nbi88hY9hcw
-https://www.youtube.com/watch?v=hCD0FNVhrIQ
+[1]Boris, “Dungeon Generation in Binding of Isaac,” BorisTheBrave.com, Sep. 12, 2020. https://www.boristhebrave.com/2020/09/12/dungeon-generation-in-binding-of-isaac/
+[2]“Procedural Generation with Wave Function Collapse and Model Synthesis | Unity Devlog,” www.youtube.com. https://www.youtube.com/watch?v=zIRTOgfsjl0 (accessed Jun. 08, 2023).
+‌[3]Sunny Valley Studio, “Binary Space Partitioning Algorithm - P13 - Unity Procedural Generation of a 2D Dungeon,” YouTube, Dec. 19, 2020. https://www.youtube.com/watch?v=nbi88hY9hcw (accessed Apr. 28, 2026).
+[4]“Generating a 2D map using the Random Walk algorithm | Noveltech,” sveltekit-prerender, Jul. 17, 2023. https://www.noveltech.dev/procgen-random-walk
+‌
 \end{document}

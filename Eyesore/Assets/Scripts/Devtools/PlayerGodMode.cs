@@ -12,7 +12,7 @@ public class PlayerGodMode : MonoBehaviour
     public GameObject PlayerLight;
     private LayerMask _originalLightMask;
     private string _originalLightTag;
-    bool _godMode = false;
+    bool _godMode = true;
     private void OnEnable()
     {
         if(!Player.TryGetComponent<Collider2D>(out _playerCollider)) return;
@@ -23,14 +23,16 @@ public class PlayerGodMode : MonoBehaviour
         _originalLightTag = PlayerLight.tag;
 
         InputReaderSO.OnGodModePlayer += OnGodMode;
+        InputReaderSO.OnMapShow += OnGodMode;
     }
     private void OnDisable()
     {
         InputReaderSO.OnGodModePlayer -= OnGodMode;
+        InputReaderSO.OnMapShow -= OnGodMode;
     }
     private void OnGodMode()
     {
-        _godMode = !_godMode;
+        
         _playerCollider.enabled = !_godMode;
 
         string newTagPlayer = !_godMode? _originalPlayerTag : "Untagged";
@@ -44,5 +46,7 @@ public class PlayerGodMode : MonoBehaviour
 
         PlayerLight.tag = newTagLight;
         PlayerLight.layer = newLayerLight;
+
+        _godMode = !_godMode;
     }
 }

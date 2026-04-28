@@ -15,6 +15,7 @@ public class CrouchMechanic : MonoBehaviour
     private float _zoomSpeed = 20f;
 
     private bool _crouching = false;
+    public bool shouldUpdateZoom = true;
     void OnEnable()
     {
         _baseSpeed = _player.GetSpeed();
@@ -49,6 +50,7 @@ public class CrouchMechanic : MonoBehaviour
 
     private void UpdateCameraZoom()
     {
+        if(!shouldUpdateZoom) return;
         float targetSize = _crouching ? _crouchCameraSize : _originalSize;
         
         _camera.Lens.OrthographicSize = Mathf.Lerp(

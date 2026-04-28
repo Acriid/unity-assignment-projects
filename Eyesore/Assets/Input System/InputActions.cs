@@ -1179,6 +1179,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec80a08c-1497-41c7-bd4b-a17982074690"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1223,6 +1232,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayerGodmode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e55144dd-6c3f-4cce-bf5d-4d6c5d99371f"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1323,6 +1343,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_DevTools_ResetScene = m_DevTools.FindAction("ResetScene", throwIfNotFound: true);
         m_DevTools_ShowEnemyStats = m_DevTools.FindAction("ShowEnemyStats", throwIfNotFound: true);
         m_DevTools_PlayerGodmode = m_DevTools.FindAction("PlayerGodmode", throwIfNotFound: true);
+        m_DevTools_ShowMap = m_DevTools.FindAction("ShowMap", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -1810,6 +1831,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_DevTools_ResetScene;
     private readonly InputAction m_DevTools_ShowEnemyStats;
     private readonly InputAction m_DevTools_PlayerGodmode;
+    private readonly InputAction m_DevTools_ShowMap;
     /// <summary>
     /// Provides access to input actions defined in input action map "DevTools".
     /// </summary>
@@ -1837,6 +1859,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "DevTools/PlayerGodmode".
         /// </summary>
         public InputAction @PlayerGodmode => m_Wrapper.m_DevTools_PlayerGodmode;
+        /// <summary>
+        /// Provides access to the underlying input action "DevTools/ShowMap".
+        /// </summary>
+        public InputAction @ShowMap => m_Wrapper.m_DevTools_ShowMap;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1875,6 +1901,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @PlayerGodmode.started += instance.OnPlayerGodmode;
             @PlayerGodmode.performed += instance.OnPlayerGodmode;
             @PlayerGodmode.canceled += instance.OnPlayerGodmode;
+            @ShowMap.started += instance.OnShowMap;
+            @ShowMap.performed += instance.OnShowMap;
+            @ShowMap.canceled += instance.OnShowMap;
         }
 
         /// <summary>
@@ -1898,6 +1927,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @PlayerGodmode.started -= instance.OnPlayerGodmode;
             @PlayerGodmode.performed -= instance.OnPlayerGodmode;
             @PlayerGodmode.canceled -= instance.OnPlayerGodmode;
+            @ShowMap.started -= instance.OnShowMap;
+            @ShowMap.performed -= instance.OnShowMap;
+            @ShowMap.canceled -= instance.OnShowMap;
         }
 
         /// <summary>
@@ -2194,5 +2226,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPlayerGodmode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ShowMap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShowMap(InputAction.CallbackContext context);
     }
 }

@@ -85980,8 +85980,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7449576324784408855, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
+      propertyPath: m_text
+      value: You Have Completed the Prototype
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4955970614184366310, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99f73f63270aab0429a7a6446719ae8a, type: 3}

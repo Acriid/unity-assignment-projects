@@ -30,6 +30,8 @@ public class SprintMechanic : MonoBehaviour
     private float _sprintCameraSize = 0f;
     private float _originalSize = 0f;
     private float _zoomSpeed = 20f;
+    public bool shouldUpdateZoom = true;
+
     void OnEnable()
     {
         _sprintTimeLeft = _maxSprintTime;
@@ -136,6 +138,7 @@ public class SprintMechanic : MonoBehaviour
 
     private void UpdateCameraZoom()
     {
+        if(!shouldUpdateZoom) return;
         float targetSize = _sprinting ? _sprintCameraSize : _originalSize;
         
         _camera.Lens.OrthographicSize = Mathf.Lerp(

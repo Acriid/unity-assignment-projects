@@ -14,7 +14,9 @@ public class GoalComplete : MonoBehaviour
     }
     private void OnGoalComplete()
     {
+        if(EnableObject != null)
         EnableObject.SetActive(true);
+        if(DisableObject != null)
         DisableObject.SetActive(false);
     }
 }

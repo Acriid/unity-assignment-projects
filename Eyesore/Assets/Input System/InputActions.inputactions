@@ -1093,6 +1093,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShowMap",
+                    "type": "Button",
+                    "id": "ec80a08c-1497-41c7-bd4b-a17982074690",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1137,6 +1146,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlayerGodmode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e55144dd-6c3f-4cce-bf5d-4d6c5d99371f",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

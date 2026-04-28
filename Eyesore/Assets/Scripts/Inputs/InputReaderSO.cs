@@ -27,6 +27,7 @@ public class InputReaderSO : ScriptableObject
     private InputAction _resetSceneAction;
     private InputAction _showEnemyStatsAction;
     private InputAction _godModePlayerAction;
+    private InputAction _showMap;
 
     //Events
     public event Action<Vector2> OnMove;
@@ -44,6 +45,7 @@ public class InputReaderSO : ScriptableObject
     public event Action OnResetScene;
     public event Action OnShowEnemyStats;
     public event Action OnGodModePlayer;
+    public event Action OnMapShow;
 
     //Actions
     private Action<InputAction.CallbackContext> movePerformed;
@@ -64,6 +66,7 @@ public class InputReaderSO : ScriptableObject
     private Action<InputAction.CallbackContext> resetScenePerformed;
     private Action<InputAction.CallbackContext> showEnemyStatsPerformed;
     private Action<InputAction.CallbackContext> godModePlayerPerformed;
+    private Action<InputAction.CallbackContext> mapShowPerformed;
 
 
     void OnEnable()
@@ -167,6 +170,7 @@ public class InputReaderSO : ScriptableObject
         _showEnemyStatsAction = _inputActions.DevTools.ShowEnemyStats;
         _resetSceneAction = _inputActions.DevTools.ResetScene;
         _godModePlayerAction = _inputActions.DevTools.PlayerGodmode;
+        _showMap = _inputActions.DevTools.ShowMap;
     }
     private void InitializeDevtoolEvents()
     {
@@ -174,6 +178,7 @@ public class InputReaderSO : ScriptableObject
         showEnemyStatsPerformed = ctx => OnShowEnemyStats?.Invoke();
         resetScenePerformed = ctx => OnResetScene?.Invoke();
         godModePlayerPerformed = ctx => OnGodModePlayer?.Invoke();
+        mapShowPerformed = ctx => OnMapShow?.Invoke();
     }
     private void SubscribeDevtools()
     {
@@ -181,13 +186,15 @@ public class InputReaderSO : ScriptableObject
         _showEnemyStatsAction.performed += showEnemyStatsPerformed;
         _resetSceneAction.performed += resetScenePerformed;
         _godModePlayerAction.performed += godModePlayerPerformed;
+        _showMap.performed += mapShowPerformed;
     }
     private void UnsubscribeDevtools()
     {
         _showEnemyAction.performed -= showEnemyPerformed;
         _showEnemyStatsAction.performed -= showEnemyStatsPerformed;
         _resetSceneAction.performed -= resetScenePerformed; 
-        _godModePlayerAction.performed -= godModePlayerPerformed;      
+        _godModePlayerAction.performed -= godModePlayerPerformed;   
+        _showMap.performed -= mapShowPerformed;   
     }
     public void EnableDevtools()
     {
@@ -195,13 +202,15 @@ public class InputReaderSO : ScriptableObject
         _showEnemyStatsAction.Enable();
         _resetSceneAction.Enable();
         _godModePlayerAction.Enable();
+        _showMap.Enable();
     }
     public void DisableDevtools()
     {
         _showEnemyAction.Disable();
         _showEnemyStatsAction.Disable();
         _resetSceneAction.Disable(); 
-        _godModePlayerAction.Disable();      
+        _godModePlayerAction.Disable();   
+        _showMap.Disable();   
     }
 
 
