@@ -133,10 +133,10 @@ public class EnemyDirector : MonoBehaviour
         if(objectToGuard == null) 
         {   
             Debug.Log("No goal Found");
-            _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(Enemy.transform.position);
+            _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(Enemy);
             return;
         }
-        _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(objectToGuard.GoalSO.GoalPosition);
+        _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(objectToGuard.gameObject);
     }
 
 

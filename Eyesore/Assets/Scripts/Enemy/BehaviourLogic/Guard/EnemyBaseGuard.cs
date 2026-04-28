@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Guard-Area", menuName = "Enemy Logic/Logic Guard/Guard Area")]
 public class EnemyBaseGuard : EnemyGuardSOBase
 {
-    private Vector2 _guardPosition;
+    private GameObject _guardPosition;
     
     [SerializeField] private float _movementRange = 5f;
     private float _waitTime = 2f;
@@ -42,12 +42,12 @@ public class EnemyBaseGuard : EnemyGuardSOBase
             Debug.Log("Going to 0,0");
             return _enemy.transform.position + (Vector3)Random.insideUnitCircle * _movementRange;
         }
-        Vector3 result = _guardPosition + Random.insideUnitCircle * _movementRange;
+        Vector3 result = (Vector2)_guardPosition.transform.position + Random.insideUnitCircle * _movementRange;
         result.z = 0f;
         return result;
     }
 
-    public override void SetGuardPosition(Vector2 guardPosition)
+    public override void SetGuardPosition(GameObject guardPosition)
     {
         _guardPosition = guardPosition;
     }

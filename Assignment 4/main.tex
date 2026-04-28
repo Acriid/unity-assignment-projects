@@ -133,6 +133,8 @@ searching for the key and exit.
 The overall story of the game is that the player found themselves in some sort of laboratory and they need to escape.
 The player can escape quickly if they follow the voice of the narrator from prototype 1, but if they defy the narrator
 it leads the player to the level in prototype 3. The player would then need to escape from their own consequences.
+The level of the prototype is made through a procedural generation algorithm using BSP. This will cause the rooms in 
+the levels to take on a rectangular shape.
 \section*{Process}
 WFC was not used during the process of making the room generation algorithm. This is because the game has no
 decorations for the level which limits the effectiveness of WFC, because it works best when making predetermined 
@@ -153,6 +155,8 @@ because it allows enough 15 x 15 rooms so that the player still has to traverse 
 reason is that the enemy needs to move through different rooms to make the player feel like they are being hunted.
 The 15 x 15 minimum room choice is to make the rooms not feel claustrophobic, but still small enough to make traversing
 the map a chore.
+After playtesting it was found that a 150 by 150 map was more reasonable for players to navigate while a minimum room of
+20 by 20 allows easer escaping from the enemy.
 
 The algorithm uses random walk with two important variables: iterations and walk length. Iterations is how many times the 
 algorithm should randomly walk while walk length is how far the algorithm walks per iteration. The higher the iteration the

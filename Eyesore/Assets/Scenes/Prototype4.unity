@@ -1471,8 +1471,8 @@ MonoBehaviour:
   RandomWalkSO: {fileID: 11400000, guid: 2af6c8d0856309344b11bcc4790fecd2, type: 2}
   _minRoomWidth: 15
   _minRoomHeight: 15
-  _dungeonWidth: 200
-  _dungeonHeight: 200
+  _dungeonWidth: 100
+  _dungeonHeight: 100
   _offset: 1
   _randomWalkRooms: 1
   _placeLights: 1
@@ -1653,6 +1653,10 @@ PrefabInstance:
       propertyPath: EscapeUI
       value: 
       objectReference: {fileID: 1050922015}
+    - target: {fileID: 7585298051677530972, guid: 06d49c2acc3f7c745a820e79c0049a1e, type: 3}
+      propertyPath: _warningRadius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8253058822616714632, guid: 06d49c2acc3f7c745a820e79c0049a1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

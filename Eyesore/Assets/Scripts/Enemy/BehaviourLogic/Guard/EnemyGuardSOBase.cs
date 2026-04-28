@@ -30,5 +30,5 @@ public class EnemyGuardSOBase : ScriptableObject
     }
     public virtual void DoPhysicsLogic() {}
 
-    public virtual void SetGuardPosition(Vector2 guardPosition) {}
+    public virtual void SetGuardPosition(GameObject guardPosition) {}
 }
