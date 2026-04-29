@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  29 APR 2026 01:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  29 APR 2026 10:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -289,12 +289,14 @@ File: Images/BinarySpacePartitioning.png Graphic file (type png)
 Package pdftex.def Info: Images/BinarySpacePartitioning.png  used on input line 243.
 (pdftex.def)             Requested size: 137.9979pt x 137.69089pt.
  [5]
-Overfull \hbox (110.13057pt too wide) in paragraph at lines 276--281
+No file main.gls.
+
+Overfull \hbox (110.13057pt too wide) in paragraph at lines 276--283
 \OT1/cmr/m/n/10 Model Syn-the-sis | Unity De-vlog," www.youtube.com. https://www.youtube.com/watch?v=zIRTOgfsjl0
  []
 
 
-Overfull \hbox (17.5655pt too wide) in paragraph at lines 276--281
+Overfull \hbox (17.5655pt too wide) in paragraph at lines 276--283
 \OT1/cmr/m/n/10 Nov-el-tech," sveltekit-prerender, Jul. 17, 2023. https://www.noveltech.dev/procgen-
  []
 
@@ -305,15 +307,15 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 9611 strings out of 467533
- 204616 string characters out of 5423669
+ 9613 strings out of 467533
+ 204644 string characters out of 5423669
  674612 words of memory out of 5000000
- 38474 multiletter control sequences out of 15000+600000
+ 38476 multiletter control sequences out of 15000+600000
  630029 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  78i,8n,79p,2553b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (7 pages, 71527 bytes).
+Output written on main.pdf (7 pages, 71528 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream

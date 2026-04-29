@@ -12,14 +12,16 @@ public class EntityPlacerAlgorithm : MonoBehaviour
 
     public void PlaceEntities(List<BoundsInt> roomsList)
     {
-
+        if(_enemyObject.activeSelf) _enemyObject.SetActive(false);
         Vector3 enemyPosition = Vector3.zero;
+        Vector3 bestPosition = Vector3.zero;
 
         float bestDistance = 0f;
 
 
         BoundsInt currentRoom = roomsList[Random.Range(0,roomsList.Count -1)];
         Vector3 playerPosition = currentRoom.center;
+
 
         for(int i = 0 ; i < roomsList.Count ; i++)
         {
@@ -31,14 +33,14 @@ public class EntityPlacerAlgorithm : MonoBehaviour
             if(currentDistance >= bestDistance)
             {
                 bestDistance = currentDistance;
-
+                bestPosition = enemyPosition;
             }
         }
 
 
 
         _playerObject.transform.position = playerPosition;
-        _enemyObject.transform.position = enemyPosition;
+        _enemyObject.transform.position = bestPosition;
 
         if(!_enemyObject.activeSelf) _enemyObject.SetActive(true);
 
