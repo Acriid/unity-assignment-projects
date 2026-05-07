@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
     private void OnEscape()
     {
         if(EscapeUI == null) return;
-        EscapeUI.SetActive(true);
+        EscapeUI.SetActive(!EscapeUI.activeSelf);
     }
 
     public void ChangeSpeed(float newSpeed)

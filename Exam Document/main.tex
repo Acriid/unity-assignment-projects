@@ -1,0 +1,110 @@
+\documentclass{article}
+\begin{document}
+\section{Hypothesis}
+\section{Goal}
+\begin{itemize}
+    \item Make a story.
+    \item Connect all the prototypes.
+    \item Improve the prototype algorithm.
+\end{itemize}
+\section{Story}
+The player will find themselves in a sort of laboratory where a disembodied voice will try 
+to guide the player out of the laboratory. If the player follows the voice they will successfully
+escape the laboratory. If the player disobeys the voice they will be taken deeper into the laboratory
+where they will then have to escape from the laboratory without the help of the narrator. 
+\section{Game Progression}
+The general game progression is that the player will start in the tutorial and then make their ways
+from the first level to the third level. The tutorial and first level will be handmade and will have
+a narrator on both levels. The second and third level will both be procedurally generated with different
+values in their generation to indicate a decay of the laboratory.
+\subsection{Tutorial}
+The player will start in the tutorial where they will learn the basics of the game. The player
+will first learn the basic controls which are: Moving, sprinting, toggling the player light and
+general interactions the player can perform. The player will be introduced to the enemy in the
+tutorial and different ways to avoid them.
+\subsection{First Level}
+The player will be put in a laboratory map where a disembodied voice called the narrator will then
+try to help the player escape from the laboratory. If the player follows the narrator then they will
+escape from the laboratory, if the player disobeys the narrator they will go deeper into the laboratory.
+The enemy will not appear in this level. This level will not be procedurally generated.
+\subsection{Second Level}
+The player will be in a laboratory that is starting to decay. The player will then need to complete a 
+puzzle while hiding and avoiding the enemy. After the player completes the puzzle they will be taken to
+the next level through either a door opening on the map or being teleported there. The decay will be shown
+by giving some random walk to the procedural generation.
+\subsection{Third Level}
+The player will be in a laboratory that is decayed. The player will then face the same challenges that
+they faced in the second level. The decay is shown by giving the procedural generation a high level of
+random walk.
+
+\section{Genre}
+The genre of the game will be a stealth survival horror and puzzle genre. 
+The player will need to hide and evade an unstoppable enemy while trying to complete some sort of goal.
+This will be similar to the Alien from Alien Isolation, because the AI enemy was inspired from Alien 
+Isolation.
+The puzzle genre appears when the player will need to find solutions to the puzzles presented to them.
+
+\section{Possible Puzzles}
+These are the puzzles that can appear during the procedural generation of the level. Each puzzle will 
+have success criteria which is determined by the puzzle.
+\subsection{Fetch quest}
+The player will need to find an item and bring it to the destination.
+\newline
+The generation will be a success if:
+\begin{itemize} 
+    \item The item can be accessed.
+    \item The item can be picked up and put down.
+    \item The destination can be accessed.
+    \item The destination recognizes the item.
+    \item The player completes the goal after brining the item to the destination.
+\end{itemize}
+\subsection{Password}
+The player will need to find a password that they will then use to open a lock.
+\newline
+The generation will be a success if:
+\begin{itemize} 
+    \item All parts of the password can be accessed
+    \item All parts of the password can be read.
+    \item The lock can be accessed.
+    \item The lock successfully recognizes the entered password.
+    \item The lock completes the goal after the password has been entered.
+\end{itemize}
+\subsection{Pattern}
+The player will be presented with a special room in which the player will need to move objects in a
+specific order to complete the puzzle.
+The generation will be a success if:
+\begin{itemize} 
+    \item All parts of the puzzle can be accessed
+    \item All parts of the puzzle can be picked up and put down.
+    \item The puzzle can be accessed.
+    \item The puzzle successfully recognizes the entered pattern.
+    \item The puzzle completes the goal after the pattern has been entered.
+\end{itemize}
+
+\section{Prototype Improvements}
+This prototype will improve upon all previous prototypes, while connecting all the prototypes together.
+\subsection{Prototype 1 Improvements}
+The map of prototype 1 will be improved while also allowing the player to use more of the mechanics to
+explore the map. This will include areas that can only be accessed when the player's light is turned off
+and areas that have a timer that the player needs to sprint towards to access. This will give the player
+more interaction in exploring the map.
+\subsection{Prototype 2 Improvements}
+The tutorial will include the narrator to help the player understand the story of the game. This will
+also include improving the map to allow the player to improve on the mechanics while learning them. This
+level will also require an improved enemy to show the player the actions and behavior of the enemy.
+\subsection{Prototype 3 Improvements}
+This prototype focused on the enemy thus the enemy will be improved. The enemy will be given a static
+state in which they will not move. In this static state the enemy will only listen for player footsteps
+and move towards them. The enemy sight will also be shown in the tutorial to the player in this state 
+to help the prototype 2 improvements. This new state can get the player to possible stun the enemy
+allowing for ways to fight against but not remove the enemy.
+\subsection{Prototype 4 Improvements}
+The procedural generation algorithm will be improved by keeping track of all the rooms in the generation
+to allow adding of special rooms which will either be a room in which a puzzle needs to be solved or 
+will have an interaction for the player. The algorithm will also allow for secret passages between
+rooms. 
+
+\section{Communication Design}
+\section{Process}
+
+\end{document}
