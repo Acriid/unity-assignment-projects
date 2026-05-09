@@ -24,6 +24,7 @@ public class EnemyDirector : MonoBehaviour
 
     void Awake()
     {
+        if(Enemy == null) return;
         _enemyComponent = Enemy.GetComponent<Enemy>();
 
         StartCoroutine(ChangeAnnoyance());

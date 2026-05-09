@@ -46,6 +46,7 @@ public class DialogManager : MonoBehaviour
     }
     public void ShowDialog(int dialogIndex)
     {
+        if(_objectDictionary.Count == 0) return;
         if(dialogIndex == 0) return;
 
        _objectDictionary[dialogIndex] = _dialogPool.Get();
