@@ -118,6 +118,18 @@ public class SprintMechanic : MonoBehaviour
 
     }
 
+    public void ResetSprint()
+    {
+        if(_sprintReset != null)
+        {
+            StopCoroutine(_sprintReset);
+            _sprintReset = null; 
+        }
+
+        _sprintTimeLeft = _maxSprintTime;
+        _sprintMeter.value = _maxSprintTime;
+    }
+
 
     private IEnumerator ShowSprintReset(float waitValue)
     {

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70108c001999674d9984633f65a586b, type: 3}
-  m_Name: Greetings
+  m_Name: Introduction
   m_EditorClassIdentifier: Assembly-CSharp::DialogSO
-  DialogText: Welcome to the laboritory
-  DialogDescription: Plays when the player enters the scene
-  DialogFontSize: 15
-  DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
+  DialogText: I am here to teach you how to survive
+  DialogDescription: Plays after the greetings
+  DialogFontSize: 0
+  DialogColour: {r: 0, g: 0, b: 0, a: 0}
   DialogFont: {fileID: 0}
-  DialogPosition: {x: 0, y: 7}
-  DialogID: 1
+  DialogPosition: {x: 0, y: 0}
+  DialogID: 0
   NextDialogID: 0
-  DialogDuration: 5
+  DialogDuration: 0
   InstantDialog: 0
   FlowingDialog: 0
