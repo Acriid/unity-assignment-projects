@@ -702,7 +702,7 @@ MonoBehaviour:
   _detectionRadius: 3
   _interactionLayer:
     serializedVersion: 2
-    m_Bits: 14592
+    m_Bits: 47360
 --- !u!114 &1057553785290438987
 MonoBehaviour:
   m_ObjectHideFlags: 0

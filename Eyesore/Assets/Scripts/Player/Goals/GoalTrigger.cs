@@ -20,6 +20,7 @@ public class GoalTrigger : GoalObject
         }
     }
 
+    //TODO - Add a way for the player to pick the item back up. undoing the goal being complete.
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag(_collisionTag) && collision.gameObject == GoalItem)
