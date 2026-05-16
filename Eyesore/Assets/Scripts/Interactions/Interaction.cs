@@ -52,4 +52,8 @@ public abstract class Interaction : MonoBehaviour
             disableObject.SetActive(newValue);
         }
     }
+    public virtual void ChangeInteractionPrompt(string newPrompt)
+    {
+        interactionPrompt = newPrompt;
+    }
 }
