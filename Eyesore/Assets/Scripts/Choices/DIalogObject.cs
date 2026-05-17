@@ -12,6 +12,8 @@ public class DialogObject : MonoBehaviour
     [SerializeField] private TMP_Text _tmpText;
     public bool DialogPaused = false;
     public event Action<DialogSO> OnTextFinished;
+    private Coroutine _typeRoutine = null;
+    private Coroutine _deleteRoutine = null;
     void Awake()
     {
         
@@ -28,7 +30,7 @@ public class DialogObject : MonoBehaviour
         _tmpText.fontSize = DialogSO.DialogFontSize;
         _tmpText.color = DialogSO.DialogColour;
 
-        StartCoroutine(TypeDialog(DialogSO.DialogText,DialogSO.DialogDuration));
+        _typeRoutine = StartCoroutine(TypeDialog(DialogSO.DialogText,DialogSO.DialogDuration));
         
 
     }
@@ -49,10 +51,16 @@ public class DialogObject : MonoBehaviour
         }
         yield return new WaitForSeconds(dialogDuration);
 
-        StartCoroutine(DeleteDialog(0.15f));
+        _deleteRoutine = StartCoroutine(DeleteDialog(0.15f));
     }
     private IEnumerator DeleteDialog(float deleteTime)
     {
+        if(_typeRoutine != null)
+        {
+            _typeRoutine = null;
+        }
+
+
         StringBuilder s = new(_tmpText.text);
         float letterTime = deleteTime/s.Length;
         while(s.Length > 0)
@@ -62,6 +70,21 @@ public class DialogObject : MonoBehaviour
             yield return new WaitForSeconds(letterTime);
         }
         OnTextFinished?.Invoke(DialogSO);
+    }
+    public bool StopDialog()
+    {
+        if(_typeRoutine != null)
+        {
+            StopCoroutine(_typeRoutine);
+            _typeRoutine = null;
+            if(_deleteRoutine == null)
+            {
+                _deleteRoutine = StartCoroutine(DeleteDialog(0f));
+                return true;
+            }
+        }
+        
+        return false;
     }
 
 }

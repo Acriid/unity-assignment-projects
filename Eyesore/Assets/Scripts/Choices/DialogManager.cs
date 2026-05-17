@@ -44,6 +44,14 @@ public class DialogManager : MonoBehaviour
     public void ShowDialog(DialogSO dialogSO)
     {
         if(dialogSO == null) return;
+        
+        List<DialogSO> checkList = new();
+        dialogSO.GetNextDialogList(ref checkList);
+        foreach(DialogSO checkDialog in checkList)
+        {
+            if(_objectDictionary.TryGetValue(checkDialog, out DialogObject NullTest)) return;
+        }
+        
 
         Debug.Log($"Showing Dialog {dialogSO.name}");
 
@@ -53,6 +61,17 @@ public class DialogManager : MonoBehaviour
 
         _objectDictionary[dialogSO].ShowDialog();
         _objectDictionary[dialogSO].OnTextFinished += RemoveDialog;
+    }
+    public void StopDialog(DialogSO dialogSO)
+    {
+        bool noMoreNext = false;
+        while(!noMoreNext)
+        {
+            if(_objectDictionary.TryGetValue(dialogSO, out DialogObject dialogObject))
+            {
+                
+            }
+        }
     }
 
     private void RemoveDialog(DialogSO dialogSO)

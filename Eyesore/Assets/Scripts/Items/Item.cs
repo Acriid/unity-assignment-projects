@@ -95,6 +95,7 @@ public class Item : Interaction
         DisableObjects(false);
         _pickedUp = true;
         Debug.Log($"Picked up {ItemSO.ItemName}");
+        ShowDialog();
     }
     private void DropItem(GameObject player)
     {

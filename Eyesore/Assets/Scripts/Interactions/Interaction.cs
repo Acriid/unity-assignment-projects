@@ -61,8 +61,13 @@ public abstract class Interaction : MonoBehaviour
     }
     public virtual void ShowDialog()
     {
-        if ((_repeatDialog && !_shownDialog) || (!_repeatDialog && !_shownDialog)) return;
+        if(!_repeatDialog)
+            if(_shownDialog) return;
         if(DialogManager.Instance != null && _dialogSO != null)
-        DialogManager.Instance.ShowDialog(_dialogSO);
+        {
+            DialogManager.Instance.ShowDialog(_dialogSO);
+            _shownDialog = true;
+        }
+        
     }
 }

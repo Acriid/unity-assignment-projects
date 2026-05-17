@@ -24,6 +24,7 @@ public class ToggleInteraction : Interaction
         {
             ChangeInteractionPrompt(toggledPrompt);
         }
+        ShowDialog();
     }
     private void InitialToggle(bool toggleValue)
     {

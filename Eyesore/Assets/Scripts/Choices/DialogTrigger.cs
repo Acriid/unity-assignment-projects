@@ -19,8 +19,10 @@ public class DialogTrigger : MonoBehaviour
         {
             DialogManager.Instance.ShowDialog(_showDialog);
             if(_removeItemAfterTrigger)
+            {
                 gameObject.SetActive(false);
-            _triggered = true;
+                _triggered = true;
+            }
 
             ChangeTriggers();
         }
