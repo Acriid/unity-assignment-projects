@@ -11,7 +11,7 @@ public class DialogObject : MonoBehaviour
     public DialogSO DialogSO;
     [SerializeField] private TMP_Text _tmpText;
     public bool DialogPaused = false;
-    public event Action<int> OnTextFinished;
+    public event Action<DialogSO> OnTextFinished;
     void Awake()
     {
         
@@ -61,7 +61,7 @@ public class DialogObject : MonoBehaviour
             _tmpText.text = s.ToString();
             yield return new WaitForSeconds(letterTime);
         }
-        OnTextFinished?.Invoke(DialogSO.DialogID);
+        OnTextFinished?.Invoke(DialogSO);
     }
 
 }

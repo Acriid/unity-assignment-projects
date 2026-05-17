@@ -18,8 +18,6 @@ MonoBehaviour:
   DialogColour: {r: 0.54901963, g: 1, b: 1, a: 1}
   DialogFont: {fileID: 0}
   DialogPosition: {x: 0, y: 4}
-  DialogID: 4
-  NextDialogID: 5
   DialogDuration: 3
   InstantDialog: 0
-  FlowingDialog: 1
+  NextDialog: {fileID: 11400000, guid: 9c767cd6dd0930e44b2d4586e394c894, type: 2}

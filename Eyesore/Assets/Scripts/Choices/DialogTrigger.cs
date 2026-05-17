@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class DialogTrigger : MonoBehaviour
 {
-    [SerializeField] private int _dialogIndex = 0;
+    [SerializeField] private DialogSO _showDialog = null;
     [SerializeField] private List<GameObject> _dialogDisableTriggers;
     [SerializeField] private List<GameObject> _dialogEnableTriggers;
     [SerializeField] private bool _removeItemAfterTrigger = true;
@@ -17,7 +17,7 @@ public class DialogTrigger : MonoBehaviour
         if(_triggered) return;
         if(collision.CompareTag("Player"))
         {
-            DialogManager.Instance.ShowDialog(_dialogIndex);
+            DialogManager.Instance.ShowDialog(_showDialog);
             if(_removeItemAfterTrigger)
                 gameObject.SetActive(false);
             _triggered = true;
@@ -30,7 +30,7 @@ public class DialogTrigger : MonoBehaviour
     public void TriggerDialog()
     {
         if(_triggered) return;
-        DialogManager.Instance.ShowDialog(_dialogIndex);
+        DialogManager.Instance.ShowDialog(_showDialog);
         if(_removeItemAfterTrigger)
             gameObject.SetActive(false);
 
@@ -64,10 +64,9 @@ public class DialogTrigger : MonoBehaviour
             dialogTrigger.SetActive(false);
         }
     }
-
-    public void ChangeIndex(int newValue)
+    public void ChangeDialog(DialogSO dialogSO)
     {
-        _dialogIndex = newValue;
+        _showDialog = dialogSO;
     }
     public void ClearEnableTriggers()
     {

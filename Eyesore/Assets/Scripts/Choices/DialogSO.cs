@@ -9,9 +9,7 @@ public class DialogSO : ScriptableObject
     public Color DialogColour;
     public Font DialogFont;
     public Vector2 DialogPosition;
-    public int DialogID;
-    public int NextDialogID;
     public int DialogDuration;
     public bool InstantDialog;
-    public bool FlowingDialog;
+    public DialogSO NextDialog;
 }

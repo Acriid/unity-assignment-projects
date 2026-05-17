@@ -10,7 +10,7 @@ public abstract class Interaction : MonoBehaviour
     [SerializeField] protected bool canInteract = true;
     [SerializeField] protected List<GameObject> _enableObjects;
     [SerializeField] protected List<GameObject> _disableObjects;
-    [SerializeField] protected int _dialogIndex = 0;
+    [SerializeField] protected DialogSO _dialogSO = null;
     [SerializeField] protected bool _repeatDialog = false;
     protected bool _shownDialog = false;
 
@@ -62,7 +62,7 @@ public abstract class Interaction : MonoBehaviour
     public virtual void ShowDialog()
     {
         if ((_repeatDialog && !_shownDialog) || (!_repeatDialog && !_shownDialog)) return;
-        if(DialogManager.Instance != null && _dialogIndex != 0)
-        DialogManager.Instance.ShowDialog(_dialogIndex);
+        if(DialogManager.Instance != null && _dialogSO != null)
+        DialogManager.Instance.ShowDialog(_dialogSO);
     }
 }

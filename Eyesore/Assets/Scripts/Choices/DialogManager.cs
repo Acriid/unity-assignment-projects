@@ -1,20 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class DialogManager : MonoBehaviour
 {
     public static DialogManager Instance {get; private set;}
-    [SerializeField] private List<DialogSO> _dialogSOs;
+    [SerializeField] private DialogSO _startDialog;
     [SerializeField] private GameObject _dialogPrefab;
-    [SerializeField] private GameObject _poolParent;
     [SerializeField] private int _poolSize;
 
 
     private GenericPool<DialogObject> _dialogPool;
-    private Dictionary<int,DialogObject> _objectDictionary = new();
-    private int _currentDialogID = 1;
-    private Dictionary<int,bool> _flowingDialog = new();
+    private Dictionary<DialogSO,DialogObject> _objectDictionary = new();
 
     void Awake()
     {
@@ -32,11 +30,10 @@ public class DialogManager : MonoBehaviour
         {
             Debug.Log("Failed to load pool");
         }
-        _dialogSOs = _dialogSOs.OrderBy(dialog => dialog.DialogID).ToList();
 
 
 
-        ShowDialog(_currentDialogID);
+        ShowDialog(_startDialog);
         //Mybe later dialogId changes from a save
     }
     void OnDisable()
@@ -44,58 +41,41 @@ public class DialogManager : MonoBehaviour
         _objectDictionary.Clear();
         _dialogPool.ReturnAll();
     }
-    public void ShowDialog(int dialogIndex)
+    public void ShowDialog(DialogSO dialogSO)
     {
-        if(_dialogSOs.Count == 0) return;
-        if(dialogIndex == 0) return;
+        if(dialogSO == null) return;
 
-        Debug.Log($"Showing Dialog {dialogIndex}");
-       _objectDictionary[dialogIndex] = _dialogPool.Get();
-       _objectDictionary[dialogIndex].DialogSO =_dialogSOs[dialogIndex -1];
+        Debug.Log($"Showing Dialog {dialogSO.name}");
 
-       if(_objectDictionary[dialogIndex].DialogSO.FlowingDialog)
-        {
-            _flowingDialog[dialogIndex] = true;
-            
-        }
+        _objectDictionary[dialogSO] = _dialogPool.Get();
+        _objectDictionary[dialogSO].DialogSO = dialogSO;
 
-       
-       _objectDictionary[dialogIndex].ShowDialog();
-       _objectDictionary[dialogIndex].OnTextFinished += RemoveDialog;
 
+        _objectDictionary[dialogSO].ShowDialog();
+        _objectDictionary[dialogSO].OnTextFinished += RemoveDialog;
     }
 
-    private void RemoveDialog(int dialogIndex)
+    private void RemoveDialog(DialogSO dialogSO)
     {
-        if(!_objectDictionary.ContainsKey(dialogIndex))
+        if(!_objectDictionary.ContainsKey(dialogSO))
         {
-            Debug.LogError("Something went wrong with the index");
+            Debug.Log("Something went wrong with the dialog objects");
             return;
         }
-        _objectDictionary[dialogIndex].OnTextFinished -= RemoveDialog;
-        if(_flowingDialog.TryGetValue(dialogIndex,out bool _flowing))
+
+        _objectDictionary[dialogSO].OnTextFinished -= RemoveDialog;
+
+        if(dialogSO.NextDialog != null)
         {
-            if(_flowing)
-            {
-                _flowingDialog[dialogIndex] = false;
-                ShowDialog(_objectDictionary[dialogIndex].DialogSO.NextDialogID); 
-            }
+
+            ShowDialog(dialogSO.NextDialog);
+
         }
-        _dialogPool.Return(_objectDictionary[dialogIndex]);
+        _dialogPool.Return(_objectDictionary[dialogSO]);
 
-        _objectDictionary[dialogIndex] = null;
-        _objectDictionary.Remove(dialogIndex);
-    
+        _objectDictionary[dialogSO] = null;
+        _objectDictionary.Remove(dialogSO);
     }
 
-    public void LoadData(DialogSaveData data)
-    {
-        _currentDialogID = data.StartDialogID;
-    }
 }
 
-[System.Serializable]
-public struct DialogSaveData
-{
-    public int StartDialogID;
-}
