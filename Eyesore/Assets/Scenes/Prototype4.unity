@@ -152,6 +152,8 @@ MonoBehaviour:
   _wallTileMap: {fileID: 2081434014}
   _hideTileMap: {fileID: 843477681}
   _hiddenFloorTileMap: {fileID: 134039746}
+  _hiddenWallsTileMap: {fileID: 1959197033}
+  _toggleWallTileMap: {fileID: 153533533}
   _floorTile: {fileID: 11400000, guid: eecfcee97af2c61468d2b8bdd88c9146, type: 2}
   _wallTile: {fileID: 11400000, guid: 7c2c05b3dc51a9b4791c32eafe6ab01b, type: 2}
   _hideTile: {fileID: 11400000, guid: b3b9c50c267e80b48a106c65ed55dfcb, type: 2}
@@ -2413,7 +2415,6 @@ MonoBehaviour:
   _puzzleObject: {fileID: 1921636254906059013, guid: 465ccd468ba7e3c4ab7704b8a0ff9384, type: 3}
   _puzzleSolutionObject: {fileID: 7571840618892398224, guid: 25c30392d0f45d84ab74a3734cfc2bcd, type: 3}
   _minDistance: 4
-  _offset: 2
 --- !u!1001 &1188427156
 PrefabInstance:
   m_ObjectHideFlags: 0

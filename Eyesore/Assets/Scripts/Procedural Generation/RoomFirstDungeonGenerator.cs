@@ -14,6 +14,19 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     [SerializeField] private bool _randomWalkRooms = false;
     [SerializeField] private bool _placeLights = false;
     private List<BoundsInt> roomsList = new();
+
+    private HashSet<RoomConnection> _corridorConnections = new();
+    public struct RoomConnection
+    {
+        public BoundsInt StartRoom;
+        public BoundsInt EndRoom;
+
+        public RoomConnection(BoundsInt start = default, BoundsInt end = default)
+        {
+            StartRoom = start;
+            EndRoom = end;  
+        }
+    }
     protected override void RunProceduralGeneration()
     {
 
@@ -28,11 +41,12 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
          new Vector3Int(_dungeonWidth,_dungeonHeight, 0)), _minRoomWidth, _minRoomHeight);
 
 
-
         HashSet<Vector2Int> floor = new();
 
-        _puzzlePlacer.ClearPuzzle();
-        _puzzlePlacer.PlacePuzzleRoom(roomsList,4,_offset);
+
+
+
+    
         if(_randomWalkRooms)
         {
             floor = CreateRoomsRandomWalk(roomsList);
@@ -47,18 +61,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 
 
         //Corridors
-        List<Vector2Int> roomCenters = new();
-        foreach (var room in roomsList)
-        {
-            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
-        }
-
-        HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
+        HashSet<Vector2Int> corridors = ConnectRooms(roomsList);
         floor.UnionWith(corridors);
 
         
         _tilePainter.PaintFloorTiles(floor);
-        WallGenerator.CreateWalls(floor,_tilePainter);
+
+        HashSet<Vector2Int> seceretFloor = SecretConnectRooms(roomsList,_corridorConnections);
+        _tilePainter.PaintHiddenFloorTiles(seceretFloor);
+
+        WallGenerator.CreateWalls(floor,seceretFloor,_tilePainter);
+        WallGenerator.CreateHiddenWalls(floor,seceretFloor,_tilePainter);
 
         if(_placeLights)
         {
@@ -69,6 +82,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
             roomsRandom.UnionWith(roomsList);
             _lightPlacer.PlaceLights(roomsRandom,_offset);
         }
+
+        _puzzlePlacer.ClearPuzzle();
+        _puzzlePlacer.PlacePuzzleRoom(roomsList,4,_offset);
+
 
 
         BakeNavMesh();
@@ -98,35 +115,145 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         }
         return floor;
     }
-    private HashSet<Vector2Int> SecretConnectRooms(List<BoundsInt> rooms, HashSet<Vector2Int> currentConnections)
+    private HashSet<Vector2Int> SecretConnectRooms(List<BoundsInt> rooms, HashSet<RoomConnection> currentConnections)
     {
-        List<Vector2Int> roomCenters = new();
 
-        foreach(BoundsInt room in rooms)
+        HashSet<Vector2Int> corridors = new();
+
+        List<BoundsInt> roomsCopy = new(rooms);
+        
+        HashSet<RoomConnection> copyConnections = new(currentConnections);
+
+        Dictionary<BoundsInt,BoundsInt> lookupDictionary = new();
+
+        foreach(RoomConnection bounds in copyConnections)
         {
-            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
+            lookupDictionary.Add(bounds.StartRoom,bounds.EndRoom);
         }
 
-        
 
-        return null;
+
+        for(int i = 0 ; i < 1 ; i++)
+        {
+
+            
+            BoundsInt currentRoom = roomsCopy[Random.Range(0,roomsCopy.Count)];
+            roomsCopy.Remove(currentRoom);
+
+
+            bool foundConnection = false;
+            while(!foundConnection && roomsCopy.Count > 0)
+            {
+                BoundsInt closest = BoundsFindClosestPointTo(currentRoom,roomsCopy);
+                roomsCopy.Remove(closest);
+                RoomConnection currentConnection = new()
+                {
+                    StartRoom = currentRoom,
+                    EndRoom = closest
+                };
+
+
+                if (
+                    lookupDictionary.TryGetValue(currentRoom, out var currentLookup) &&
+                    lookupDictionary.TryGetValue(closest, out var closestLookup) &&
+                    currentLookup != closest &&
+                    closestLookup != currentRoom
+                )
+                {                 
+
+                    Vector2Int currentRoomCenter = GetBoundsCenter(currentRoom);
+                    Vector2Int closestRoomCenter = GetBoundsCenter(closest);
+
+                    HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter,closestRoomCenter);
+
+                    if(!GoesThroughRoom(currentConnection,rooms,newCorridor))
+                    {
+                        foundConnection = true;
+                        corridors.UnionWith(newCorridor);
+                        currentConnections.Add(currentConnection);
+
+                    }
+                    
+
+                }
+
+
+
+                currentRoom = closest;
+            }
+        }
+
+        return corridors;
     }
-    private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
+    private bool GoesThroughRoom(RoomConnection roomConnection, List<BoundsInt> allRooms, HashSet<Vector2Int> corridor)
     {
+        foreach(BoundsInt currentRoom in allRooms)
+        {
+            if(currentRoom.Equals(roomConnection.StartRoom) || currentRoom.Equals(roomConnection.EndRoom)) continue;
+            
+            foreach(Vector2Int vector2Int in corridor)
+            {
+                if(currentRoom.Contains(new Vector3Int(vector2Int.x, vector2Int.y, 0)))
+                {
+                    Debug.Log("WOW");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private HashSet<Vector2Int> ConnectRooms(List<BoundsInt> allRooms)
+    {
+        List<RoomConnection> roomConnections = new();
+
+
+        List<BoundsInt> roomsCopy = new(allRooms);
+
+        Dictionary<Vector2Int,BoundsInt> _roomLookup = new();
+        
+        List<Vector2Int> roomCenters = new();
+        foreach (var room in roomsCopy)
+        {
+            Vector2Int currentCenter = (Vector2Int)Vector3Int.RoundToInt(room.center);
+
+            _roomLookup.Add(currentCenter,room);
+
+            roomCenters.Add(currentCenter);
+        }
 
         //Currently Gets random room and then connects to other rooms from the random room
         HashSet<Vector2Int> corridors = new();
         var currentRoomCenter = roomCenters[Random.Range(0,roomCenters.Count)];
+
+
         roomCenters.Remove(currentRoomCenter);
     
         while (roomCenters.Count > 0)
         {
             Vector2Int closest = FindClosestPointTo(currentRoomCenter,roomCenters);
             roomCenters.Remove(closest);
+
             HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter,closest);
+
+            if(_roomLookup.TryGetValue(currentRoomCenter, out BoundsInt startRoom) && _roomLookup.TryGetValue(closest,out BoundsInt endRoom))
+            {
+                RoomConnection newConnection = new()
+                {
+                    StartRoom = startRoom,
+                    EndRoom = endRoom
+                };
+
+                roomConnections.Add(newConnection);
+            }
+
+
             currentRoomCenter = closest;
+
             corridors.UnionWith(newCorridor);
         }
+
+        _corridorConnections = new(roomConnections);
+
         return corridors;
     }
 
@@ -134,6 +261,41 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     {
         HashSet<Vector2Int> corridor = new();
         var position = currentRoomCenter;
+        corridor.Add(position);
+        while(position.y != destination.y)
+        {
+            if(destination.y > position.y)
+            {
+                position += Vector2Int.up;
+            }
+            else
+            {
+                position += Vector2Int.down;
+            }
+            corridor.Add(position);
+            corridor.Add(position += Vector2Int.left);
+            corridor.Add(position += Vector2Int.right);
+        }
+        while(position.x != destination.x)
+        {
+            if(destination.x > position.x)
+            {
+                position += Vector2Int.right;
+            }
+            else
+            {
+                position += Vector2Int.left;
+            }
+            corridor.Add(position); 
+            corridor.Add(position += Vector2Int.up);
+            corridor.Add(position += Vector2Int.down);           
+        }
+        return corridor;
+    }
+    private HashSet<Vector2Int> CreateCorridor(BoundsInt currentRoomCenter, Vector2Int destination)
+    {
+        HashSet<Vector2Int> corridor = new();
+        var position = (Vector2Int)Vector3Int.RoundToInt(currentRoomCenter.center);
         corridor.Add(position);
         while(position.y != destination.y)
         {
@@ -183,6 +345,36 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         return closest;
     }
 
+    private BoundsInt BoundsFindClosestPointTo(BoundsInt currentRoomCenter, List<BoundsInt> roomCenters)
+    {
+        Vector2Int currentCenter = (Vector2Int)Vector3Int.RoundToInt(currentRoomCenter.center);
+
+
+        Dictionary<Vector2Int,BoundsInt> _lookupDictionary = new();
+
+        foreach(BoundsInt bounds in roomCenters)
+        {
+            _lookupDictionary.Add((Vector2Int)Vector3Int.RoundToInt(bounds.center),bounds);
+        }
+
+        Vector2Int closest = Vector2Int.zero;
+        float distance = float.MaxValue;
+
+
+        foreach(var position in _lookupDictionary)
+        {
+            float currentDistance = Vector2.Distance(position.Key,currentCenter);
+            if(currentDistance < distance)
+            {
+                distance = currentDistance;
+                closest = position.Key;
+            }
+        }
+
+        return _lookupDictionary[closest];
+    }
+
+
     private HashSet<Vector2Int> CreateSimpleRooms(List<BoundsInt> roomsList)
     {
         HashSet<Vector2Int> floor = new();
@@ -205,6 +397,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         _entityPlacer.PlacedEntities -= PlaceGoals;
 
         _goalPlacer.PlaceKey(roomsList);
+    }
+
+    private Vector2Int GetBoundsCenter(BoundsInt boundsToChange)
+    {
+        return (Vector2Int)Vector3Int.RoundToInt(boundsToChange.center);
     }
 }
 

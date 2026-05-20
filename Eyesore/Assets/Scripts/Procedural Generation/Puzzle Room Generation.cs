@@ -14,14 +14,6 @@ public class PuzzleRoomGeneration : MonoBehaviour
     {
         List<BoundsInt> randomRooms = new();
         List<BoundsInt> cloneRoomsList = new(roomsList);
-        foreach(BoundsInt boundsInt in cloneRoomsList)
-        {
-            Debug.Log($"Min Before: {boundsInt.min}, Max Before: {boundsInt.max}");
-            boundsInt.SetMinMax(new(boundsInt.xMin + offset,boundsInt.yMin + offset),
-            new(boundsInt.xMax - offset,boundsInt.yMax - offset));
-            Debug.Log($"Min After: {boundsInt.min}, Max After: {boundsInt.max}");
-        }
-
 
         for(int i = 0 ; i < puzzleCount ; i++)
         {
