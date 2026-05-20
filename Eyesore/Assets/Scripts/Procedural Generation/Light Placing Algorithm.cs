@@ -16,12 +16,22 @@ public class LightPlacingAlgorithm : MonoBehaviour
 
     private List<GameObject> _lightList = new();
 
-    public void PlaceLights(HashSet<BoundsInt> roomsToLight)
+    public void PlaceLights(HashSet<BoundsInt> roomsToLight, int offset)
     {
         int numberOfLights = Random.Range(Mathf.RoundToInt(roomsToLight.Count * _lightToRoomRatio),roomsToLight.Count);
         Queue<BoundsInt> roomsQueue = new();
-        
-        foreach(BoundsInt bounds in roomsToLight)
+        HashSet<BoundsInt> cloneRoomsList = new(roomsToLight);
+
+        foreach(BoundsInt boundsInt in cloneRoomsList)
+        {
+            //Debug.Log($"Min Before: {boundsInt.min}, Max Before: {boundsInt.max}");
+            boundsInt.SetMinMax(new(boundsInt.xMin + offset,boundsInt.yMin + offset),
+            new(boundsInt.xMax - offset,boundsInt.yMax - offset));
+            //Debug.Log($"Min After: {boundsInt.min}, Max After: {boundsInt.max}");
+        }
+
+
+        foreach(BoundsInt bounds in cloneRoomsList)
         {
             roomsQueue.Enqueue(bounds);
         }

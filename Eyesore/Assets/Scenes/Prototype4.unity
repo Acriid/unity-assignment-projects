@@ -151,6 +151,7 @@ MonoBehaviour:
   _floorTileMap: {fileID: 1757032171}
   _wallTileMap: {fileID: 2081434014}
   _hideTileMap: {fileID: 843477681}
+  _hiddenFloorTileMap: {fileID: 134039746}
   _floorTile: {fileID: 11400000, guid: eecfcee97af2c61468d2b8bdd88c9146, type: 2}
   _wallTile: {fileID: 11400000, guid: 7c2c05b3dc51a9b4791c32eafe6ab01b, type: 2}
   _hideTile: {fileID: 11400000, guid: b3b9c50c267e80b48a106c65ed55dfcb, type: 2}
@@ -228,7 +229,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2241,8 +2242,8 @@ MonoBehaviour:
   _minRoomHeight: 15
   _dungeonWidth: 150
   _dungeonHeight: 150
-  _offset: 1
-  _randomWalkRooms: 1
+  _offset: 5
+  _randomWalkRooms: 0
   _placeLights: 1
 --- !u!4 &1003089670
 Transform:

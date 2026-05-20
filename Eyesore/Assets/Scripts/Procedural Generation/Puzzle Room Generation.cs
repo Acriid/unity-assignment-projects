@@ -8,27 +8,35 @@ public class PuzzleRoomGeneration : MonoBehaviour
     [SerializeField] private GameObject _puzzleObject;
     [SerializeField] private GameObject _puzzleSolutionObject;
     [SerializeField] private float _minDistance = 2f;
-    [SerializeField] private int _offset = 2;
     private List<GameObject> _puzzleObjects = new();
     private List<GameObject> _puzzleSolutions = new();
-    public void PlacePuzzleRoom(List<BoundsInt> roomsList, int puzzleCount)
+    public void PlacePuzzleRoom(List<BoundsInt> roomsList, int puzzleCount, int offset)
     {
         List<BoundsInt> randomRooms = new();
         List<BoundsInt> cloneRoomsList = new(roomsList);
+        foreach(BoundsInt boundsInt in cloneRoomsList)
+        {
+            Debug.Log($"Min Before: {boundsInt.min}, Max Before: {boundsInt.max}");
+            boundsInt.SetMinMax(new(boundsInt.xMin + offset,boundsInt.yMin + offset),
+            new(boundsInt.xMax - offset,boundsInt.yMax - offset));
+            Debug.Log($"Min After: {boundsInt.min}, Max After: {boundsInt.max}");
+        }
+
+
         for(int i = 0 ; i < puzzleCount ; i++)
         {
             
-            BoundsInt randomElement = cloneRoomsList.ElementAt(Random.Range(0,cloneRoomsList.Count));
+            BoundsInt randomElement = cloneRoomsList[Random.Range(0,cloneRoomsList.Count)];
             cloneRoomsList.Remove(randomElement);
             randomRooms.Add(randomElement);
 
         }
 
-        PlaceLockPuzzle(randomRooms);
+        PlaceLockPuzzle(randomRooms,offset);
         
     }
 
-    private void PlaceLockPuzzle(List<BoundsInt> rooms)
+    private void PlaceLockPuzzle(List<BoundsInt> rooms, int offset)
     {
         List<Vector3Int> puzzlePositions = new();
         int count = -1;
@@ -41,37 +49,11 @@ public class PuzzleRoomGeneration : MonoBehaviour
                 break;
             }
 
-            int xPosition = Random.Range(currentRoom.min.x + _offset, currentRoom.max.x - _offset);
-            int yPosition = Random.Range(currentRoom.min.y + _offset, currentRoom.max.y - _offset);
+            int xPosition = Random.Range(currentRoom.xMin + offset, currentRoom.xMax - offset);
+            int yPosition = Random.Range(currentRoom.yMin + offset, currentRoom.yMax - offset);
 
             Vector3Int puzzlePosition = new(xPosition,yPosition);
             
-            if(puzzlePositions.Count > 0)
-            {
-                bool correctPosition = false;
-                int failsafe = 0;
-                while(!correctPosition && failsafe < 10000)
-                {
-                    correctPosition = true;
-                    xPosition = Random.Range(currentRoom.min.x + _offset, currentRoom.max.x - _offset);
-                    yPosition = Random.Range(currentRoom.min.y + _offset, currentRoom.max.y - _offset);
-
-                    puzzlePosition = new(xPosition,yPosition);
-
-                    
-
-                    foreach(Vector3Int vector3Int in puzzlePositions)
-                    {
-                        float currentDistance = Vector3Int.Distance(puzzlePosition, vector3Int);
-                        if (currentDistance < _minDistance)
-                        {
-                            correctPosition = false;
-                        }
-                    }
-                    failsafe++;
-                }
-
-            }
             puzzlePositions.Add(puzzlePosition);
             if(_puzzleObjects == null)
             {
@@ -82,6 +64,9 @@ public class PuzzleRoomGeneration : MonoBehaviour
         }
         
         _puzzleSolutions.Add(Instantiate(_puzzleSolutionObject,rooms[count].center,Quaternion.identity,this.transform));
+
+
+
 
         if(!_puzzleSolutions[0].TryGetComponent<Puzzle>(out Puzzle puzzleSolutionComponent))
         {
@@ -100,5 +85,19 @@ public class PuzzleRoomGeneration : MonoBehaviour
 
         puzzleSolutionComponent.InitializePuzzle();
 
+    }
+
+    public void ClearPuzzle()
+    {
+        foreach(GameObject gameObject in _puzzleObjects)
+        {
+            Destroy(gameObject);
+        }
+        _puzzleObjects.Clear();
+        foreach(GameObject gameObject in _puzzleSolutions)
+        {
+            Destroy(gameObject);
+        }
+        _puzzleSolutions.Clear();
     }
 }
