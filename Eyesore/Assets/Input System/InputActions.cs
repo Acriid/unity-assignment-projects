@@ -141,7 +141,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -186,6 +186,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": ""ToggleLight"",
                     ""type"": ""Button"",
                     ""id"": ""92746df4-5fc5-4948-98f9-82f354c7d412"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowMap"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3aa75cc-379c-4559-876f-f460b4ab4dcf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -619,6 +628,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ToggleLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18f7fb9f-e746-4ec8-ae0b-a67b3e75c3be"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1325,6 +1345,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_ToggleLight = m_Player.FindAction("ToggleLight", throwIfNotFound: true);
+        m_Player_ShowMap = m_Player.FindAction("ShowMap", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1437,6 +1458,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_ToggleLight;
+    private readonly InputAction m_Player_ShowMap;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1492,6 +1514,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ToggleLight".
         /// </summary>
         public InputAction @ToggleLight => m_Wrapper.m_Player_ToggleLight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ShowMap".
+        /// </summary>
+        public InputAction @ShowMap => m_Wrapper.m_Player_ShowMap;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1551,6 +1577,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ToggleLight.started += instance.OnToggleLight;
             @ToggleLight.performed += instance.OnToggleLight;
             @ToggleLight.canceled += instance.OnToggleLight;
+            @ShowMap.started += instance.OnShowMap;
+            @ShowMap.performed += instance.OnShowMap;
+            @ShowMap.canceled += instance.OnShowMap;
         }
 
         /// <summary>
@@ -1595,6 +1624,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ToggleLight.started -= instance.OnToggleLight;
             @ToggleLight.performed -= instance.OnToggleLight;
             @ToggleLight.canceled -= instance.OnToggleLight;
+            @ShowMap.started -= instance.OnShowMap;
+            @ShowMap.performed -= instance.OnShowMap;
+            @ShowMap.canceled -= instance.OnShowMap;
         }
 
         /// <summary>
@@ -2112,6 +2144,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleLight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ShowMap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShowMap(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

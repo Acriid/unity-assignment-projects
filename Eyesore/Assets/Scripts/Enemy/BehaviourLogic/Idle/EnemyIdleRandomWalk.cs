@@ -7,6 +7,7 @@ public class EnemyIdleRandomWalk : EnemyIdleSOBase
     [SerializeField] private float _movementRange = 5f;
     private float _waitTime = 2f;
     private float _currentTime = 0f;
+    private bool _allowMove = true;
     public override void DoEnterLogic()
     {
         base.DoEnterLogic();
@@ -20,7 +21,7 @@ public class EnemyIdleRandomWalk : EnemyIdleSOBase
     }
     private void MoveEnemy()
     {
-        
+        if(!_allowMove) return;
         if(!_enemy.GetNavPath())
         {
             if(_currentTime >= _waitTime)
@@ -38,5 +39,9 @@ public class EnemyIdleRandomWalk : EnemyIdleSOBase
         Vector3 result = _enemyTransform.position + (Vector3)Random.insideUnitCircle * _movementRange;
         result.z = 0f;
         return result;
+    }
+    public override void ResetTime()
+    {
+        _currentTime = 0f;
     }
 }

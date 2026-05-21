@@ -55,7 +55,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -100,6 +100,15 @@
                     "name": "ToggleLight",
                     "type": "Button",
                     "id": "92746df4-5fc5-4948-98f9-82f354c7d412",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowMap",
+                    "type": "Button",
+                    "id": "b3aa75cc-379c-4559-876f-f460b4ab4dcf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -533,6 +542,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToggleLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18f7fb9f-e746-4ec8-ae0b-a67b3e75c3be",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -22,6 +22,8 @@ public class InputReaderSO : ScriptableObject
     private InputAction _sprintAction;
     private InputAction _crouchAction;
 
+    private InputAction _mapAction;
+
     //Devtools
     private InputAction _showEnemyAction;
     private InputAction _resetSceneAction;
@@ -39,6 +41,8 @@ public class InputReaderSO : ScriptableObject
 
     public event Action OnNavigate;
     public event Action OnSubmit;
+
+    public event Action OnMapAction;
 
     //Devtools
     public event Action OnShowEnemyAction;
@@ -60,6 +64,8 @@ public class InputReaderSO : ScriptableObject
 
     private Action<InputAction.CallbackContext> navigatePerformed;
     private Action<InputAction.CallbackContext> submitPerformed;
+
+    private Action<InputAction.CallbackContext> mapActionPerformed;
 
     //Devtools
     private Action<InputAction.CallbackContext> showEnemyPerformed;
@@ -104,6 +110,7 @@ public class InputReaderSO : ScriptableObject
        _toggleLightAction = _inputActions.Player.ToggleLight;
        _sprintAction = _inputActions.Player.Sprint;
        _crouchAction = _inputActions.Player.Crouch;
+       _mapAction = _inputActions.Player.ShowMap;
     }
     private void InitializePlayerEvents()
     {
@@ -121,6 +128,8 @@ public class InputReaderSO : ScriptableObject
 
         crouchStarted = ctx => OnCrouch?.Invoke(true);
         crouchCanceled = ctx => OnCrouch?.Invoke(false);
+
+        mapActionPerformed = ctx => OnMapAction?.Invoke();
     }
 
     private void SubscribeActions()
@@ -142,6 +151,8 @@ public class InputReaderSO : ScriptableObject
 
         _navigateAction.performed += navigatePerformed;
         _submitAction.performed += submitPerformed;
+
+        _mapAction.performed += mapActionPerformed;
     }
     private void UnsubscribeActions()
     {
@@ -161,7 +172,9 @@ public class InputReaderSO : ScriptableObject
         _crouchAction.canceled -= crouchCanceled;
 
         _navigateAction.performed -= navigatePerformed;
-        _submitAction.performed -= submitPerformed;             
+        _submitAction.performed -= submitPerformed;  
+
+        _mapAction.performed -= mapActionPerformed;           
     }
 
     private void InitializeDevtools()
@@ -294,5 +307,14 @@ public class InputReaderSO : ScriptableObject
     public void DisableSubmitAction()
     {
         _submitAction.Disable();
+    }
+
+    public void EnableMapAction()
+    {
+        _mapAction.Enable();
+    }
+    public void DisableMapAction()
+    {
+        _mapAction.Disable();
     }
 }

@@ -23,4 +23,5 @@ public class EnemyIdleSOBase : ScriptableObject
         }
     }
     public virtual void DoPhysicsLogic() {}
+    public virtual void ResetTime() {}
 }

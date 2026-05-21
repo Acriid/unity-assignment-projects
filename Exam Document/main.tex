@@ -4,7 +4,8 @@
 What I have: Improvements on Prototype 1 and Prototype 2 and Prototype 4
 Whats the difference between them: Prototype 1 and 2 are handmade maps while Prototype 4 is procedurally generated.
 What is similar : The map assets, the horror aesthetic , the mechanics.
-Will the addition of extra mechanics that allow the player to traverse the map easier
+Will the addition of mechanics that allow the player to traverse the map in different ways
+allow the use of bigger maps.
 
 
 
@@ -131,9 +132,25 @@ causing the player to get lost in the map a bit too often. The original size was
 size is a 7 unit circle. The detection for the enemy to see the player light is still the original size to allow
 the player some leeway in not getting spotted by the enemy but still being able to see what is happening.
 
+A minimap was added to help the player navigate, but this minimap took away from the game by giving the player a 
+sense of direction. This takes away from the horror elements of the game because the player feels a sense of dread
+because they are lost, which the minimap diminishes. The current procedural generation generates the map in a maze-like
+way which may be too confusing for players, thus the minimap helps the players traverse the map. Both improvements want
+to be kept thus a solution was found. The solution is that if the player uses the minimap the enemy will be alerted to
+their position and will constantly go to the position of the player. This solution makes the minimap a limited resource
+that the player can use at a risk. This leads to the horror elements of the game staying by letting the player feel like
+they are in danger because of the use of the minimap, but it also helps the player traverse the maze-like map reducing
+the player's frustration.
+The minimap will ping the players position every few seconds which will guide the enemy to the player.
+
 
 \section{references (delete subsections later)}
 \subsection{Tutorials}
 https://medium.com/@doandaniel/gamedev-protips-a-few-helpful-tips-on-crafting-a-better-tutorial-ffcc636039d3
 https://www.gamedeveloper.com/business/gamedev-thoughts-how-to-design-a-good-tutorial-for-your-indie-game
+\subsection{Minimap}
+https://store.steampowered.com/app/332950/Dark_Deception/
+
+https://pixabay.com/sound-effects/film-special-effects-radar-ping-306440/
+\subsection{Fuck}
 \end{document}

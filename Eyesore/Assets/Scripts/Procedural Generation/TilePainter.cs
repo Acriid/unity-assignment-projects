@@ -38,6 +38,7 @@ public class TilePainter : MonoBehaviour
         _hideTileMap.ClearAllTiles();
         _hiddenFloorTileMap.ClearAllTiles();
         _hiddenWallsTileMap.ClearAllTiles();
+        _toggleWallTileMap.ClearAllTiles();
     }
 
     internal void PaintSingleBasicWall(Vector2Int position)

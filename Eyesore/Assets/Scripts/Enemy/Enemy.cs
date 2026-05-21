@@ -99,6 +99,7 @@ public class Enemy : MonoBehaviour
     public void ForceMoveEnemy(Vector2 destination)
     {
         _navAgent.ResetPath();
+        EnemyIdleSOBaseInstance.ResetTime();
         _navAgent.SetDestination(destination);
     }
 

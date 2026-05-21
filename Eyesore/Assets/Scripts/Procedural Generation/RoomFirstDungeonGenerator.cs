@@ -69,7 +69,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         
         _tilePainter.PaintFloorTiles(floor);
 
-        HashSet<Vector2Int> seceretFloor = SecretConnectRooms(roomsList,_corridorConnections);
+        HashSet<Vector2Int> seceretFloor = SecretConnectRooms(roomsList,_corridorConnections,floor);
         _tilePainter.PaintHiddenFloorTiles(seceretFloor);
 
         WallGenerator.CreateWalls(floor,seceretFloor,_tilePainter);
@@ -117,69 +117,75 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         }
         return floor;
     }
-    private HashSet<Vector2Int> SecretConnectRooms(List<BoundsInt> rooms, HashSet<RoomConnection> currentConnections)
+    private bool AreRoomsConnected(HashSet<(BoundsInt, BoundsInt)> connectedPairs, BoundsInt a, BoundsInt b)
     {
+        return connectedPairs.Contains((a, b)) || connectedPairs.Contains((b, a));
+    }
+    private bool DoesBoundsContain(BoundsInt bounds, Vector3Int point)
+    {
+        bool xCorrect = point.x >= bounds.xMin && point.x <= bounds.xMax;
+        bool yCorrect = point.y >= bounds.yMin && point.y <= bounds.yMax;
 
+        return xCorrect && yCorrect;
+    }
+    private HashSet<Vector2Int> SecretConnectRooms(List<BoundsInt> rooms, HashSet<RoomConnection> currentConnections,HashSet<Vector2Int> currentHallways)
+    {
         HashSet<Vector2Int> corridors = new();
 
         List<BoundsInt> roomsCopy = new(rooms);
-        
-        HashSet<RoomConnection> copyConnections = new(currentConnections);
+        List<BoundsInt> roomsCopy2;
 
-        Dictionary<BoundsInt,BoundsInt> lookupDictionary = new();
 
-        foreach(RoomConnection bounds in copyConnections)
+        // Fix 1: Use a bidirectional HashSet so both (A,B) and (B,A) are covered,
+        // instead of a one-directional Dictionary that misses EndRoom-only entries.
+        HashSet<(BoundsInt, BoundsInt)> connectedPairs = new();
+        foreach (RoomConnection conn in currentConnections)
         {
-            lookupDictionary.Add(bounds.StartRoom,bounds.EndRoom);
+            connectedPairs.Add((conn.StartRoom, conn.EndRoom));
+            connectedPairs.Add((conn.EndRoom, conn.StartRoom));
         }
 
-
-
-        for(int i = 0 ; i < 5 ; i++)
+        for (int i = 0; i < 5; i++)
         {
-
-            if(roomsCopy.Count == 0) break;
-            BoundsInt currentRoom = roomsCopy[Random.Range(0,roomsCopy.Count)];
+            if (roomsCopy.Count == 0) break;
+            BoundsInt currentRoom = roomsCopy[Random.Range(0, roomsCopy.Count)];
             roomsCopy.Remove(currentRoom);
-
-
+            roomsCopy2 = new(roomsCopy);
+            
             bool foundConnection = false;
-            while(!foundConnection && roomsCopy.Count > 0)
+            while (!foundConnection && roomsCopy2.Count > 0)
             {
-                BoundsInt closest = BoundsFindClosestPointTo(currentRoom,roomsCopy);
-                roomsCopy.Remove(closest);
+                BoundsInt closest = BoundsFindClosestPointTo(currentRoom, roomsCopy2);
+                roomsCopy2.Remove(closest);
+
                 RoomConnection currentConnection = new()
                 {
                     StartRoom = currentRoom,
                     EndRoom = closest
                 };
 
-
-                if (
-                    lookupDictionary.TryGetValue(currentRoom, out BoundsInt currentLookup) &&
-                    lookupDictionary.TryGetValue(closest, out BoundsInt closestLookup) &&
-                    currentLookup != closest &&
-                    closestLookup != currentRoom
-                )
-                {                 
-
+                // Fix 2: Check the live connectedPairs set (which is updated each iteration)
+                // rather than a stale snapshot dictionary.
+                if (!AreRoomsConnected(connectedPairs, currentRoom, closest))
+                {
                     Vector2Int currentRoomCenter = GetBoundsCenter(currentRoom);
                     Vector2Int closestRoomCenter = GetBoundsCenter(closest);
 
-                    HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter,closestRoomCenter);
-
-                    if(!GoesThroughRoom(currentConnection,rooms,newCorridor))
+                    HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closestRoomCenter,false);
+                    if(!currentHallways.IsSupersetOf(newCorridor))
                     {
-                        foundConnection = true;
-                        corridors.UnionWith(newCorridor);
-                        currentConnections.Add(currentConnection);
+                        if (!GoesThroughRoom(currentConnection, rooms, newCorridor))
+                        {
+                            foundConnection = true;
+                            corridors.UnionWith(newCorridor);
 
+                            // Update both the external set and the local live set immediately.
+                            currentConnections.Add(currentConnection);
+                            connectedPairs.Add((currentRoom, closest));
+                            connectedPairs.Add((closest, currentRoom));
+                        }
                     }
-                    
-
                 }
-
-
 
                 currentRoom = closest;
             }
@@ -195,7 +201,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
             
             foreach(Vector2Int vector2Int in corridor)
             {
-                if(currentRoom.Contains(new Vector3Int(vector2Int.x, vector2Int.y, 0)))
+                if(DoesBoundsContain(currentRoom,new Vector3Int(vector2Int.x, vector2Int.y, 0)))
                 {
                     Debug.Log("WOW");
                     return true;
@@ -232,26 +238,20 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     
         while (roomCenters.Count > 0)
         {
-            Vector2Int closest = FindClosestPointTo(currentRoomCenter,roomCenters);
+            Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
             roomCenters.Remove(closest);
 
-            HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter,closest);
+            HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest,true);
+            corridors.UnionWith(newCorridor);
 
-            if(_roomLookup.TryGetValue(currentRoomCenter, out BoundsInt startRoom) && _roomLookup.TryGetValue(closest,out BoundsInt endRoom))
+            // Direct lookup — no silent failure path
+            roomConnections.Add(new RoomConnection
             {
-                RoomConnection newConnection = new()
-                {
-                    StartRoom = startRoom,
-                    EndRoom = endRoom
-                };
-
-                roomConnections.Add(newConnection);
-            }
-
+                StartRoom = _roomLookup[currentRoomCenter],
+                EndRoom   = _roomLookup[closest]
+            });
 
             currentRoomCenter = closest;
-
-            corridors.UnionWith(newCorridor);
         }
 
         _corridorConnections = new(roomConnections);
@@ -259,38 +259,73 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         return corridors;
     }
 
-    private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination)
+    private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination,bool verticalFirst)
     {
         HashSet<Vector2Int> corridor = new();
         var position = currentRoomCenter;
         corridor.Add(position);
-        while(position.y != destination.y)
+        if(verticalFirst)
         {
-            if(destination.y > position.y)
+            while(position.y != destination.y)
             {
-                position += Vector2Int.up;
+                if(destination.y > position.y)
+                {
+                    position += Vector2Int.up;
+                }
+                else
+                {
+                    position += Vector2Int.down;
+                }
+                corridor.Add(position);
+                corridor.Add(position += Vector2Int.left);
+                corridor.Add(position += Vector2Int.right);
             }
-            else
+            while(position.x != destination.x)
             {
-                position += Vector2Int.down;
+                if(destination.x > position.x)
+                {
+                    position += Vector2Int.right;
+                }
+                else
+                {
+                    position += Vector2Int.left;
+                }
+                corridor.Add(position); 
+                corridor.Add(position += Vector2Int.up);
+                corridor.Add(position += Vector2Int.down);           
             }
-            corridor.Add(position);
-            corridor.Add(position += Vector2Int.left);
-            corridor.Add(position += Vector2Int.right);
+            
         }
-        while(position.x != destination.x)
+        else
         {
-            if(destination.x > position.x)
+            while(position.x != destination.x)
             {
-                position += Vector2Int.right;
-            }
-            else
+                if(destination.x > position.x)
+                {
+                    position += Vector2Int.right;
+                }
+                else
+                {
+                    position += Vector2Int.left;
+                }
+                corridor.Add(position); 
+                corridor.Add(position += Vector2Int.up);
+                corridor.Add(position += Vector2Int.down);           
+            } 
+            while(position.y != destination.y)
             {
-                position += Vector2Int.left;
+                if(destination.y > position.y)
+                {
+                    position += Vector2Int.up;
+                }
+                else
+                {
+                    position += Vector2Int.down;
+                }
+                corridor.Add(position);
+                corridor.Add(position += Vector2Int.left);
+                corridor.Add(position += Vector2Int.right);
             }
-            corridor.Add(position); 
-            corridor.Add(position += Vector2Int.up);
-            corridor.Add(position += Vector2Int.down);           
         }
         return corridor;
     }
@@ -406,4 +441,3 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         return (Vector2Int)Vector3Int.RoundToInt(boundsToChange.center);
     }
 }
-

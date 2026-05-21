@@ -139,11 +139,28 @@ public class EnemyDirector : MonoBehaviour
         }
         _enemyComponent.EnemyGuardSOBaseInstance.SetGuardPosition(objectToGuard.gameObject);
     }
-
-
+    private Coroutine _pingSend;
+    public void ForceEnemyMove(Vector2 destination)
+    {
+        _alreadySent = true;
+        if(_pingSend != null)
+        {
+            StopCoroutine(_pingSend);
+        }
+        _pingSend = StartCoroutine(ResetSend());
+        _enemyComponent.ForceMoveEnemy(destination);
+    }
     public EnemyState GetCurrentEnemyState()
     {
         return _enemyComponent.StateMachine.CurrentEnemyState;
+    }
+    public void SetEnemyState(EnemyState newState)
+    {
+        _enemyComponent.StateMachine.ChangeState(newState);
+    }
+    public EnemyChaseState GetEnemyChaseState()
+    {
+        return _enemyComponent.ChaseState;
     }
     public float GetCurrentEnemyAnnoyance()
     {
