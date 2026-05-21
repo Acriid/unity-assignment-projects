@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
     public EnemyGuardState GuardState {get; set;}
     #endregion
 
-    private bool _showCooldown;
+    private bool _showCooldown = false;
     [SerializeField] private GameObject _showText;
 
     private bool _soundCooldownBool = false;

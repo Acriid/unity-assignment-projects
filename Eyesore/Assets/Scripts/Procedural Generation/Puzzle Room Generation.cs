@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PuzzleRoomGeneration : MonoBehaviour
 {
     [SerializeField] private GameObject _puzzleObject;
     [SerializeField] private GameObject _puzzleSolutionObject;
-    [SerializeField] private float _minDistance = 2f;
+    [SerializeField] private Tilemap _floorTileMap;
     private List<GameObject> _puzzleObjects = new();
     private List<GameObject> _puzzleSolutions = new();
     public void PlacePuzzleRoom(List<BoundsInt> roomsList, int puzzleCount, int offset)
@@ -35,17 +36,23 @@ public class PuzzleRoomGeneration : MonoBehaviour
         foreach(BoundsInt currentRoom in rooms)
         {
             count++;
-
+            Vector3Int puzzlePosition = Vector3Int.zero;
+                
             if(count == rooms.Count -1)
             {
                 break;
             }
+            bool onTile = false;
+            while(!onTile)
+            {
+                int xPosition = Random.Range(currentRoom.xMin + offset, currentRoom.xMax - offset);
+                int yPosition = Random.Range(currentRoom.yMin + offset, currentRoom.yMax - offset);
 
-            int xPosition = Random.Range(currentRoom.xMin + offset, currentRoom.xMax - offset);
-            int yPosition = Random.Range(currentRoom.yMin + offset, currentRoom.yMax - offset);
+                puzzlePosition = new(xPosition,yPosition);
 
-            Vector3Int puzzlePosition = new(xPosition,yPosition);
-            
+                if(_floorTileMap.HasTile(puzzlePosition))
+                onTile = true;
+            }
             puzzlePositions.Add(puzzlePosition);
             if(_puzzleObjects == null)
             {

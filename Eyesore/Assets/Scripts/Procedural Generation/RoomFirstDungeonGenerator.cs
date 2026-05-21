@@ -16,6 +16,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     private List<BoundsInt> roomsList = new();
 
     private HashSet<RoomConnection> _corridorConnections = new();
+
+    [SerializeField] private bool _placeGoals = false;
     public struct RoomConnection
     {
         public BoundsInt StartRoom;
@@ -133,10 +135,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 
 
 
-        for(int i = 0 ; i < 1 ; i++)
+        for(int i = 0 ; i < 5 ; i++)
         {
 
-            
+            if(roomsCopy.Count == 0) break;
             BoundsInt currentRoom = roomsCopy[Random.Range(0,roomsCopy.Count)];
             roomsCopy.Remove(currentRoom);
 
@@ -154,8 +156,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 
 
                 if (
-                    lookupDictionary.TryGetValue(currentRoom, out var currentLookup) &&
-                    lookupDictionary.TryGetValue(closest, out var closestLookup) &&
+                    lookupDictionary.TryGetValue(currentRoom, out BoundsInt currentLookup) &&
+                    lookupDictionary.TryGetValue(closest, out BoundsInt closestLookup) &&
                     currentLookup != closest &&
                     closestLookup != currentRoom
                 )
@@ -395,7 +397,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     private void PlaceGoals()
     {
         _entityPlacer.PlacedEntities -= PlaceGoals;
-
+        if(_placeGoals)
         _goalPlacer.PlaceKey(roomsList);
     }
 

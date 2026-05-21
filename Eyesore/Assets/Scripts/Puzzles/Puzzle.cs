@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class Puzzle : Interaction
 {
@@ -8,6 +10,7 @@ public class Puzzle : Interaction
     [SerializeField] private List<PuzzleObject> _puzzleObjects;
     [SerializeField] private PuzzleType? puzzleType = null; 
     [SerializeField] private GameObject _canvasObject = null;
+    [SerializeField] private TMP_InputField _puzzleInput = null;
     private string _puzzleSolution = "";
     public void AddToPuzzleList(PuzzleObject objectToAdd)
     {
@@ -28,6 +31,8 @@ public class Puzzle : Interaction
         if(puzzleType.Value == PuzzleType.LockPuzzle)
         {
             GenerateLockPuzzle();
+            if(_puzzleInput != null)
+            _puzzleInput.onValueChanged.AddListener(CheckValue) ;
         }
     }
 
@@ -46,6 +51,17 @@ public class Puzzle : Interaction
     public override void OnInteract(GameObject player)
     {
         if(_canvasObject == null) return;
+        int scaleChange = !_canvasObject.activeSelf? 0 : 1;
+        _canvasObject.SetActive(!_canvasObject.activeSelf);
+        Time.timeScale = scaleChange;
+    }
+
+    private void CheckValue(string text)
+    {
+        if(text.Trim().ToUpper() == _puzzleSolution)
+        {
+            Debug.Log("Puzzle Solved");
+        }
     }
 }
 
