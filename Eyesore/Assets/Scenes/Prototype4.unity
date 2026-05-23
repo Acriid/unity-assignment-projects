@@ -2631,7 +2631,7 @@ MonoBehaviour:
   _dungeonHeight: 150
   _offset: 1
   _randomWalkRooms: 1
-  _placeLights: 1
+  _placeLights: 0
   _placeGoals: 0
 --- !u!4 &1003089670
 Transform:

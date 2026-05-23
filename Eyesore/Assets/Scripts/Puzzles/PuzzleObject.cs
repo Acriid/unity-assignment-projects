@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,8 +10,12 @@ public class PuzzleObject : Interaction
     [SerializeField] private int _puzzleOrder = -1;
     [SerializeField] private GameObject _puzzleCanvas = null;
     [SerializeField] private TMP_Text _puzzleText = null;
+    public event Action<PuzzleObject> OnPuzzleInteract;
+    private bool alreadyInteracted = false;
     public void SetPuzzleValue(char newValue,int puzzleOrder)
     {
+        alreadyInteracted = false;
+
         _puzzleValue = newValue;
         _puzzleOrder = puzzleOrder;
 
@@ -27,5 +32,17 @@ public class PuzzleObject : Interaction
         int newScale = !_puzzleCanvas.activeSelf? 0 : 1;
         _puzzleCanvas.SetActive(!_puzzleCanvas.activeSelf);
         Time.timeScale = newScale;
+
+        if(alreadyInteracted) return;
+        OnPuzzleInteract?.Invoke(this);
+        alreadyInteracted = true;
+    }
+    public int GetPuzzleOrder()
+    {
+        return _puzzleOrder;
+    }
+    public char GetPuzzleValue()
+    {
+        return _puzzleValue;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -18,6 +19,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     private HashSet<RoomConnection> _corridorConnections = new();
 
     [SerializeField] private bool _placeGoals = false;
+
     public struct RoomConnection
     {
         public BoundsInt StartRoom;
@@ -279,7 +281,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
                 corridor.Add(position);
                 corridor.Add(position += Vector2Int.left);
                 corridor.Add(position += Vector2Int.right);
+                corridor.Add(position += Vector2Int.up);
+                corridor.Add(position += Vector2Int.down);
             }
+            
             while(position.x != destination.x)
             {
                 if(destination.x > position.x)
@@ -291,8 +296,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
                     position += Vector2Int.left;
                 }
                 corridor.Add(position); 
+                corridor.Add(position += Vector2Int.left);
+                corridor.Add(position += Vector2Int.right);
                 corridor.Add(position += Vector2Int.up);
-                corridor.Add(position += Vector2Int.down);           
+                corridor.Add(position += Vector2Int.down);         
             }
             
         }
@@ -309,9 +316,12 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
                     position += Vector2Int.left;
                 }
                 corridor.Add(position); 
+                corridor.Add(position += Vector2Int.left);
+                corridor.Add(position += Vector2Int.right);
                 corridor.Add(position += Vector2Int.up);
-                corridor.Add(position += Vector2Int.down);           
+                corridor.Add(position += Vector2Int.down);
             } 
+
             while(position.y != destination.y)
             {
                 if(destination.y > position.y)
@@ -325,8 +335,12 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
                 corridor.Add(position);
                 corridor.Add(position += Vector2Int.left);
                 corridor.Add(position += Vector2Int.right);
+                corridor.Add(position += Vector2Int.up);
+                corridor.Add(position += Vector2Int.down);
             }
         }
+
+
         return corridor;
     }
     private HashSet<Vector2Int> CreateCorridor(BoundsInt currentRoomCenter, Vector2Int destination)

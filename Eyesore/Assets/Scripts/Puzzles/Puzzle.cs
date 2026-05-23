@@ -11,6 +11,8 @@ public class Puzzle : Interaction
     [SerializeField] private PuzzleType? puzzleType = null; 
     [SerializeField] private GameObject _canvasObject = null;
     [SerializeField] private TMP_InputField _puzzleInput = null;
+    [SerializeField] private TMP_Text _puzzleHint = null;
+    [SerializeField] private GameObject _endCanvas = null;
     private string _puzzleSolution = "";
     public void AddToPuzzleList(PuzzleObject objectToAdd)
     {
@@ -45,6 +47,7 @@ public class Puzzle : Interaction
             char randomChar = chars[Random.Range(0,chars.Length)];
             _puzzleSolution += randomChar;
             puzzleObject.SetPuzzleValue(randomChar,order++);
+            puzzleObject.OnPuzzleInteract += ShowSolution;
         }
         Debug.Log(_puzzleSolution);
     }
@@ -61,7 +64,26 @@ public class Puzzle : Interaction
         if(text.Trim().ToUpper() == _puzzleSolution)
         {
             Debug.Log("Puzzle Solved");
+            FinishLevel();
         }
+    }
+    public void FinishLevel()
+    {
+        if(_endCanvas != null)
+        _endCanvas.SetActive(true);
+    }
+    private void ShowSolution(PuzzleObject eventObject)
+    {
+        eventObject.OnPuzzleInteract -= ShowSolution;
+        if(_puzzleHint == null) return;
+
+        
+        string currentText = _puzzleHint.text;
+        char[] textArray = currentText.ToCharArray();
+        textArray[eventObject.GetPuzzleOrder()] = eventObject.GetPuzzleValue();
+        currentText = new string(textArray);
+        _puzzleHint.text = currentText;
+
     }
 }
 
