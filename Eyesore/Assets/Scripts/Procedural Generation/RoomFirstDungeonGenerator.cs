@@ -20,17 +20,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 
     [SerializeField] private bool _placeGoals = false;
 
-    public struct RoomConnection
-    {
-        public BoundsInt StartRoom;
-        public BoundsInt EndRoom;
 
-        public RoomConnection(BoundsInt start = default, BoundsInt end = default)
-        {
-            StartRoom = start;
-            EndRoom = end;  
-        }
-    }
     protected override void RunProceduralGeneration()
     {
 
@@ -89,6 +79,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
 
         _puzzlePlacer.ClearPuzzle();
         _puzzlePlacer.PlacePuzzleRoom(roomsList,4,_offset);
+
+        _teleporterPlacer.ClearTeleporters();
+        _teleporterPlacer.PlaceTeleporters(roomsList,_offset);
 
 
 
@@ -453,5 +446,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     private Vector2Int GetBoundsCenter(BoundsInt boundsToChange)
     {
         return (Vector2Int)Vector3Int.RoundToInt(boundsToChange.center);
+    }
+}
+
+public struct RoomConnection
+{
+    public BoundsInt StartRoom;
+    public BoundsInt EndRoom;
+
+    public RoomConnection(BoundsInt start = default, BoundsInt end = default)
+    {
+        StartRoom = start;
+        EndRoom = end;  
     }
 }

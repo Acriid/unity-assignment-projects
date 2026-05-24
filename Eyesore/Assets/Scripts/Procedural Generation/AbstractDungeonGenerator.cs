@@ -10,6 +10,7 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     [SerializeField] protected EntityPlacerAlgorithm _entityPlacer = null;
     [SerializeField] protected GoalPlacer _goalPlacer = null;
     [SerializeField] protected PuzzleRoomGeneration _puzzlePlacer = null;
+    [SerializeField] protected TeleporterPlacer _teleporterPlacer = null;
     [SerializeField] protected NavMeshSurface _navMeshSurface = null;
 
     public void GenerateDungeon()
