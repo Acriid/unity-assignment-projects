@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  26 MAY 2026 00:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  26 MAY 2026 01:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -46,12 +46,12 @@ LaTeX Font Info:    ... okay on input line 2.
  [1
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6]
-Overfull \hbox (16.05637pt too wide) in paragraph at lines 212--214
+Overfull \hbox (16.05637pt too wide) in paragraph at lines 222--224
 \OT1/cmr/m/n/10 https://medium.com/@doandaniel/gamedev-protips-a-few-helpful-tips-on-crafting-
  []
 
 
-Overfull \hbox (18.36186pt too wide) in paragraph at lines 212--214
+Overfull \hbox (18.36186pt too wide) in paragraph at lines 222--224
 \OT1/cmr/m/n/10 a-better-tutorial-ffcc636039d3 https://www.gamedeveloper.com/business/gamedev-
  []
 
@@ -64,13 +64,13 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  438 strings out of 467533
  8210 string characters out of 5423669
- 442759 words of memory out of 5000000
+ 443759 words of memory out of 5000000
  29424 multiletter control sequences out of 15000+600000
  629266 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  35i,5n,38p,220b,128s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (7 pages, 60561 bytes).
+Output written on main.pdf (7 pages, 61176 bytes).
 PDF statistics:
  44 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream
