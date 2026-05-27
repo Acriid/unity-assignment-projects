@@ -9,6 +9,8 @@ public class EnemyDirector : MonoBehaviour
     private static WaitForSecondsRealtime _waitForSecondsRealtime1 = new(1f);
     public GameObject Enemy;
     public GameObject Player;
+    [SerializeField] private bool _useAnnoyance = true;
+    [SerializeField] private bool _makeEnemyStatic = false;
     private Enemy _enemyComponent;
     [Header("Annoyance Distance")]
     [SerializeField] private float _maxDistance = 30f;
@@ -21,12 +23,20 @@ public class EnemyDirector : MonoBehaviour
     private readonly float _annoyanceRateMin = -0.33f;
     private readonly float _annoyanceRateMax = 0.16f;
     private bool _alreadySent = false;
-
+    private Coroutine _annoyanceRoutine = null;
+    private float _defaultAnnoyance;
     void Awake()
     {
+        _defaultAnnoyance = _currentAnnoyance;
+
+
         if(Enemy == null) return;
         _enemyComponent = Enemy.GetComponent<Enemy>();
 
+        if(_makeEnemyStatic)
+        SetEnemyState(_enemyComponent.StaticState);
+
+        if(_useAnnoyance)
         StartCoroutine(ChangeAnnoyance());
 
         if(!Enemy.activeSelf) return;
@@ -69,7 +79,7 @@ public class EnemyDirector : MonoBehaviour
         if(!Enemy.activeSelf) return;
         if(_enemyComponent.StateMachine.CurrentEnemyState == _enemyComponent.GuardState) return;
         _currentAnnoyance += increaseValue;
-        _currentAnnoyance = Mathf.Clamp(_currentAnnoyance,0.3f,5.2f);
+        _currentAnnoyance = Mathf.Clamp(_currentAnnoyance,_minAnnoyance - 0.2f,_maxAnnoyance + 0.2f);
         if(_currentAnnoyance >= _maxAnnoyance && !_alreadySent)
         {
             Debug.Log("sending enemy away");
@@ -121,6 +131,7 @@ public class EnemyDirector : MonoBehaviour
         GoalObject objectToGuard = null;
         foreach(GoalObject guardObject in _goalList)
         {
+            if(guardObject == null) continue;
             if(!guardObject.GoalSO.GoalComplete)
             {
                 float distance = Vector2.Distance(guardObject.GoalSO.GoalPosition, Enemy.transform.position);
@@ -150,13 +161,46 @@ public class EnemyDirector : MonoBehaviour
         _pingSend = StartCoroutine(ResetSend());
         _enemyComponent.ForceMoveEnemy(destination);
     }
-    public EnemyState GetCurrentEnemyState()
-    {
-        return _enemyComponent.StateMachine.CurrentEnemyState;
-    }
+
     public void SetEnemyState(EnemyState newState)
     {
         _enemyComponent.StateMachine.ChangeState(newState);
+    }
+    public void UseAnnoyance(bool newValue)
+    {
+        if(newValue)
+        {
+            if(_annoyanceRoutine != null)
+            {
+                StopCoroutine(_annoyanceRoutine);
+                _currentAnnoyance = _defaultAnnoyance;
+                
+            }
+
+            _annoyanceRoutine = StartCoroutine(ChangeAnnoyance());
+        }
+        else
+        {
+            if(_annoyanceRoutine != null)
+            {
+                StopCoroutine(_annoyanceRoutine);
+                _currentAnnoyance = _defaultAnnoyance;
+            }
+        }
+
+    }
+    public bool GetShouldGoToMap()
+    {
+       return _enemyComponent.EnemyStaticSoBaseInstance.GetShouldGoToMap();
+    }
+    public void SetShouldGoToMap(bool newValue)
+    {
+       _enemyComponent.EnemyStaticSoBaseInstance.SetShouldGoToMap(newValue);
+    }
+    //Devtools
+    public EnemyState GetCurrentEnemyState()
+    {
+        return _enemyComponent.StateMachine.CurrentEnemyState;
     }
     public EnemyChaseState GetEnemyChaseState()
     {
@@ -166,4 +210,5 @@ public class EnemyDirector : MonoBehaviour
     {
         return _currentAnnoyance;
     }
+
 }

@@ -22,11 +22,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected EnemyIdleSOBase _enemyIdleSOBase;
     [SerializeField] protected EnemyGuardSOBase _enemyGuardSOBase;
     [SerializeField] protected EnemyChaseSOBase _enemyChaseSOBase;
+    [SerializeField] protected EnemyStaticSoBase _enemyStaticSOBase;
     
 
     public EnemyIdleSOBase EnemyIdleSOBaseInstance {get; set;}
     public EnemyGuardSOBase EnemyGuardSOBaseInstance {get; set;}
     public EnemyChaseSOBase EnemyChaseSOBaseInstance {get; set;}
+    public EnemyStaticSoBase EnemyStaticSoBaseInstance {get; set;}
 
     #endregion
 
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
     public EnemyIdleState IdleState {get; set;}
     public EnemyChaseState ChaseState {get; set;}
     public EnemyGuardState GuardState {get; set;}
+    public EnemyStaticState StaticState {get; set;}
     #endregion
 
     private bool _showCooldown = false;
@@ -115,15 +118,18 @@ public class Enemy : MonoBehaviour
         IdleState = new(this,StateMachine);
         ChaseState = new(this,StateMachine);
         GuardState = new(this,StateMachine);
+        StaticState = new(this,StateMachine);
 
         EnemyIdleSOBaseInstance  = Instantiate(_enemyIdleSOBase);
         EnemyGuardSOBaseInstance = Instantiate(_enemyGuardSOBase);
         EnemyChaseSOBaseInstance = Instantiate(_enemyChaseSOBase);
+        EnemyStaticSoBaseInstance = Instantiate(_enemyStaticSOBase);
 
 
         EnemyIdleSOBaseInstance.Initialize(this);
         EnemyGuardSOBaseInstance.Initialize(this);
         EnemyChaseSOBaseInstance.Initialize(this);
+        EnemyStaticSoBaseInstance.Initialize(this);
 
 
         StateMachine.Initialize(IdleState);

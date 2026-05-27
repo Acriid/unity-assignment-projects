@@ -6,6 +6,7 @@ public class SoundMechanic : MonoBehaviour
 
     [SerializeField] private float _timeBetweenSounds = 5f;
     [SerializeField] private AudioClip[] _footStepSounds;
+    [SerializeField] private bool _active = true;
     private float _defualtTime;
     private float _timeTillNextSound = 0f;
     private Vector2 _moveValue;
@@ -42,6 +43,7 @@ public class SoundMechanic : MonoBehaviour
     }
     private void MakeSound(Vector2 moveValue)
     {
+        if(!_active) return;
         if(SoundFXManager.Instance == null) return;
         if(_crouching) return;
         if(moveValue != Vector2.zero)
@@ -67,5 +69,13 @@ public class SoundMechanic : MonoBehaviour
     private void OnCrouch(bool newValue)
     {
         _crouching = newValue;
+    }
+    public void SetActiveBool(bool newValue)
+    {
+        _active = newValue;
+    }
+    public bool GetActiveBool(bool newValue)
+    {
+        return _active;
     }
 }

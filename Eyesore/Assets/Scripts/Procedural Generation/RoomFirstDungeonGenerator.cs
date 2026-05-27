@@ -14,13 +14,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
     [SerializeField] private int _offset = 1;
     [SerializeField] private bool _randomWalkRooms = false;
     [SerializeField] private bool _placeLights = false;
+    [SerializeField] private float _puzzleChance = 0.5f;
     private List<BoundsInt> roomsList = new();
 
     private HashSet<RoomConnection> _corridorConnections = new();
 
     [SerializeField] private bool _placeGoals = false;
 
-
+    private void Start()
+    {
+        RunProceduralGeneration();
+    }
     protected override void RunProceduralGeneration()
     {
 
@@ -78,7 +82,16 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkGenerator
         }
 
         _puzzlePlacer.ClearPuzzle();
-        _puzzlePlacer.PlacePuzzleRoom(roomsList,4,_offset);
+        if(Random.Range(0f,1f) > _puzzleChance)
+        {
+            
+            _puzzlePlacer.PlacePuzzleRoom(roomsList,4,_offset);
+            _placeGoals = false;
+        }
+        else
+        {
+            _placeGoals = true;
+        }
 
         _teleporterPlacer.ClearTeleporters();
         _teleporterPlacer.PlaceTeleporters(roomsList,_offset);

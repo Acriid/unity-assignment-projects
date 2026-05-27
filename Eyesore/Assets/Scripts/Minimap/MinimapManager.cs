@@ -11,7 +11,7 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private EnemyDirector _enemyDirector;
     [SerializeField] private float _pingCooldown = 1f;
     [SerializeField] private Transform _playerTransform;
-    private Coroutine _pingRoutine;
+    private Coroutine _pingRoutine = null;
 
     void OnEnable()
     {
@@ -31,6 +31,7 @@ public class MinimapManager : MonoBehaviour
         if(mapActive)
         {
             _mapCamera.SetActive(mapActive);
+            if(_enemyDirector.GetShouldGoToMap())
             _pingRoutine = StartCoroutine(SendPing());
 
         }

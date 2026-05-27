@@ -10,10 +10,12 @@ public class TeleportPlayer : MonoBehaviour
     private bool _canTeleport = true;
     private void OnEnable()
     {
+        if(_inputReaderSO != null)
         _inputReaderSO.OnCrouch += OnCrouch;
     }
     private void OnDisable()
     {
+        if(_inputReaderSO != null)
         _inputReaderSO.OnCrouch -= OnCrouch;
     }
     private void OnCrouch(bool obj)
