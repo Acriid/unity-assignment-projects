@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  26 MAY 2026 01:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.4)  29 MAY 2026 00:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -45,17 +45,17 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
 LaTeX Font Info:    ... okay on input line 2.
  [1
 
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6]
-Overfull \hbox (16.05637pt too wide) in paragraph at lines 222--224
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2] [3] [4] [5] [6] [7] [8]
+Overfull \hbox (16.05637pt too wide) in paragraph at lines 268--270
 \OT1/cmr/m/n/10 https://medium.com/@doandaniel/gamedev-protips-a-few-helpful-tips-on-crafting-
  []
 
 
-Overfull \hbox (18.36186pt too wide) in paragraph at lines 222--224
+Overfull \hbox (18.36186pt too wide) in paragraph at lines 268--270
 \OT1/cmr/m/n/10 a-better-tutorial-ffcc636039d3 https://www.gamedeveloper.com/business/gamedev-
  []
 
-[7] (./main.aux)
+[9] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -64,16 +64,16 @@ L3 programming layer <2026-01-19>
 Here is how much of TeX's memory you used:
  438 strings out of 467533
  8210 string characters out of 5423669
- 443759 words of memory out of 5000000
+ 442759 words of memory out of 5000000
  29424 multiletter control sequences out of 15000+600000
  629266 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 35i,5n,38p,220b,128s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 35i,5n,38p,234b,128s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (7 pages, 61176 bytes).
+Output written on main.pdf (9 pages, 65999 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 50 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

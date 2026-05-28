@@ -5,7 +5,27 @@ Will the addition of mechanics that allow the player to traverse the map in diff
 allow the use of bigger maps or will it cause the player to be frustrated with the map despite
 the extra mechanics to traverse the map.
 
-
+\section{Player Actions}
+\subsection{General Mechanics}
+The general actions the player can take are moving, sprinting, crouching toggling a player light and general interactions.
+The player cannot sprint indefinitely and can only sprint for 1 second where their speed is doubled for that 1 second.
+When the player moves they make a footstep sound every 5 seconds. When the player is sprinting they make footstep sounds 
+every 0.5 seconds. When the player is crouching they do not make footstep sounds. 
+The footstep sounds do nothing while in the first level of the game which is the narrator level, while the footstep sounds
+alert the enemy to the player's position in the procedurally generated level. This is a mechanic that changes based on 
+the player's actions. 
+Toggling the player light helps show hidden paths the player can take but it does take away the player's vision of what
+is around them the hidden paths are one of the Hypothesis mechanics. Having the light off also helps the player hide from the enemy,
+but will remove the warning that the player light gives when the enemy is nearby.
+The player can only interact with one interaction at a time and if the interaction needs the player to remember something
+or input something the interaction does not freeze the in game time to give the player a sense of urgency. One type of player interactions
+will be teleporters which are part of the Hypothesis mechanics.
+\subsection{General Challenges}
+Most of the challenges appear in the procedural generation level of the game, due to the narrative level being more of 
+an exploration for the player where the player is led through the level.
+The main challenge in the procedural generation level is hiding and running away from the enemy. The enemy's speed is
+faster than the player's speed, but slower than the player's sprint speed. This brings another challenge where the player
+needs to manage their sprint in order to be able to escape from the enemy. The player will a
 
 \section{Goals}
 General Goal List:
@@ -13,7 +33,7 @@ General Goal List:
     \item Connect all the prototypes.
     \item Add multiple ways to traverse the procedurally generated map.
 \end{itemize}
-\section{Level Design}
+\section{General design outline}
 \subsection{Story}
 The player will find themselves in a sort of laboratory where a disembodied voice will try 
 to guide the player out of the laboratory. If the player follows the voice they will successfully
@@ -21,18 +41,19 @@ escape the laboratory. If the player disobeys the voice they will be taken deepe
 where they will then have to escape from the laboratory without the help of the narrator. 
 \subsection{Game Progression}
 The general game progression is that the player will start in the tutorial and then make their ways
-from the first level to the third level. The first level will be handmade and will have
+from the first level to the second level. The first level will be handmade and will have
 a narrator. The second level will be a procedurally generated level.
 \subsection{Tutorial}
 The player will start in the tutorial where they will learn the basics of the game. The player
 will first learn the basic controls which are: Moving, sprinting, toggling the player light and
 general interactions the player can perform. The player will be introduced to the enemy in the
-tutorial and different ways to avoid them.
+tutorial and different ways to avoid them and how the enemy generally works.
 \subsection{First Level}
 The player will be put in a laboratory map where a disembodied voice called the narrator will then
 try to help the player escape from the laboratory. If the player follows the narrator then they will
 escape from the laboratory, if the player disobeys the narrator they will go deeper into the laboratory.
-The enemy will not appear in this level. This level will not be procedurally generated.
+The enemy will not appear in this level. This level will not be procedurally generated. This is to explore
+how the different mechanics shape the player experience in traversing the map.
 \subsection{Second Level}
 The player will be in a laboratory that is decayed. The player will face an enemy that is constantly trying
 to catch them. The player will also need to try and solve some sort of puzzle which could be finding a code 
@@ -40,11 +61,7 @@ or bringing an object from point A to point B. The decay is shown by giving the 
 random walk.
 
 \section{Genre}
-The genre of the game will be a stealth survival horror and puzzle genre. 
-The player will need to hide and evade an unstoppable enemy while trying to complete some sort of goal.
-This will be similar to the Alien from Alien Isolation, because the AI enemy was inspired from Alien 
-Isolation.
-The puzzle genre appears when the player will need to find solutions to the puzzles presented to them.
+The genre of the game will be a stealth survival horror. A game that has these genres is Alien: Isolation
 
 \section{Possible Puzzles}
 These are the puzzles that can appear during the procedural generation of the level. Each puzzle will 
@@ -74,25 +91,54 @@ The generation will be a success if:
 
 
 \section{Prototype Improvements}
-This prototype will improve upon all previous prototypes besides prototype 3, while connecting all the prototypes together.
-\subsection{Prototype 1 Improvements}
+This prototype will improve upon all previous prototypes, while connecting all the prototypes together.
+\subsection{Prototype 1 (Narrative Level) Improvements}
 The map of prototype 1 will be improved while also allowing the player to use more of the mechanics to
-explore the map. This will include areas that can only be accessed when the player's light is turned off
+explore the map. These improvements include making the map completely rigid compared to the current prototype 1
+where half the map is rigid while the other half isn't. This will be done to more accurately communicate that the
+player is in a laboratory.
+This will include areas that can only be accessed when the player's light is turned off
 and areas that have a timer that the player needs to sprint towards to access. This will give the player
 more interaction in exploring the map.
-\subsection{Prototype 2 Improvements}
+\subsection{Prototype 2 (Tutorial) Improvements}
 The map of prototype 2 will be improved to make the tutorial a more optional experience instead of a forced
-experience. It will gradually show the player the mechanics without overwhelming them by showing them all
+experience, this will be done by taking the linear map of the current tutorial and changing it to allow
+the player to learn any mechanic in any order.
+It will gradually show the player the mechanics without overwhelming them by showing them all
 the mechanics at once. A small tutorial will be shown to the player in the pause ui so the player can
 be reminded about the controls at any point during the game.
-\subsection{Prototype 4 Improvements}
+\subsection{Prototype 3 (Enemy AI) Improvements}
+The only improvement being added to the Enemy AI is a static state machine state. This state will be used to
+allow the player to learn more about the enemy while in the tutorial. The state will cause the enemy to stand still
+while only listening to move commands from triggers, and the player's footsteps.
+\subsection{Prototype 4 (Procedural Generation) Improvements}
 The procedural generation algorithm will be improved by keeping track of all the rooms in the generation
 to allow adding of special rooms which will either be a room in which a puzzle needs to be solved or 
 will have an interaction for the player. The algorithm will also allow for secret passages between
 rooms. 
 
 \section{Communication Design}
-\subsection{Prototype 4}
+\subsection{Mechanics}
+The sprint mechanic is communicated through zooming out the player's camera a bit to add the indication of speed,
+while also draining a bar on the left side of the screen to indicate that the player cannot sprint indefinitely.
+The crouch mechanic is communicated through zooming in the player's camera and by slowing the player's speed
+while they are crouching.
+The enemy warning is communicated by turning the player's light yellow when the enemy is nearby, while hidden paths
+that show when the light is turned off keep the blue colour of the ground and are not affected by any light to 
+emphasize the paths to the player.
+A prompt appears on the player's screen telling the player 
+\subsection{Prototype 1 (Narrative level)}
+\subsection{Prototype 2 (Tutorial)}
+Each mechanic is explained to the player through text. The player can then use the mechanics the way the
+text explains it to further learn the mechanics. Each mechanic has its own area that the player can accessed
+by stepping through teleporters to take the enemy to that mechanic's area.
+\subsection{Prototype 3 (Enemy AI)}
+The enemy has a red light around it to indicate that it is dangerous. Heavy footsteps also play whenever
+the enemy moves to a new destination. The sound does not play when the enemy moves,but only when the
+enemy pathfinding finds a new spot for the enemy to move to.
+When the enemy spots the player a red tint covers the screen along with the words "RUN" to indicate that
+the player is being chased and to add tension.
+\subsection{Prototype 4 (Procedural Generation)}
 To indicate that the enemy knows about the player's position a radar ping sound (reference sound) plays every
 few seconds when using the minimap.
 Each intractable is highlighted with a green light (change colours to be the same) this shows the player that
@@ -222,8 +268,8 @@ the player's frustration.
 https://medium.com/@doandaniel/gamedev-protips-a-few-helpful-tips-on-crafting-a-better-tutorial-ffcc636039d3
 https://www.gamedeveloper.com/business/gamedev-thoughts-how-to-design-a-good-tutorial-for-your-indie-game
 \subsection{Minimap}
-
-
 https://pixabay.com/sound-effects/film-special-effects-radar-ping-306440/
+\subsection{Genre}
+% https://store.steampowered.com/app/214490/Alien_Isolation/
 
 \end{document}
