@@ -13,12 +13,15 @@ public class EndDialogManager : MonoBehaviour
     [SerializeField] private TMP_Text _narratorGoodText;
     [SerializeField] private TMP_Text _narratorBadText;
     [SerializeField] private List<DialogSO> _dialogs;
+    [SerializeField] private GameObject _nextButton;
     private bool _followedNarrator = true;
     private event Action _onDialogFinish;
     void OnEnable()
     {
         Time.timeScale = 0;
         InitializeDialog();
+        if(!_followedNarrator)
+        _nextButton.SetActive(true);
     }
     void OnDisable()
     {

@@ -8,4 +8,11 @@ public class LoadSpecificScene : MonoBehaviour
     {
         SceneManager.LoadScene(_sceneNumber);
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(_sceneNumber);
+        }
+    }
 }
