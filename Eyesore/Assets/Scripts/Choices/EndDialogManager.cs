@@ -125,7 +125,7 @@ public class EndDialogManager : MonoBehaviour
     {
         _onDialogFinish -= GoneDeeper3;
         StartCoroutine(TypeDialog(_dialogs[6].DialogText,_narratorGoodText,3f,true));
-        _onDialogFinish += BackToMenu;
+        _onDialogFinish += NextLevel;
     }
     #endregion
 
@@ -136,12 +136,19 @@ public class EndDialogManager : MonoBehaviour
     private void BackToMenu()
     {
         _onDialogFinish -= BackToMenu;
-        StartCoroutine(MenuWait());
+        StartCoroutine(MenuWait(0));
 
     }
-    private IEnumerator MenuWait()
+
+    private void NextLevel()
+    {
+        _onDialogFinish -= NextLevel;
+        StartCoroutine(MenuWait(3));
+
+    }
+    private IEnumerator MenuWait(int sceneNumber)
     {
         yield return new WaitForSecondsRealtime(4f);
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(sceneNumber);
     }
 }

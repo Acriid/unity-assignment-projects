@@ -16,6 +16,7 @@ public class EntityPlacerAlgorithm : MonoBehaviour
     private Vector3Int playerPosition = Vector3Int.zero;
     private bool _placedEntities = false;
     private List<BoundsInt> _copyList;
+    public EnemyDirector EnemyDirector;
     void OnEnable()
     {
         _inputReaderSO.OnToggleLight += CheckOutOfBounds;
@@ -60,6 +61,8 @@ public class EntityPlacerAlgorithm : MonoBehaviour
 
         PlacedEntities?.Invoke();
         _placedEntities = true;
+
+        EnemyDirector.SetShouldGoToMap(true);;
     }
 
     private void CheckOutOfBounds()

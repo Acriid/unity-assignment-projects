@@ -5,6 +5,64 @@ Will the addition of mechanics that allow the player to traverse the map in diff
 allow the use of bigger maps or will it cause the player to be frustrated with the map despite
 the extra mechanics to traverse the map.
 
+
+\section{Genre}
+The genre of the game will be a stealth survival horror, where the main genre will be horror while the secondary genre 
+will be survival and stealth. A horror game is a game which intends to scare or disturb the player this is usually done
+through aesthetic and themes of the game not really the mechanics of the game (reference). The survival horror genre is
+a subgenre of the horror genre. The survival horror genre focusses on making the player less in control to make the player
+feel powerless, by giving them multiple means to fight or run away , but those means are not reliable and can fail the player.
+
+\subsection{Alien: Isolation}
+Alien: Isolation(reference) is a survival horror game set in a space station. The general premise of the game is to survive
+in the space station from various enemies while the player character tries to investigate the disappearance of the player
+character's mother. The main enemy that hunts the player during the game is the Alien which hunts the player through its
+own sight. 
+
+
+The Alien uses a behavior tree to decide it's actions where it can act off of different sensors to try and hunt the player.
+While the enemy for this game uses a state machine. This is discussed more in my Assignment 3 game design document.
+Alien: Isolation is a horror game because it tries to scare the player through its environment and gameplay. This is seen
+because the environment is an isolated space station with barely any living creature. It also scares the player through
+having the player know they are being hunted. The game also gives ways of avoiding or fighting back against the Alien.
+These include giving the player a motion tracker and a flashlight. The player can use these items to better traverse 
+the map, but using the items come with a risk. Using the flashlight may give the player better sight to see their
+environment, but the Alien can see the light and hunt you easier. It is the same with the motion tracker, it allows
+the player to see if the Alien is around then ,but the Alien can hear the motion tracker. The player is also given
+multiple ways to fight against the Alien with different guns and weapons, but these methods are limited through
+limited use of them which encourages a more evasive playstyle. It is also noted that the player cannot defeat the Alien
+only slow them down.
+
+
+\subsection{Dead By Daylight}
+Dead By Daylight is a action survival horror game set in an eldritch realm. There are two parts of the gameplay of 
+Dead By Daylight and these are the action horror side where the player plays as an unstoppable killer tasked with stopping
+four survivors from escaping. Then there is the survival horror side of the game where the player needs to work together
+as a team of four to run and hide from an unstoppable killer in order to escape. I will be focusing on the survivors and
+their gameplay because it is a survival horror.
+
+When a survivor is loaded into a game they are compleatly isolated from their team. The map that the player loads into 
+also has limited visibility. The survivor will not know where the killer is, but they can see the killer and the killer
+has a red glow around them. If the survivor is close enough to the killer a heartbeat will play indicating that the killer
+is nearby. The killer is always faster than the survivors, but there are objects on the map called windows and pallets, where
+the player can vault through a window faster than the killer and the survivor can drop the pallets at the right time to stun
+the killer, but the killer can break dropped pallets making them a limited resources. When a survivor is caught by the killer
+the killer can then put them on a hook which kills the survivor if they are on the hook for too long. Other survivors can
+take the survivor off the hook. These elements contribute to a cat and mouse chase where a survivor needs to distract the
+killer while the other survivors complete objectives around the map. The main element of an unstoppable force that you need
+to run away from and use your limited resources to survive against remains.
+
+
+\subsection{Genre Conclusion}
+With both games mentioned of the survival horror genre they both have an unstoppable force that targets the player where 
+the player needs to run away or hide from this force using what limited recourses they have.
+This playstyle of hiding and running away from something that cannot be stopped is the playstyle that I want the player
+to play in this game.
+
+
+
+
+
 \section{Player Actions}
 \subsection{General Mechanics}
 The general actions the player can take are moving, sprinting, crouching toggling a player light and general interactions.
@@ -60,16 +118,6 @@ to catch them. The player will also need to try and solve some sort of puzzle wh
 or bringing an object from point A to point B. The decay is shown by giving the procedural generation a high level of
 random walk.
 
-\section{Genre}
-The genre of the game will be a stealth survival horror, where the main genre will be horror while the secondary genre 
-will be survival and stealth. A horror game is a game which intends to scare or disturb the player this is usually done
-through aesthetic and themes of the game not really the mechanics of the game (reference). The survival horror genre is
-a subgenre of the horror genre. The survival horror genre focusses on making the player less in control to make the player
-feel powerless, by giving them multiple means to fight or run away , but those means are not reliable and can fail the player.
-\subsection{Alien: Isolation}
-Alien: Isolation(reference) is a survival horror game set in a space station. The general premise of the game is to survive
-in the space station from various enemies while the player character tries to investigate the disappearance of the player
-character's mother.
 
 
 \section{Possible Puzzles}
@@ -137,6 +185,8 @@ that show when the light is turned off keep the blue colour of the ground and ar
 emphasize the paths to the player.
 A prompt appears on the player's screen telling the player 
 \subsection{Prototype 1 (Narrative level)}
+Most of the actions that the player needs to do to progress is communicated from the dialog system where if the
+player misses the dialog they may get confused and would not know where to go.
 \subsection{Prototype 2 (Tutorial)}
 Each mechanic is explained to the player through text. The player can then use the mechanics the way the
 text explains it to further learn the mechanics. Each mechanic has its own area that the player can accessed
@@ -160,10 +210,18 @@ also helps the player know they can interact with specific game elements.
 The design philosophy for the tutorial is that it needs to introduce the player to the general mechanics.
 This means it first needs to show the player how to move and then after confirming that the player knows how
 to move will then allow the player to select which mechanic they want to learn about. This allows the player
-freedom in the tutorial 
+freedom in the tutorial instead of blocking the player off form learning a mechanic if they have not learnt a
+different mechanic first. As seen in the (ref figures) the player chooses which mechanic they want to learn
+and get moved to an area that teaches that mechanic (ref figure) , instead of moving linearly through the
+mechanics (ref figure).
+
 \subsection{Prototype 1}
 No timer areas were added to the level because the first level is made to feel like the player is calmly being
 guided through the level while the timer areas will just add unnecessary anxiety to the player.
+The areas where the player can only get when they don't follow the dialog kept its rigid shape to be in union with 
+the rest of the map but contamination(word) was added to indicate the player is not supposed to be there the difference
+from the original prototype can be seen in (ref figures).
+
 \subsection{Prototype 3}
 Fixed a bug in which caused the enemy to move as if idle when being sent to specific spots on the map. This bug
 sometimes stopped the enemy from moving towards the player when using the minimap causing the minimap to be less
@@ -173,13 +231,14 @@ progression of the game be: Prototype 2, Prototype 1, Prototype 4.
 
 \subsection{Prototype 4}
 Increased the player light size because the original light size made the player feel too cramped in the room
-causing the player to get lost in the map a bit too often. The original size was a 4 unit circle while the new
-size is a 7 unit circle. The detection for the enemy to see the player light is still the original size to allow
-the player some leeway in not getting spotted by the enemy but still being able to see what is happening.
-A minimap was added to the game to help to give the player a sense of direction, because players got confused
-with the maze-like map structure. The minimap will ping the players position every few seconds which will guide 
-the enemy to the player. This is to make the minimap a risk for the player to use for too long while still helping
-the player navigate the level.
+causing the player to get lost in the map a bit too often size change can be seen in (ref fig1) and (ref fig 2).
+The original size was a 4 unit circle while the new size is a 7 unit circle. The detection for the enemy to 
+see the player light is still the original size to allow the player some leeway in not getting spotted by the 
+enemy but still being able to see what is happening. A minimap was added to the game to help to give the player
+a sense of direction the minimap is in the bottom right corner of the screen and can be seen in (ref fig),
+because players got confused with the maze-like map structure. The minimap will ping the players position every 
+few seconds which will guide the enemy to the player. This is to make the minimap a risk for the player to use 
+for too long while still helping the player navigate the level.
 
 
 Text was added to the puzzle solution to help the player remember which parts of the solution the player has already found.
@@ -280,5 +339,12 @@ https://www.gamedeveloper.com/business/gamedev-thoughts-how-to-design-a-good-tut
 https://pixabay.com/sound-effects/film-special-effects-radar-ping-306440/
 \subsection{Genre}
 % https://store.steampowered.com/app/214490/Alien_Isolation/
+% https://en.wikipedia.org/wiki/Alien:_Isolation
+% https://en.wikipedia.org/wiki/Survival_horror
+% https://en.wikipedia.org/wiki/Horror_game
+% https://en.wikipedia.org/wiki/Horror_fiction
+% https://www.gamedeveloper.com/design/what-makes-the-survival-of-survival-horror-the-difference-between-scares-and-shooting
+% https://www.gamedeveloper.com/design/why-horror-is-the-hardest-game-genre
+% https://store.steampowered.com/app/381210/Dead_by_Daylight/
 
 \end{document}

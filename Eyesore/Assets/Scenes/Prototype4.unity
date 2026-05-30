@@ -1103,6 +1103,7 @@ MonoBehaviour:
   _enemyObject: {fileID: 1556587615}
   _inputReaderSO: {fileID: 11400000, guid: f82c58c05fb4f824085ebdaad83b873c, type: 2}
   _floorTileMap: {fileID: 1757032171}
+  EnemyDirector: {fileID: 2052454492}
 --- !u!1 &315072175
 GameObject:
   m_ObjectHideFlags: 0
