@@ -15,7 +15,7 @@ public class ToggleInteraction : Interaction
     {
         isToggled = !isToggled;
         EnableObjects(isToggled);
-        DisableObjects(isToggled);
+        DisableObjects(!isToggled);
         if(!isToggled)
         {
             ChangeInteractionPrompt(originalPrompt);

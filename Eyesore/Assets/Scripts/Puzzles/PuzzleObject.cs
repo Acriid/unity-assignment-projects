@@ -10,6 +10,7 @@ public class PuzzleObject : Interaction
     [SerializeField] private int _puzzleOrder = -1;
     [SerializeField] private GameObject _puzzleCanvas = null;
     [SerializeField] private TMP_Text _puzzleText = null;
+    [SerializeField] private bool _freezeTime = false;
     public event Action<PuzzleObject> OnPuzzleInteract;
     private bool alreadyInteracted = false;
     public void SetPuzzleValue(char newValue,int puzzleOrder)
@@ -29,9 +30,15 @@ public class PuzzleObject : Interaction
             Debug.LogWarning($"{gameObject.name} has no puzzleCanvas");
             return;
         }
-        int newScale = !_puzzleCanvas.activeSelf? 0 : 1;
+
+        if(_freezeTime)
+        {
+            int newScale = !_puzzleCanvas.activeSelf? 0 : 1;
+            Time.timeScale = newScale;
+        }
+        
         _puzzleCanvas.SetActive(!_puzzleCanvas.activeSelf);
-        Time.timeScale = newScale;
+        
 
         if(alreadyInteracted) return;
         OnPuzzleInteract?.Invoke(this);

@@ -13,6 +13,7 @@ public class Puzzle : Interaction
     [SerializeField] private TMP_InputField _puzzleInput = null;
     [SerializeField] private TMP_Text _puzzleHint = null;
     [SerializeField] private GameObject _endCanvas = null;
+    [SerializeField] private bool _freezeTime = false;
     private string _puzzleSolution = "";
     public void AddToPuzzleList(PuzzleObject objectToAdd)
     {
@@ -54,9 +55,12 @@ public class Puzzle : Interaction
     public override void OnInteract(GameObject player)
     {
         if(_canvasObject == null) return;
-        int scaleChange = !_canvasObject.activeSelf? 0 : 1;
+        if(_freezeTime)
+        {
+            int newScale = !_canvasObject.activeSelf? 0 : 1;
+            Time.timeScale = newScale;
+        }
         _canvasObject.SetActive(!_canvasObject.activeSelf);
-        Time.timeScale = scaleChange;
     }
 
     private void CheckValue(string text)
